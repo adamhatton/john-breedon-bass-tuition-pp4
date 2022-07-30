@@ -18,4 +18,4 @@ class Contact(models.Model):
         ordering = ['submitted']
 
     def __str__(self):
-        return f'Contact from ${self.name} on ${self.submitted}'
+        return f'Contact from {self.name} on {self.submitted.strftime("%d %b %Y")}'
