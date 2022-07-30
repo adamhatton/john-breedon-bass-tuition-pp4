@@ -44,7 +44,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cloudinary',
     'home',
+    'phonenumber_field',
 ]
+
+PHONENUMBER_DB_FORMAT = 'NATIONAL'
+PHONENUMBER_DEFAULT_REGION = 'GB'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
