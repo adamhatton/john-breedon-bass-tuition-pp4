@@ -18,6 +18,12 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Style tag used in head to overcome issue of serving a background image from Cloudinary -->
+    <style>
+        #home-header {
+            background: black url('{% static "images/person-playing-bass-guitar.webp" %}') center center / cover no-repeat;
+        }
+    </style>
     <title>John Breedon Bass Tuition</title>
 </head>
 

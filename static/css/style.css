@@ -2,6 +2,6 @@ html {
     height: 100%;
 }
 
-#home-header {
-    background: black url('/static/images/person-playing-bass-guitar.webp') center top no-repeat fixed;
+.btn {
+    min-width: 175px;
 }
