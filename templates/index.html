@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 
@@ -7,36 +8,59 @@
     <div class="container px-5">
         <div class="row gx-5 justify-content-center">
             <div class="col text-center my-5">
-                    <h1 class="display-5 fw-bolder text-white mb-4">John Breedon Bass Tuition</h1>
-                    <div class="d-flex flex-column align-items-center">
-                        <a class="btn btn-primary btn-lg px-4 my-2" href="#features">Sign Up</a>
-                        <a class="btn btn-primary btn-lg px-4 my-2" href="#!">Book a Lesson</a>
-                    </div>
+                <h1 class="display-5 fw-bolder text-white mb-4">John Breedon Bass Tuition</h1>
+                <div class="d-flex flex-column align-items-center">
+                    <a class="btn btn-lg px-4 my-2" href="#features">Sign Up</a>
+                    <a class="btn btn-lg px-4 my-2" href="#!">Book a Lesson</a>
+                </div>
             </div>
         </div>
     </div>
 </header>
-<!-- Features section-->
-<section class="py-5 border-bottom" id="features">
-    <div class="container px-5 my-5">
-        <div class="row gx-5">
-            <div class="col-lg-4 mb-5 mb-lg-0">
-                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-collection"></i>
+
+<!-- Key information section-->
+<section class="border-bottom py-4 bg-light bg-gradient">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 gx-lg-3 gy-4 gy-lg-0">
+            <div class="col">
+                <div class="card h-100 text-center bg-dark bg-gradient">
+                    <img src="{% static 'images/bass-guitar.webp' %}" class="card-img-top"
+                        alt="The body of a bass guitar">
+                    <div class="card-body">
+                        <h2 class="card-title border-bottom pb-3">Expert Tutor</h2>
+                        <p class="card-text mt-4">I have been playing bass for over 20 years, and have been tutoring for 10
+                            of those.
+                            I have tutored students of all ages and abilities, so you can be sure you're in safe hands!
+                        </p>
+                    </div>
                 </div>
-                <h2 class="h4 fw-bolder">Expert tutor</h2>
-                <p>I have been playing bass for over 20 years, and have been tutoring for 10 of those. I have tutored students of all ages and abilities, so you can be sure you're in safe hands!</p>
             </div>
-            <div class="col-lg-4 mb-5 mb-lg-0">
-                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-building"></i>
+            <div class="col">
+                <div class="card h-100 text-center bg-dark bg-gradient">
+                    <img src="{% static 'images/open-laptop.webp' %}" class="card-img-top"
+                        alt="An open laptop on a desk">
+                    <div class="card-body">
+                        <h2 class="card-title border-bottom pb-3">Learn online or in person</h2>
+                        <p class="card-text mt-4">Want to start learning but don't have time to travel? No problem, I offer
+                            online lessons as well!</p>
+                    </div>
                 </div>
-                <h2 class="h4 fw-bolder">Learn online or in person</h2>
-                <p>Want to start learning but don't have time to travel? No problem, I offer online lessons as well!</p>
             </div>
-            <div class="col-lg-4">
-                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i>
+            <div class="col">
+                <div class="card h-100 text-center bg-dark bg-gradient">
+                    <img src="{% static 'images/sheet-music.webp' %}" class="card-img-top"
+                        alt="A close up image of some sheet music">
+                    <div class="card-body">
+                        <h2 class="card-title border-bottom pb-3">Play your way</h2>
+                        <p class="card-text mt-4">Whether there's a particular song you've always wanted to play or you just
+                            want to
+                            expand your music theory skills, I will tailor your lessons to your goals. Playing bass
+                            should be
+                            fun and I will help you play what you want to play whilst making sure that you're learning
+                            the
+                            proper techniques</p>
+                    </div>
                 </div>
-                <h2 class="h4 fw-bolder">Play your way</h2>
-                <p>Whether there's a particular song you've always wanted to play or you just want to expand your music theory skills, I will tailor your lessons to your goals. Playing bass should be fun and I will help you play what you want to play whilst making sure that you're learning the proper techniques</p>
             </div>
         </div>
     </div>

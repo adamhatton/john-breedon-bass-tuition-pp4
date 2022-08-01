@@ -1,7 +1,23 @@
+/*------------------------------------- General Styling */
 html {
     height: 100%;
 }
 
+
+/*------------------------------------- Home Page Styling */
 .btn {
     min-width: 175px;
+    color: #000;
+    background-color: #ff6600;
+    border: #ff6600;
+}
+
+.btn:hover {
+    background-color: #db610f;
+    border-color: #db610f;
+    color: #fff;
+}
+
+.card-body {
+    color: #fff;
 }
