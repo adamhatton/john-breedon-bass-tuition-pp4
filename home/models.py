@@ -15,6 +15,9 @@ class Contact(models.Model):
     completed = models.BooleanField(default=False)
 
     class Meta:
+        '''
+        Sets metadata for the Contact class
+        '''
         ordering = ['submitted']
 
     def __str__(self):

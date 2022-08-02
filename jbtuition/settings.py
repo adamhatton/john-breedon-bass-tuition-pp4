@@ -43,10 +43,17 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'django.contrib.staticfiles',
     'cloudinary',
+    'crispy_forms',
+    "crispy_bootstrap5",
     'home',
     'phonenumber_field',
 ]
 
+# Configuration variables for using bootstrap 5 with crispy forms
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+# Configuration variables for django phonenumber_field
 PHONENUMBER_DB_FORMAT = 'NATIONAL'
 PHONENUMBER_DEFAULT_REGION = 'GB'
 
