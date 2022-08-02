@@ -18,7 +18,7 @@ class Contact(models.Model):
         '''
         Sets metadata for the Contact class
         '''
-        ordering = ['submitted']
+        ordering = ['-submitted']
 
     def __str__(self):
         return f'Contact from {self.name} on {self.submitted.strftime("%d %b %Y")}'

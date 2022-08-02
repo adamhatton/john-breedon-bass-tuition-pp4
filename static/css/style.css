@@ -25,3 +25,7 @@ html {
 .asteriskField {
     display: none;
 }
+
+#contact-form {
+    max-width: 800px;
+}
