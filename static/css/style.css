@@ -3,8 +3,8 @@ html {
     height: 100%;
 }
 
-.nav-link > .active > a {
-    color: #ff6600
+.active {
+    color: #ff6600 !important;
 }
 
 /*------------------------------------- Home Page Styling */
