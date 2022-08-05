@@ -1,7 +1,7 @@
 from .models import Contact
 from django import forms
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Fieldset, Submit
+from crispy_forms.layout import Layout, Fieldset, Submit, Div
 from crispy_bootstrap5.bootstrap5 import FloatingField
 
 class ContactForm(forms.ModelForm):
@@ -26,5 +26,8 @@ class ContactForm(forms.ModelForm):
             FloatingField('email'),
             FloatingField('phone', placeholder='Phone [not required]'),
             'message',
-            Submit('submit', 'Submit'),
+            Div (
+                Submit('submit', 'Submit'),
+                css_id = 'contact-submit'
+            ),
         )
