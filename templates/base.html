@@ -22,7 +22,6 @@
     <style>
         #home-header {
             background: linear-gradient(to bottom, rgba(0,0,0,.85), rgba(0,0,0,.5)), url('{% static "images/person-playing-bass-guitar.webp" %}') center center / cover no-repeat;
-            margin-top: 56px;
         }
     </style>
     <title>John Breedon Bass Tuition</title>
@@ -38,16 +37,20 @@
                 aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    {% for path, name in navlinks.items %}
+                    {% for path, name in navlinks_scrollspy.items %}
                         {% if request.path == path %}
                         <li class="nav-item"><a class="nav-link active scrollspy-link" aria-current="page" href="{% url name %}">{{ name|capfirst }}</a></li>
                         {% else %}
                         <li class="nav-item"><a class="nav-link scrollspy-link" href="{% url name %}">{{ name|capfirst }}</a></li>
                         {% endif %}
                     {% endfor %}
-                    <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#!">Bookings</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#!">Login</a></li>
+                    {% for path, name in navlinks.items %}
+                        {% if request.path == path %}
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url name %}">{{ name|capfirst }}</a></li>
+                        {% else %}
+                        <li class="nav-item"><a class="nav-link" href="{% url name %}">{{ name|capfirst }}</a></li>
+                        {% endif %}
+                    {% endfor %}
                 </ul>
             </div>
         </div>

@@ -1,18 +1,19 @@
 {% extends 'base.html' %} {% block content %}
 {% load static %}
-{% load crispy_forms_tags %}
 
 
 <!-- Header-->
-<header id="home-header" class="bg-dark py-5 scrollspy push-below-nav">
+<header id="about-header" class="bg-dark bg-gradient py-5 push-below-nav">
     <div class="container px-5">
-        <div class="row gx-5 justify-content-center">
-            <div class="col text-center my-5">
-                <h1 class="display-5 fw-bolder text-white mb-4">John Breedon Bass Tuition</h1>
-                <div class="d-flex flex-column align-items-center">
-                    <a class="btn btn-lg px-4 my-2" href="#!">Sign Up</a>
-                    <a class="btn btn-lg px-4 my-2" href="#!">Book a Lesson</a>
-                </div>
+        <div class="row gx-5">
+            <div class="col-6 text-center my-5">
+                <h1 class="display-5 fw-bolder text-white mb-4">John Breedon</h1>
+                <p class="text-white">This is some placeholder text that talks about how good I am and how long I have been playing bass
+                    which is approximately forever. I'm such a good teacher that I made my own website and now I want to
+                    teach you how to play bass so why don't you get in touch and I'll totally teach you how to play?</p>
+            </div>
+            <div class="col-6 img-container">
+                <img src="{% static 'images/image-of-tutor.webp' %}" class="about-img" alt="Bass tutor playing his guitar">
             </div>
         </div>
     </div>
@@ -28,7 +29,8 @@
                         alt="The body of a bass guitar">
                     <div class="card-body">
                         <h2 class="card-title border-bottom pb-3">Expert Tutor</h2>
-                        <p class="card-text mt-4">I have been playing bass for over 30 years, and have been tutoring for 15
+                        <p class="card-text mt-4">I have been playing bass for over 20 years, and have been tutoring for
+                            10
                             of those.
                             I have tutored students of all ages and abilities, so you can be sure you're in safe hands!
                         </p>
@@ -41,7 +43,8 @@
                         alt="An open laptop on a desk">
                     <div class="card-body">
                         <h2 class="card-title border-bottom pb-3">Learn online or in person</h2>
-                        <p class="card-text mt-4">Want to start learning but don't have time to travel? No problem, I offer
+                        <p class="card-text mt-4">Want to start learning but don't have time to travel? No problem, I
+                            offer
                             online lessons as well!</p>
                     </div>
                 </div>
@@ -52,7 +55,8 @@
                         alt="A close up image of some sheet music">
                     <div class="card-body">
                         <h2 class="card-title border-bottom pb-3">Play your way</h2>
-                        <p class="card-text mt-4">Whether there's a particular song you've always wanted to play or you just
+                        <p class="card-text mt-4">Whether there's a particular song you've always wanted to play or you
+                            just
                             want to
                             expand your music theory skills, I will tailor your lessons to your goals. Playing bass
                             should be
@@ -107,21 +111,6 @@
                 </div>
             </div>
         </div>
-    </div>
-</section>
-
-<!-- Contact section-->
-<section class="bg-light py-5 scrollspy">
-    <div class="container px-5 my-5 px-5">
-        <div class="row justify-content-center">
-        <div class="text-center mb-5">
-            <h2 id="contact-header" class="fw-bolder">Get in touch</h2>
-            <p class="lead mb-0">If you want to know more before booking a lesson then drop me a message!</p>
-        </div>
-        <form id="contact-form" method="POST" action="/contact/">
-            {% crispy contact_form contact_form.helper %}
-        </form>
-    </div>
     </div>
 </section>
 

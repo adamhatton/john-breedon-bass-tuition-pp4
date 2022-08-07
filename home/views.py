@@ -65,3 +65,19 @@ class ContactSection(View):
                 'contact_form': contact_form
             },
         )
+
+
+def about_page(request):
+    '''
+    View for loading the about page
+    '''
+
+    stringy = "Testing time"
+
+    return render(
+        request,
+        'about.html',
+        {
+            'stringy': stringy,
+        },
+    )
