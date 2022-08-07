@@ -28,6 +28,10 @@ html {
     margin-top: 56px;
 }
 
+.justify-text {
+    text-align: justify;
+}
+
 /*------------------------------------- Home Page Styling */
 .btn {
     min-width: 175px;
@@ -39,10 +43,6 @@ html {
 .btn:hover {
     background-color: #db610f;
     border-color: #db610f;
-    color: #fff;
-}
-
-.card-body {
     color: #fff;
 }
 
