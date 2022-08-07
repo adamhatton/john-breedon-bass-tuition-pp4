@@ -29,7 +29,7 @@
 
 <body>
     <!-- Responsive navbar-->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container px-5">
             <a class="navbar-brand" href="#!">JB Tuition</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -39,9 +39,9 @@
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     {% for path, name in navlinks.items %}
                         {% if request.path == path %}
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url name %}">{{ name|capfirst }}</a></li>
+                        <li class="nav-item"><a class="nav-link active scrollspy-link" aria-current="page" href="{% url name %}">{{ name|capfirst }}</a></li>
                         {% else %}
-                        <li class="nav-item"><a class="nav-link" href="{% url name %}">{{ name|capfirst }}</a></li>
+                        <li class="nav-item"><a class="nav-link scrollspy-link" href="{% url name %}">{{ name|capfirst }}</a></li>
                         {% endif %}
                     {% endfor %}
                     <li class="nav-item"><a class="nav-link" href="#!">About</a></li>

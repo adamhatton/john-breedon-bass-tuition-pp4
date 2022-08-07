@@ -1,6 +1,14 @@
 from django.shortcuts import render
 from django.views import View
+from django.http import HttpResponseRedirect
 from .forms import ContactForm
+
+
+def index_page(request):
+    '''
+    Loading index redirects to the homepage
+    '''
+    return HttpResponseRedirect('/home/')
 
 
 class HomePage(View):
@@ -13,7 +21,7 @@ class HomePage(View):
         '''
         return render(
             request,
-            'index.html',
+            'home.html',
             {
                 'contact_form': ContactForm()
             },
@@ -31,11 +39,12 @@ class HomePage(View):
 
         return render(
             request,
-            'index.html',
+            'home.html',
             {
                 'contact_form': contact_form
             },
         )
+
 
 class ContactSection(View):
     '''
@@ -48,7 +57,7 @@ class ContactSection(View):
         '''
         return render(
             request,
-            'index.html',
+            'home.html',
             {
                 'contact_form': ContactForm()
             },
@@ -66,7 +75,7 @@ class ContactSection(View):
 
         return render(
             request,
-            'index.html',
+            'home.html',
             {
                 'contact_form': contact_form
             },

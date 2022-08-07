@@ -10,7 +10,7 @@ def navbar_processor(request):
     added
     '''
     navlinks = {
-        '/': 'home',
+        '/home/': 'home',
         '/contact/': 'contact',
     }
 
