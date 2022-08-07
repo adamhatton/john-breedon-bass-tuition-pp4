@@ -7,6 +7,23 @@ html {
     color: #ff6600 !important;
 }
 
+#msg {
+    position: fixed;
+    font-weight: bold;
+    top: 112px;
+    right: 50%;
+    transform: translate(50%);
+    z-index: 1100;
+    min-width: 250px;
+    animation-name: fadein;
+    animation-duration: 0.75s;
+}
+
+.alert-dark {
+    border-color: #212529;
+    background-color: #ff6600;
+}
+
 /*------------------------------------- Home Page Styling */
 .btn {
     min-width: 175px;
@@ -35,4 +52,15 @@ html {
 
 #contact-submit {
     text-align: center;
+}
+
+/*------------------------------------- Animations */
+@keyframes fadein {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }

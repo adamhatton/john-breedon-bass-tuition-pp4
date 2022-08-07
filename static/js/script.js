@@ -12,6 +12,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
+setTimeout(function() {
+    let messages = document.getElementById("msg");
+    let alert = new bootstrap.Alert(messages);
+    alert.close();
+}, 3000);
+
 // Code taken from https://medium.com/p1xts-blog/scrollspy-with-just-javascript-3131c114abdc by P1xt
 function scrollSpy(){
     // Get relevant sections as a Nodelist

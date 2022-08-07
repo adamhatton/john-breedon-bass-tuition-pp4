@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views import View
 from django.http import HttpResponseRedirect
+from django.contrib import messages
 from .forms import ContactForm
 
 
@@ -24,24 +25,6 @@ class HomePage(View):
             'home.html',
             {
                 'contact_form': ContactForm()
-            },
-        )
-
-    def post(self, request, *args, **kwargs):
-        '''
-        Handles POST requests from the contact form on the home page
-        '''
-        contact_form = ContactForm(data=request.POST)
-
-        if contact_form.is_valid():
-            contact = contact_form.save(commit=False)
-            contact.save()
-
-        return render(
-            request,
-            'home.html',
-            {
-                'contact_form': contact_form
             },
         )
 
@@ -72,6 +55,8 @@ class ContactSection(View):
         if contact_form.is_valid():
             contact = contact_form.save(commit=False)
             contact.save()
+            messages.success(request, 'Message sent successfully')
+            contact_form = ContactForm()
 
         return render(
             request,
