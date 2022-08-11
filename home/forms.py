@@ -1,8 +1,9 @@
-from .models import Contact
 from django import forms
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Fieldset, Submit, Div
+from crispy_forms.layout import Layout, Submit, Div
 from crispy_bootstrap5.bootstrap5 import FloatingField
+from .models import Contact
+
 
 class ContactForm(forms.ModelForm):
     '''
@@ -15,9 +16,11 @@ class ContactForm(forms.ModelForm):
         '''
         model = Contact
         fields = ('name', 'email', 'phone', 'message')
-    
 
     def __init__(self, *args, **kwargs):
+        '''
+        Creates a FormHelper to enable layout changes in crispy forms
+        '''
         super(ContactForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper(self)
 
@@ -26,8 +29,8 @@ class ContactForm(forms.ModelForm):
             FloatingField('email'),
             FloatingField('phone', placeholder='Phone [not required]'),
             'message',
-            Div (
+            Div(
                 Submit('submit', 'Submit'),
-                css_id = 'contact-submit'
+                css_id='contact-submit'
             ),
         )
