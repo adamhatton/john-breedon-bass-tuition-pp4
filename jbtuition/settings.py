@@ -41,6 +41,10 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
     'cloudinary_storage',
     'django.contrib.staticfiles',
     'cloudinary',
@@ -49,6 +53,13 @@ INSTALLED_APPS = [
     'home',
     'phonenumber_field',
 ]
+
+# Allauth configuration
+SITE_ID = 1
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
 
 # Configuration variables for using bootstrap 5 with crispy forms
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
