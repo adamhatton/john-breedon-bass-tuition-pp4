@@ -7,15 +7,15 @@
 
 {% block content %}
 
-<div class="container push-below-nav">
+<div class="container push-below-nav mb-5">
   <div class="row pt-4">
     <div class="col">
-      <div class="login-header">
+      <div class="auth-header">
         <h1>{% trans "Sign In" %}</h1>
         <p>{% blocktrans %}If you have not created an account yet, then please
           <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
       </div>
-      <form id="login-form" class="login form-width" method="POST" action="{% url 'account_login' %}">
+      <form id="login-form" class="login auth-form form-width" method="POST" action="{% url 'account_login' %}">
         {% csrf_token %}
         {{ form | crispy }}
         {% if redirect_field_value %}

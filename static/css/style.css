@@ -90,12 +90,12 @@ footer {
     border: solid 1px;
 }
 
-/*------------------------------------- Login form Styling */
-.login-header {
+/*------------------------------------- Auth forms Styling */
+.auth-header {
     text-align: center;
 }
 
-#login-form {
+.auth-form {
     margin: auto;
 }
 
