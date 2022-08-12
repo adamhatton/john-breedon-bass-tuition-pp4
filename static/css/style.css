@@ -30,8 +30,10 @@ body {
 }
 
 .alert-dark {
-    border-color: #212529;
-    background-color: #ff6600;
+    background-color: #212529;
+    color: #fff;
+    border-radius: 0;
+    border-color: #fff;
 }
 
 .push-below-nav {
