@@ -60,6 +60,9 @@ SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = None
+
 
 # Configuration variables for using bootstrap 5 with crispy forms
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
