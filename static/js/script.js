@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    console.log(document.URL)
+    document.getElementById('copyright-year').innerHTML = new Date().getFullYear();
 
     if(document.URL.includes("contact")){
         document.getElementById("contact-header").scrollIntoView();
@@ -56,3 +56,4 @@ function scrollSpy(){
     });    
 }
 // End of code taken from https://medium.com/p1xts-blog/scrollspy-with-just-javascript-3131c114abdc by P1xt
+
