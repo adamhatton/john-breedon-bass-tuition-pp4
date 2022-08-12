@@ -27,10 +27,10 @@ class ContactForm(forms.ModelForm):
         self.helper.layout = Layout(
             FloatingField('name'),
             FloatingField('email'),
-            FloatingField('phone', placeholder='Phone [not required]'),
+            FloatingField('phone', placeholder='Phone'),
             'message',
             Div(
                 Submit('submit', 'Submit'),
-                css_id='contact-submit'
+                css_class='center-button'
             ),
         )

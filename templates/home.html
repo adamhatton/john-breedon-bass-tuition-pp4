@@ -20,7 +20,7 @@
 
 <!-- Key information section-->
 <section class="border-bottom py-4 bg-light bg-gradient">
-    <div class="container">
+    <div class="container my-4">
         <div class="text-center mb-5">
             <h2 id="info-header" class="fw-bolder">Learn to play bass</h2>
             <p class="lead mb-0">Learn with me and you'll get:</p>
@@ -112,7 +112,7 @@
             <h2 id="contact-header" class="fw-bolder">Get in touch</h2>
             <p class="lead mb-0">If you want to know more before booking a lesson then drop me a message!</p>
         </div>
-        <form id="contact-form" method="POST" action="/contact/">
+        <form id="contact-form" class="form-width" method="POST" action="/contact/">
             {% crispy contact_form contact_form.helper %}
         </form>
     </div>

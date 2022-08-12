@@ -57,19 +57,19 @@
 
                     {# This section renders the login/logout links with active and aria classes if necessary #}
                     {% if user.is_authenticated %}
-                        {% if request.path == 'account_logout' %}
+                        {% if request.path == '/accounts/logout/' %}
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'account_logout' %}">Logout</a></li>
                         {% else %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'account_logout' %}">Logout</a></li>
                         {% endif %}
                     {% else %}
-                        {% if request.path == 'account_signup' %}
+                        {% if request.path == '/accounts/signup/' %}
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'account_signup' %}">Register</a></li>
                         {% else %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'account_signup' %}">Register</a></li>
                         {% endif %}
 
-                        {% if request.path == 'account_login' %}
+                        {% if request.path == '/accounts/login/' %}
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'account_login' %}">Login</a></li>
                         {% else %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'account_login' %}">Login</a></li>

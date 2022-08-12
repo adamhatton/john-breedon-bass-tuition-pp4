@@ -10,7 +10,7 @@ html {
 
 body {
     position: relative;
-    min-height: 100%;
+    min-height: calc(100% - 56px);
     padding-bottom: 120px;
 }
 
@@ -48,6 +48,14 @@ footer {
     width: 100%;
 }
 
+.form-width {
+    max-width: 700px;
+}
+
+.center-button {
+    text-align: center;
+}
+
 /*------------------------------------- Home Page Styling */
 .btn {
     min-width: 175px;
@@ -66,12 +74,13 @@ footer {
     display: none;
 }
 
-#contact-form {
-    max-width: 700px;
+.card {
+    border: none;
+    border-radius: 0;
 }
 
-#contact-submit {
-    text-align: center;
+.card-img-top {
+    border-radius: 0;
 }
 
 /*------------------------------------- About Page Styling */
@@ -79,6 +88,15 @@ footer {
     width: 100%;
     border-radius: 5px;
     border: solid 1px;
+}
+
+/*------------------------------------- Login form Styling */
+.login-header {
+    text-align: center;
+}
+
+#login-form {
+    margin: auto;
 }
 
 /*------------------------------------- Animations */
