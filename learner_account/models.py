@@ -18,12 +18,17 @@ class LearnerProfile(models.Model):
     def __str__(self):
         return f'Profile for {self.user.username}'
 
+    class Meta:
+        '''
+        Sets metadata for the LearnerProfile class
+        '''
+        ordering = ['user']
 
 
 @receiver(post_save, sender=User)
 def create_learner_profile(sender, instance, created, **kwargs):
     '''
-    Create and ave the LearnerProfile whenever a User is created.
+    Create and save the LearnerProfile whenever a User is created.
     '''
     if created:
         LearnerProfile.objects.create(user=instance)

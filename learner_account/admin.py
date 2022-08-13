@@ -42,4 +42,6 @@ class LearnerProfileAdmin(admin.ModelAdmin):
         Disable delete button for LearnerProfiles to prevent issues
         with login
         '''
-        return False
+        if f"{LearnerProfile._meta.app_label}/{LearnerProfile._meta.model_name}" in request.path:
+            return False
+        return True
