@@ -9,7 +9,9 @@ document.addEventListener('DOMContentLoaded', function () {
         scrollSpy();
     }
 
-
+    if(document.getElementById("button-id-edit")) {
+        document.addEventListener("click", enableFields)
+    }
 });
 
 setTimeout(function() {
@@ -17,6 +19,14 @@ setTimeout(function() {
     let alert = new bootstrap.Alert(messages);
     alert.close();
 }, 3000);
+
+function enableFields() {
+    inputs = document.querySelectorAll(".form-control, .form-select");
+    console.log(inputs)
+    for(input of inputs){
+        input.removeAttribute('disabled');
+    }
+};
 
 // Code taken from https://medium.com/p1xts-blog/scrollspy-with-just-javascript-3131c114abdc by P1xt
 function scrollSpy(){
