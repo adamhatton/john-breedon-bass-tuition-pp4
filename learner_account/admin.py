@@ -36,3 +36,10 @@ class LearnerProfileAdmin(admin.ModelAdmin):
         Shortens the about me info for display in admin panel
         '''
         return obj.about[:100]
+
+    def has_delete_permission(self, request, obj=None):
+        '''
+        Disable delete button for LearnerProfiles to prevent issues
+        with login
+        '''
+        return False

@@ -7,7 +7,7 @@ class ContactAdmin(admin.ModelAdmin):
     '''
     Adds the Contact model into the admin site
     '''
-    list_display = ('completed', 'name', 'shortened_message', 'submitted')
+    list_display = ('name', 'completed', 'shortened_message', 'submitted')
     list_filter = ('submitted', 'completed')
     search_fields = ['name', 'message', 'submitted']
 
