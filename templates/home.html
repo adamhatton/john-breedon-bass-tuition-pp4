@@ -32,7 +32,8 @@
                         alt="The body of a bass guitar">
                     <div class="card-body">
                         <h2 class="card-title border-bottom pb-3">Expert Tutor</h2>
-                        <p class="card-text mt-4">I have been playing bass for over 30 years, and have been tutoring for 15
+                        <p class="card-text mt-4">I have been playing bass for over 30 years, and have been tutoring for
+                            15
                             of those.
                             I have tutored students of all ages and abilities, so you can be sure you're in safe hands!
                         </p>
@@ -45,7 +46,8 @@
                         alt="An open laptop on a desk">
                     <div class="card-body">
                         <h2 class="card-title border-bottom pb-3">Online learning</h2>
-                        <p class="card-text mt-4">Want to start learning but don't have time to travel? No problem, I offer
+                        <p class="card-text mt-4">Want to start learning but don't have time to travel? No problem, I
+                            offer
                             online lessons as well offering lessons in person!</p>
                     </div>
                 </div>
@@ -56,7 +58,8 @@
                         alt="A close up image of some sheet music">
                     <div class="card-body">
                         <h2 class="card-title border-bottom pb-3">Play your way</h2>
-                        <p class="card-text mt-4">Whether there's a particular song you've always wanted to play or you just
+                        <p class="card-text mt-4">Whether there's a particular song you've always wanted to play or you
+                            just
                             want to
                             expand your music theory skills, I will tailor your lessons to your goals.
                         </p>
@@ -108,14 +111,14 @@
 <section class="bg-light py-5 scrollspy">
     <div class="container px-5 my-5 px-5">
         <div class="row justify-content-center">
-        <div class="text-center mb-5">
-            <h2 id="contact-header" class="fw-bolder">Get in touch</h2>
-            <p class="lead mb-0">If you want to know more before booking a lesson then drop me a message!</p>
+            <div class="text-center mb-5">
+                <h2 id="contact-header" class="fw-bolder">Get in touch</h2>
+                <p class="lead mb-0">If you want to know more before booking a lesson then drop me a message!</p>
+            </div>
+            <form id="contact-form" class="form-width" method="POST" action="/contact/">
+                {% crispy contact_form contact_form.helper %}
+            </form>
         </div>
-        <form id="contact-form" class="form-width" method="POST" action="/contact/">
-            {% crispy contact_form contact_form.helper %}
-        </form>
-    </div>
     </div>
 </section>
 

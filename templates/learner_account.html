@@ -2,28 +2,18 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
-<h1>This is the Account page</h1>
-<h1>This is the Account page</h1>
-<h1>This is the Account page</h1>
-<h1>This is the Account page</h1>
-<h1>This is the Account page</h1>
-<h1>This is the Account page</h1>
-<h1>This is the Account page</h1>
-
-<!-- Header-->
-<header id="home-header" class="bg-dark py-5 scrollspy push-below-nav">
-    <div class="container px-5">
-        <div class="row gx-5 justify-content-center">
-            <div class="col text-center my-5">
-                <h1 class="display-5 fw-bolder text-white mb-4">John Breedon Bass Tuition</h1>
-                <div class="d-flex flex-column align-items-center">
-                    <a class="btn btn-lg px-4 my-2" href="#!">Sign Up</a>
-                    <a class="btn btn-lg px-4 my-2" href="#!">Book a Lesson</a>
-                </div>
-            </div>
+<!-- Profile Form -->
+<section class="bg-light py-5 push-below-nav">
+    <div class="container px-5 my-5 px-5">
+        <div class="row justify-content-center">
+            <h2 class="fw-bolder text-center mb-5">Profile</h2>
+            <form id="profile-form" class="form-width" method="POST" action="">
+                {% crispy user_form user_form.helper %}
+                {% crispy learner_profile_form learner_profile_form.helper %}
+            </form>
         </div>
     </div>
-</header>
+</section>
 
 <!-- Key information section-->
 <section class="border-bottom py-4 bg-light bg-gradient">

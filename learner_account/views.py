@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import View
-
+from .forms import UserForm, LearnerProfileForm
 
 class AccountPage(View):
     '''
@@ -13,5 +13,8 @@ class AccountPage(View):
         return render(
             request,
             'learner_account.html',
-            {}
+            {
+                'user_form': UserForm(),
+                'learner_profile_form': LearnerProfileForm(),
+            }
         )
