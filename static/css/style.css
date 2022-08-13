@@ -110,6 +110,10 @@ footer {
     border: solid 1px;
 }
 
+#profile-form #hint_id_username {
+    display: none;
+}
+
 /*------------------------------------- Account Page Styling */
 
 

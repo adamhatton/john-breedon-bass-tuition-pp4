@@ -29,6 +29,7 @@ function toggleFieldsDisabled() {
     cancelBtn = document.getElementById("button-id-cancel");
     submitBtn = document.getElementById("submit-id-submit");
     editBtn = document.getElementById("button-id-edit");
+    helpText = document.getElementById("hint_id_username");
 
     if (this.id == "button-id-edit") {
         for(input of inputs){
@@ -36,12 +37,14 @@ function toggleFieldsDisabled() {
         }
         cancelBtn.classList.remove("hidden");
         submitBtn.removeAttribute('disabled');
+        helpText.style.display = "block";
     } else if (this.id == "button-id-cancel") {
         for(input of inputs){
             input.setAttribute('disabled', '');
         }
         editBtn.classList.remove("hidden");
         submitBtn.setAttribute('disabled', '');
+        helpText.style.display = "none";
     }
 
     this.classList.add("hidden")
