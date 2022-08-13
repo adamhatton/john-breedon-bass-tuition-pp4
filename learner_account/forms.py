@@ -1,36 +1,58 @@
 from django import forms
+from django.contrib.auth.models import User
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Submit, Div
+from crispy_forms.layout import Layout
 from crispy_bootstrap5.bootstrap5 import FloatingField
-from .models import Contact
+from .models import LearnerProfile
 
 
-class ContactForm(forms.ModelForm):
+class UserForm(forms.ModelForm):
     '''
-    Creates an instance of the ContactForm to be passed to a template
+    Creates an instance of the UserForm to be passed to a template
     '''
-
     class Meta:
         '''
-        Specifies the fields to be included in the ContactForm class
+        Specifies the fields to be included in the UserForm class
         '''
-        model = Contact
-        fields = ('name', 'email', 'phone', 'message')
+        model = User
+        fields = ('username', 'first_name', 'last_name', 'email')
 
     def __init__(self, *args, **kwargs):
         '''
         Creates a FormHelper to enable layout changes in crispy forms
         '''
-        super(ContactForm, self).__init__(*args, **kwargs)
+        super(UserForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper(self)
 
         self.helper.layout = Layout(
-            FloatingField('name'),
+            FloatingField('username'),
+            FloatingField('first_name'),
+            FloatingField('last_name', placeholder="Surname"),
             FloatingField('email'),
-            FloatingField('phone', placeholder='Phone'),
+        )
+
+
+class LearnerProfileForm(forms.ModelForm):
+    '''
+    Creates an instance of the ProfileForm to be passed to a template
+    '''
+    class Meta:
+        '''
+        Specifies the fields to be included in the LearnerProfileForm class
+        '''
+        model = LearnerProfile
+        fields = ('phone', 'ability', 'about')
+
+    def __init__(self, *args, **kwargs):
+        '''
+        Creates a FormHelper to enable layout changes in crispy forms
+        '''
+        super(LearnerProfileForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+
+        self.helper.layout = Layout(
+            FloatingField('phone'),
+            FloatingField('ability'),
+            'about',
             'message',
-            Div(
-                Submit('submit', 'Submit'),
-                css_class='center-button'
-            ),
         )
