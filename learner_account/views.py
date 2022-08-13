@@ -11,16 +11,15 @@ class AccountPage(View):
         '''
         Handles GET requests by rendering the account page
         '''
-        # user_form = UserForm(initial={
-        #     'username': request.user.username,
-        # })
-
+        
         user_form = UserForm(instance=request.user)
+        learner_profile_form = LearnerProfileForm(instance=request.user.learnerprofile)
+
         return render(
             request,
             'learner_account.html',
             {
                 'user_form': user_form,
-                'learner_profile_form': LearnerProfileForm(),
+                'learner_profile_form': learner_profile_form,
             }
         )
