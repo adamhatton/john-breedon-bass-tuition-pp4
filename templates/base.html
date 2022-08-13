@@ -55,15 +55,14 @@
                         {% endif %}
                     {% endfor %}
 
-                    {% if request.path == '/learner_account/' %}
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'learner_account' %}">Account</a></li>
-                    {% else %}
-                    <li class="nav-item"><a class="nav-link" href="{% url 'learner_account' %}">Account</a></li>
-                    {% endif %}
-
 
                     {# This section renders the login/logout links with active and aria classes if necessary #}
                     {% if user.is_authenticated %}
+                        {% if request.path == '/learner_account/' %}
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'learner_account' %}">Account</a></li>
+                        {% else %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'learner_account' %}">Account</a></li>
+                        {% endif %}
                         {% if request.path == '/accounts/logout/' %}
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'account_logout' %}">Logout</a></li>
                         {% else %}

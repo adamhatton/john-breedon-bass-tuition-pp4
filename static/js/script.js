@@ -25,12 +25,15 @@ setTimeout(function() {
 }, 3000);
 
 function toggleFieldsDisabled() {
+    // Create variables for the different elements to disable
     inputs = document.querySelectorAll(".form-control, .form-select");
     cancelBtn = document.getElementById("button-id-cancel");
     submitBtn = document.getElementById("submit-id-submit");
     editBtn = document.getElementById("button-id-edit");
     helpText = document.getElementById("hint_id_username");
 
+    // When edit is pressed the disabled state is removed from inputs and Submit
+    // When cancel is pressed the disabled state is reapplied
     if (this.id == "button-id-edit") {
         for(input of inputs){
             input.removeAttribute('disabled');
