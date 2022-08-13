@@ -23,7 +23,7 @@ class LearnerProfileAdmin(admin.ModelAdmin):
         '''
         return obj.user.first_name
 
-    @admin.display(description='Surname')
+    @admin.display(description='Last Name')
     def last_name(self, obj):
         '''
         Gets the username from the User model

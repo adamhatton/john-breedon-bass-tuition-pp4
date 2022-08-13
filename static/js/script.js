@@ -10,7 +10,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     if(document.getElementById("button-id-edit")) {
-        document.addEventListener("click", enableFields)
+        document.getElementById("button-id-edit").addEventListener("click", toggleFieldsDisabled)
+    }
+
+    if(document.getElementById("button-id-cancel")) {
+        document.getElementById("button-id-cancel").addEventListener("click", toggleFieldsDisabled)
     }
 });
 
@@ -20,12 +24,27 @@ setTimeout(function() {
     alert.close();
 }, 3000);
 
-function enableFields() {
+function toggleFieldsDisabled() {
     inputs = document.querySelectorAll(".form-control, .form-select");
-    console.log(inputs)
-    for(input of inputs){
-        input.removeAttribute('disabled');
+    cancelBtn = document.getElementById("button-id-cancel");
+    submitBtn = document.getElementById("submit-id-submit");
+    editBtn = document.getElementById("button-id-edit");
+
+    if (this.id == "button-id-edit") {
+        for(input of inputs){
+            input.removeAttribute('disabled');
+        }
+        cancelBtn.classList.remove("hidden");
+        submitBtn.removeAttribute('disabled');
+    } else if (this.id == "button-id-cancel") {
+        for(input of inputs){
+            input.setAttribute('disabled', '');
+        }
+        editBtn.classList.remove("hidden");
+        submitBtn.setAttribute('disabled', '');
     }
+
+    this.classList.add("hidden")
 };
 
 // Code taken from https://medium.com/p1xts-blog/scrollspy-with-just-javascript-3131c114abdc by P1xt

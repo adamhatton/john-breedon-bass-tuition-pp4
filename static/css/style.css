@@ -58,7 +58,10 @@ footer {
     text-align: center;
 }
 
-/*------------------------------------- Home Page Styling */
+.hidden {
+    display: none;
+}
+
 .btn {
     min-width: 175px;
     color: #000;
@@ -76,6 +79,21 @@ footer {
     display: none;
 }
 
+.btn-secondary {
+    color: #000;
+    background-color: #fff;
+    border: solid 1px #000;
+}
+
+.btn-secondary:hover {
+    background-color: #000;
+    color: #fff;
+    border: solid 1px #000;
+}
+
+/*------------------------------------- Home Page Styling */
+
+
 .home-card {
     border: none;
     border-radius: 0;
@@ -91,6 +109,9 @@ footer {
     border-radius: 5px;
     border: solid 1px;
 }
+
+/*------------------------------------- Account Page Styling */
+
 
 /*------------------------------------- Auth forms Styling */
 .auth-header {

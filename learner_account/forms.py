@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Div, Submit, Button
+from crispy_forms.layout import Layout, Div, Submit, Button, Field
 from crispy_bootstrap5.bootstrap5 import FloatingField
 from .models import LearnerProfile
 
@@ -26,10 +26,10 @@ class UserForm(forms.ModelForm):
         self.helper.form_tag = False
 
         self.helper.layout = Layout(
-            FloatingField('username'),
-            FloatingField('first_name'),
-            FloatingField('last_name', placeholder="Surname"),
-            FloatingField('email'),
+            FloatingField('username', disabled=True),
+            FloatingField('first_name', disabled=True),
+            FloatingField('last_name', disabled=True),
+            FloatingField('email', disabled=True),
         )
 
 
@@ -53,12 +53,13 @@ class LearnerProfileForm(forms.ModelForm):
         self.helper.form_tag = False
 
         self.helper.layout = Layout(
-            FloatingField('phone'),
-            FloatingField('ability'),
-            'about',           
+            FloatingField('phone', disabled=True),
+            FloatingField('ability', disabled=True),
+            Field('about', disabled=True),
             Div(
-                Button('edit', 'Edit'),
-                Submit('submit', 'Submit'),
+                Button('cancel', '&laquo; Cancel', css_class="hidden btn-secondary"),
+                Button('edit', 'Edit', css_class="btn-secondary"),
+                Submit('submit', 'Submit', disabled=True),
                 css_class='center-button'
             ),
         )
