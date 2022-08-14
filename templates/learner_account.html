@@ -7,7 +7,7 @@
     <div class="container px-5 my-5">
         <div class="row justify-content-center">
             <h2 class="fw-bolder text-center mb-5">Profile</h2>
-            <form id="profile-form" class="form-width" method="POST" action="">
+            <form id="profile-form" class="form-width" method="POST">
                 {% crispy user_form user_form.helper %}
                 {% crispy learner_profile_form learner_profile_form.helper %}
             </form>
