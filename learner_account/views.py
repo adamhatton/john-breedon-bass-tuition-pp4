@@ -21,8 +21,12 @@ class AccountPage(View):
         
         if Testimonial.objects.filter(user=request.user).exists():
             testimonial_form = TestimonialForm(instance=request.user.testimonial)
+            user_has_testimonial = True
+            testimonial_approved = Testimonial.objects.get(user=request.user).approved
         else:
             testimonial_form = TestimonialForm()
+            user_has_testimonial = False
+            testimonial_approved = 'N/A'
         
         return render(
             request,
@@ -31,6 +35,8 @@ class AccountPage(View):
                 'user_form': user_form,
                 'learner_profile_form': learner_profile_form,
                 'testimonial_form': testimonial_form,
+                'user_has_testimonial': user_has_testimonial,
+                'testimonial_approved': testimonial_approved,
             }
         )
 
@@ -68,7 +74,7 @@ def add_testimonial(request):
         testimonial.instance.user = request.user
         if testimonial.is_valid():
             testimonial.save()
-            messages.success(request, 'Testimonial successfully added')
+            messages.success(request, 'Testimonial has been sent for approval')
             return redirect('/learner_account/')
 
     return redirect('/learner_account/')
@@ -78,10 +84,11 @@ def edit_testimonial(request):
     if request.method == 'POST':
         testimonial = get_object_or_404(Testimonial, user=request.user)
         testimonial_form = TestimonialForm(request.POST, instance=testimonial)
+        testimonial_form.instance.approved = False
 
         if testimonial_form.is_valid():
             testimonial.save()
-            messages.success(request, 'Testimonial successfully added')
+            messages.success(request, 'Testimonial has been sent for approval')
             return redirect('/learner_account/')
 
     return redirect('/learner_account/')

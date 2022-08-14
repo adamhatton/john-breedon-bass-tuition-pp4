@@ -16,18 +16,34 @@
 </section>
 
 <!-- Testimonials section -->
-<section class="border-bottom py-4">
-    <div class="container my-5">
-        <div class="text-center mb-5">
-            <h2 id="prices-header" class="fw-bolder">Testimonial</h2>
-            <p class="lead mb-0">Tell other students about your experience! You can add, update or delete a testimonial
-                below:</p>
+<section class="border-bottom py-4 text">
+    <div class="container my-5 text-center">
+        <div class="row justify-content-center">
+            <div class="text-center mb-4">
+                <h2 id="prices-header" class="fw-bolder">Testimonial</h2>
+                <p class="lead mb-0">Tell other students about your experience! You can add, update or delete a
+                    testimonial
+                    below:</p>
+            </div>
+            {% if user_has_testimonial == False %}
+            <div>
+            <button type="button" name="add" value="Add" class="btn btn-primary" id="add-testimonial">Add a
+                testimonial</button>
+            </div>
+            <form method="POST" class="form-width" action="{% url 'add_testimonial' %}">
+                {% crispy testimonial_form %}
+                <input type="submit" name="submit" value="Submit" class="btn btn-primary" id="submit-testimonial">
+            </form>
+            {% elif user_has_testimonial == True and testimonial_approved == False %}
+            <p>Your testimonial is awaiting approval</p>
+            {% elif user_has_testimonial == True and testimonial_approved == True %}
+            <form method="POST" class="form-width" action="{% url 'edit_testimonial' %}">
+                {% crispy testimonial_form %}
+                <a class="btn btn-secondary" id="testimonial-delete" href="{% url 'delete_testimonial' %}">Delete</a>
+                <input type="submit" name="submit" value="Update" class="btn btn-primary" id="submit-testimonial">
+            </form>
+            {% endif %}
         </div>
-        <form method="POST" action="{% url 'edit_testimonial' %}">
-            {% crispy testimonial_form %}
-            <a class="btn btn-secondary" id="testimonial-delete" href="{% url 'delete_testimonial' %}">Delete</a>
-            <input type="submit" name="submit" value="Submit" class="btn btn-primary" id="submit-testimonial">
-        </form>
     </div>
 </section>
 
