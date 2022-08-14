@@ -68,19 +68,27 @@ def add_testimonial(request):
         testimonial.instance.user = request.user
         if testimonial.is_valid():
             testimonial.save()
+            messages.success(request, 'Testimonial successfully added')
             return redirect('/learner_account/')
 
     return redirect('/learner_account/')
 
 @login_required
-def update_testimonial(request):
+def edit_testimonial(request):
     if request.method == 'POST':
         testimonial = get_object_or_404(Testimonial, user=request.user)
-
         testimonial_form = TestimonialForm(request.POST, instance=testimonial)
 
         if testimonial_form.is_valid():
             testimonial.save()
+            messages.success(request, 'Testimonial successfully added')
             return redirect('/learner_account/')
 
+    return redirect('/learner_account/')
+
+@login_required
+def delete_testimonial(request):
+    testimonial = get_object_or_404(Testimonial, user=request.user)
+    testimonial.delete()
+    messages.success(request, 'Testimonial successfully deleted')
     return redirect('/learner_account/')

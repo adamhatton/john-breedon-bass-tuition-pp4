@@ -20,26 +20,14 @@
     <div class="container my-5">
         <div class="text-center mb-5">
             <h2 id="prices-header" class="fw-bolder">Testimonial</h2>
-            <p class="lead mb-0">Tell other students about your experience! You can add, update or delete a testimonial below:</p>
+            <p class="lead mb-0">Tell other students about your experience! You can add, update or delete a testimonial
+                below:</p>
         </div>
-        <div class="row gy-4 gy-lg-0 justify-content-center">
-            <div class="col-10 col-md-5">
-                <div class="card h-100 text-center text-white bg-dark bg-gradient py-4">
-                    <div class="card-body">
-                        <p class="text-uppercase fw-bold">Individual</p>
-                        <p>
-                            <span class="display-4 fw-bold">£20</span>
-                            <span>/ session</span>
-                        </p>
-                        <a href="#" class="btn btn-lg px-4 my-2">Book</a>
-                        <form method="POST" action="{% url 'add_testimonial' %}">
-                        {% crispy testimonial_form %}
-                        <input type="submit" name="submit" value="Submit" class="btn btn-primary" id="submit-testimonial">
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <form method="POST" action="{% url 'edit_testimonial' %}">
+            {% crispy testimonial_form %}
+            <a class="btn btn-secondary" id="testimonial-delete" href="{% url 'delete_testimonial' %}">Delete</a>
+            <input type="submit" name="submit" value="Submit" class="btn btn-primary" id="submit-testimonial">
+        </form>
     </div>
 </section>
 
