@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib import messages
+from django.core.exceptions import ObjectDoesNotExist
 from .forms import UserForm, LearnerProfileForm, TestimonialForm
 
 
@@ -16,23 +17,24 @@ class AccountPage(View):
         user_form = UserForm(instance=request.user)
         learner_profile_form = LearnerProfileForm(instance=request.user.learnerprofile)
         
-        if request.user.testimonial:
+        try:
             testimonial_form = TestimonialForm(instance=request.user.testimonial)
-        else:
+        except ObjectDoesNotExist:
             testimonial_form = TestimonialForm()
-
         return render(
             request,
             'learner_account.html',
             {
                 'user_form': user_form,
                 'learner_profile_form': learner_profile_form,
+                'testimonial_form': testimonial_form,
             }
         )
 
     def post(self, request):
         '''
-        Handles POST requests by to the account page
+        Handles POST requests to the account page coming from
+        updating the profile
         '''
         user_form = UserForm(request.POST, instance=request.user)
         learner_profile_form = LearnerProfileForm(request.POST, instance=request.user.learnerprofile)

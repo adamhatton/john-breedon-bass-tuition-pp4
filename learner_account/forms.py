@@ -96,5 +96,5 @@ class TestimonialForm(forms.ModelForm):
         '''
         Specifies the fields to be included in the TestimonialForm class
         '''
-        model = Testimonial()
-        fields = ('content')
+        model = Testimonial
+        fields = ('content',)
