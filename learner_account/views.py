@@ -1,8 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
+from .models import Testimonial
 from .forms import UserForm, LearnerProfileForm, TestimonialForm
 
 
@@ -18,10 +19,11 @@ class AccountPage(View):
         user_form = UserForm(instance=request.user)
         learner_profile_form = LearnerProfileForm(instance=request.user.learnerprofile)
         
-        try:
+        if Testimonial.objects.filter(user=request.user).exists():
             testimonial_form = TestimonialForm(instance=request.user.testimonial)
-        except ObjectDoesNotExist:
+        else:
             testimonial_form = TestimonialForm()
+        
         return render(
             request,
             'learner_account.html',
@@ -65,6 +67,19 @@ def add_testimonial(request):
         testimonial = TestimonialForm(request.POST)
         testimonial.instance.user = request.user
         if testimonial.is_valid():
+            testimonial.save()
+            return redirect('/learner_account/')
+
+    return redirect('/learner_account/')
+
+@login_required
+def update_testimonial(request):
+    if request.method == 'POST':
+        testimonial = get_object_or_404(Testimonial, user=request.user)
+
+        testimonial_form = TestimonialForm(request.POST, instance=testimonial)
+
+        if testimonial_form.is_valid():
             testimonial.save()
             return redirect('/learner_account/')
 
