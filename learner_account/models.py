@@ -34,3 +34,23 @@ def create_learner_profile(sender, instance, created, **kwargs):
         LearnerProfile.objects.create(user=instance)
     
     instance.learnerprofile.save()
+
+
+class Testimonial(models.Model):
+    '''
+    Model for testimonials written by learners
+    '''
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    content = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now_add=True)
+    approved = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f'{self.content}'
+
+    class Meta:
+        '''
+        Sets metadata for the Testimonial class
+        '''
+        ordering = ['created_on']

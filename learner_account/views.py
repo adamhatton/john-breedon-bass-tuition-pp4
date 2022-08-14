@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib import messages
-from .forms import UserForm, LearnerProfileForm
+from .forms import UserForm, LearnerProfileForm, TestimonialForm
 
 
 class AccountPage(View):
@@ -15,6 +15,11 @@ class AccountPage(View):
         
         user_form = UserForm(instance=request.user)
         learner_profile_form = LearnerProfileForm(instance=request.user.learnerprofile)
+        
+        if request.user.testimonial:
+            testimonial_form = TestimonialForm(instance=request.user.testimonial)
+        else:
+            testimonial_form = TestimonialForm()
 
         return render(
             request,

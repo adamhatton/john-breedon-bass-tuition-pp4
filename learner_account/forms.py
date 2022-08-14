@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Div, Submit, Button, Field, HTML
 from crispy_bootstrap5.bootstrap5 import FloatingField
-from .models import LearnerProfile
+from .models import LearnerProfile, Testimonial
 
 
 class UserForm(forms.ModelForm):
@@ -86,3 +86,15 @@ class LearnerProfileForm(forms.ModelForm):
         self.helper = FormHelper(self)
         self.helper.form_tag = False
         self.helper.layout = self.disabled_layout
+
+
+class TestimonialForm(forms.ModelForm):
+    '''
+    Creates an instance of the ProfileForm to be passed to a template
+    '''
+    class Meta:
+        '''
+        Specifies the fields to be included in the TestimonialForm class
+        '''
+        model = Testimonial()
+        fields = ('content')
