@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import LearnerProfile
+from .models import LearnerProfile, Testimonial
 
 
 @admin.register(LearnerProfile)
@@ -45,3 +45,10 @@ class LearnerProfileAdmin(admin.ModelAdmin):
         if f"{LearnerProfile._meta.app_label}/{LearnerProfile._meta.model_name}" in request.path:
             return False
         return True
+
+@admin.register(Testimonial)
+class TestimonialAdmin(admin.ModelAdmin):
+    '''
+    Adds Testimonial model into the admin site
+    '''
+    list_display = ('user', 'content', 'created_on', 'updated_on')

@@ -98,3 +98,11 @@ class TestimonialForm(forms.ModelForm):
         '''
         model = Testimonial
         fields = ('content',)
+
+    def __init__(self, *args, **kwargs):
+        '''
+        Creates a FormHelper to enable layout changes in crispy forms
+        '''
+        super(TestimonialForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.form_tag = False

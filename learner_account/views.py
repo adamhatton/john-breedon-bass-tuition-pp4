@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth.decorators import login_required
 from .forms import UserForm, LearnerProfileForm, TestimonialForm
 
 
@@ -57,3 +58,14 @@ class AccountPage(View):
                     'learner_profile_form': learner_profile_form,
                 }
             )
+
+@login_required
+def add_testimonial(request):
+    if request.method == 'POST':
+        testimonial = TestimonialForm(request.POST)
+        testimonial.instance.user = request.user
+        if testimonial.is_valid():
+            testimonial.save()
+            return redirect('/learner_account/')
+
+    return redirect('/learner_account/')
