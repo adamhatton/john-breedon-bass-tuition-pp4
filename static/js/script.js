@@ -49,10 +49,17 @@ setTimeout(function() {
 
 function confirmForm(formName) {
     confirmModal.show();
+    title = document.querySelector(".modal-title");
+    body = document.querySelector(".modal-body");
+    title.innerHTML = "Confirm submission";
+    body.innerHTML = "Would you like to submit this form?";
+    form = document.getElementById(formName);
 
-    
-
-
+    modalConfirmBtn.addEventListener("click", function confirmAction() {
+        form.submit();
+        confirmModal.hide();
+        modalConfirmBtn.removeEventListener("click", confirmAction);
+    });
 }
 
 function toggleFieldsDisabled() {
