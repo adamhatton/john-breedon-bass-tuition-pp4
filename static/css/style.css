@@ -115,6 +115,16 @@ footer {
 }
 
 /*------------------------------------- Account Page Styling */
+#add-testimonial-form {
+    margin-top: 2rem;
+    animation-name: slide;
+    animation-duration: 1s;
+}
+
+#add-testimonial-btn:focus {
+    outline: none;
+    background-color: #ff6600;
+}
 
 
 /*------------------------------------- Auth forms Styling */
@@ -133,6 +143,20 @@ footer {
     }
 
     100% {
+        opacity: 1;
+    }
+}
+
+@keyframes slide {
+    0% {
+        visibility: hidden;
+        height: 0;
+        opacity: 0;
+    }
+
+    100% {
+        visibility: visible;
+        height: 306px;
         opacity: 1;
     }
 }

@@ -106,3 +106,4 @@ class TestimonialForm(forms.ModelForm):
         super(TestimonialForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper(self)
         self.helper.form_tag = False
+        self.helper.form_show_labels = False

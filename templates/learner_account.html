@@ -15,7 +15,7 @@
     </div>
 </section>
 
-<!-- Testimonials section -->
+<!-- Testimonial section -->
 <section class="border-bottom py-4 text">
     <div class="container my-5 text-center">
         <div class="row justify-content-center">
@@ -27,10 +27,10 @@
             </div>
             {% if user_has_testimonial == False %}
             <div>
-            <button type="button" name="add" value="Add" class="btn btn-primary" id="add-testimonial">Add a
+            <button type="button" name="add" value="Add" class="btn btn-primary" id="add-testimonial-btn">Add a
                 testimonial</button>
             </div>
-            <form method="POST" class="form-width" action="{% url 'add_testimonial' %}">
+            <form id="add-testimonial-form" method="POST" class="form-width hidden" action="{% url 'add_testimonial' %}">
                 {% crispy testimonial_form %}
                 <input type="submit" name="submit" value="Submit" class="btn btn-primary" id="submit-testimonial">
             </form>

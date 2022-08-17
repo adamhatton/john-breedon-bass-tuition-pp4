@@ -16,9 +16,25 @@ document.addEventListener('DOMContentLoaded', function () {
     if(document.getElementById("button-id-cancel")) {
         document.getElementById("button-id-cancel").addEventListener("click", toggleFieldsDisabled)
     }
+
+    if(document.getElementById("add-testimonial-btn")) {
+        addTestButton = document.getElementById("add-testimonial-btn");
+        addTestForm = document.getElementById("add-testimonial-form");
+
+        addTestButton.addEventListener("click", () => {
+            if (addTestForm.classList.contains("hidden")) {
+                addTestForm.classList.remove("hidden");
+                addTestButton.innerHTML = "Hide";
+            } else {
+                addTestForm.classList.add("hidden");
+                addTestButton.innerHTML = "Add Testimonial";
+            }
+        });
+    }
 });
 
 setTimeout(function() {
+    // Clear messages after 3 seconds
     let messages = document.getElementById("msg");
     let alert = new bootstrap.Alert(messages);
     alert.close();
