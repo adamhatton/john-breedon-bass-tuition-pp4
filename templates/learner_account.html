@@ -39,7 +39,7 @@
             {% elif user_has_testimonial == True and testimonial_approved == True %}
             <form id="update-testimonial-form" method="POST" class="form-width" action="{% url 'edit_testimonial' %}" onsubmit="event.preventDefault(); confirmForm('update-testimonial-form');">
                 {% crispy testimonial_form %}
-                <a class="btn btn-secondary" id="testimonial-delete" href="{% url 'delete_testimonial' %}">Delete</a>
+                <button type="button" value="Delete" class="btn btn-secondary" id="testimonial-delete-btn">Delete</button>
                 <input type="submit" name="btn-submit" value="Update" class="btn btn-primary" id="submit-testimonial">
             </form>
             {% endif %}

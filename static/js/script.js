@@ -20,12 +20,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Add listener to the profile edit button
     if(document.getElementById("button-id-edit")) {
-        document.getElementById("button-id-edit").addEventListener("click", toggleFieldsDisabled)
+        document.getElementById("button-id-edit").addEventListener("click", toggleFieldsDisabled);
     }
 
     // Add listener to the cancel profile edit button
     if(document.getElementById("button-id-cancel")) {
-        document.getElementById("button-id-cancel").addEventListener("click", toggleFieldsDisabled)
+        document.getElementById("button-id-cancel").addEventListener("click", toggleFieldsDisabled);
     }
 
     // Add listener to the add testimonial button 
@@ -43,6 +43,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 addTestButton.innerHTML = "Add Testimonial";
             }
         });
+    }
+
+    // Add listener to the delete testimonial button
+    if(document.getElementById("testimonial-delete-btn")) {
+        document.getElementById("testimonial-delete-btn").addEventListener("click", confirmDelete);
     }
 });
 
@@ -70,6 +75,26 @@ function confirmForm(formName) {
         form.submit();
         confirmModal.hide();
         modalConfirmBtn.removeEventListener("click", confirmAction);
+    }
+
+    modalConfirmBtn.addEventListener("click", confirmAction);
+
+    // Remove the submit listener if user closes modal
+    modalCloseBtn.addEventListener("click", () => {
+        modalConfirmBtn.removeEventListener("click", confirmAction);
+    });
+}
+
+function confirmDelete() {
+    confirmModal.show();
+    title = document.querySelector(".modal-title");
+    body = document.querySelector(".modal-body");
+    title.innerHTML = "Confirm deletion";
+    body.innerHTML = "Would you like to delete this information?";
+    url = window.location.href + 'delete_testimonial/';
+
+    let confirmAction = function() {
+        window.location.href = url;
     }
 
     modalConfirmBtn.addEventListener("click", confirmAction);
