@@ -1,3 +1,10 @@
+const confirmModal = new bootstrap.Modal(document.getElementById('confirmModal'), {
+    backdrop: 'static',
+    keyboard: false
+})
+const modalCloseBtn = document.getElementById("modal-close-btn");
+const modalConfirmBtn = document.getElementById("modal-confirm-btn");
+
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('copyright-year').innerHTML = new Date().getFullYear();
 
@@ -39,6 +46,14 @@ setTimeout(function() {
     let alert = new bootstrap.Alert(messages);
     alert.close();
 }, 3000);
+
+function confirmForm(formName) {
+    confirmModal.show();
+
+    
+
+
+}
 
 function toggleFieldsDisabled() {
     // Create variables for the different elements to disable

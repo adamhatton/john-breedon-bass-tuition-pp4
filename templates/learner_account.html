@@ -30,22 +30,21 @@
             <button type="button" name="add" value="Add" class="btn btn-primary" id="add-testimonial-btn">Add a
                 testimonial</button>
             </div>
-            <form id="add-testimonial-form" method="POST" class="form-width hidden" action="{% url 'add_testimonial' %}">
+            <form id="add-testimonial-form" method="POST" class="form-width hidden" action="{% url 'add_testimonial' %}" onsubmit="event.preventDefault(); confirmForm('add-testimonial-form');">
                 {% crispy testimonial_form %}
                 <input type="submit" name="submit" value="Submit" class="btn btn-primary" id="submit-testimonial">
             </form>
             {% elif user_has_testimonial == True and testimonial_approved == False %}
             <p>Your testimonial is awaiting approval</p>
             {% elif user_has_testimonial == True and testimonial_approved == True %}
-            <form method="POST" class="form-width" action="{% url 'edit_testimonial' %}">
+            <form id="update-testimonial-form" method="POST" class="form-width" action="{% url 'edit_testimonial' %}" onsubmit="event.preventDefault(); confirmForm('update-testimonial-form');">
                 {% crispy testimonial_form %}
                 <a class="btn btn-secondary" id="testimonial-delete" href="{% url 'delete_testimonial' %}">Delete</a>
-                <input type="submit" name="submit" value="Update" class="btn btn-primary" id="submit-testimonial">
+                <input type="submit" name="submit" value="Update" class="btn btn-primary" id="submit-testimonial" >
             </form>
             {% endif %}
         </div>
     </div>
 </section>
-
 
 {% endblock %}
