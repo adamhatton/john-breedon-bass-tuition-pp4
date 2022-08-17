@@ -85,6 +85,11 @@ function confirmForm(formName) {
     });
 }
 
+/**
+ * 
+ * Opens a confirmation modal, sets the text, and attaches a redirect to
+ * a url for deleting testimonials
+ */
 function confirmDelete() {
     confirmModal.show();
     title = document.querySelector(".modal-title");

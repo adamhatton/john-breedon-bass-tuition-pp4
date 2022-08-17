@@ -34,26 +34,17 @@
             <p class="lead mb-0">See what my other students have to say about learning with me:</p>
         </div>
         <div class="row row-cols-1 row-cols-md-2 gx-3 gy-3 justify-content-center">
+            {% for testimonial in testimonials %}
             <!-- Testimonial 1-->
             <div class="col">
                 <div class="card h-100 flex-row align-items-center">
                     <div class="card-body p-4 text-center">
-                            <p class="mb-1">django content goes here</p>
-                            <div class="small text-muted">- More django content goes here</div>
+                            <p class="mb-1">{{ testimonial.content }}</p>
+                            <div class="small text-muted">-{{ testimonial.user }}</div>
                     </div>
                 </div>
             </div>
-            <!-- Testimonial 2-->
-            <div class="col">
-                <div class="card h-100 flex-row align-items-center">
-                    <div class="card-body p-4 text-center">
-                            <p class="mb-1">The whole team was a huge help with putting things together for our
-                                company and brand. We will be hiring them again in the near future for
-                                additional work!</p>
-                            <div class="small text-muted">- More django content goes here</div>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </section>

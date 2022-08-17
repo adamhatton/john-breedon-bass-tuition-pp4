@@ -3,6 +3,7 @@ from django.views import View
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from .forms import ContactForm
+from learner_account.models import Testimonial
 
 
 def index_page(request):
@@ -71,9 +72,10 @@ def about_page(request):
     '''
     View for loading the about page
     '''
+    queryset = Testimonial.objects.all()
 
     return render(
         request,
         'about.html',
-        {},
+        {'testimonials': queryset},
     )
