@@ -8,26 +8,32 @@ const modalConfirmBtn = document.getElementById("modal-confirm-btn");
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('copyright-year').innerHTML = new Date().getFullYear();
 
+    // Scroll to contact section if user has selected contact navlink
     if(document.URL.includes("contact")){
         document.getElementById("contact-header").scrollIntoView();
     }
 
+    // Attach the scrollSpy if user is on Home or Contact page
     if(document.URL.includes("contact") || document.URL.includes("home")){
         scrollSpy();
     }
 
+    // Add listener to the profile edit button
     if(document.getElementById("button-id-edit")) {
         document.getElementById("button-id-edit").addEventListener("click", toggleFieldsDisabled)
     }
 
+    // Add listener to the cancel profile edit button
     if(document.getElementById("button-id-cancel")) {
         document.getElementById("button-id-cancel").addEventListener("click", toggleFieldsDisabled)
     }
 
+    // Add listener to the add testimonial button 
     if(document.getElementById("add-testimonial-btn")) {
         addTestButton = document.getElementById("add-testimonial-btn");
         addTestForm = document.getElementById("add-testimonial-form");
 
+        // Toggle the testimonial form
         addTestButton.addEventListener("click", () => {
             if (addTestForm.classList.contains("hidden")) {
                 addTestForm.classList.remove("hidden");
@@ -47,6 +53,11 @@ setTimeout(function() {
     alert.close();
 }, 3000);
 
+/**
+ * 
+ * Opens a confirmation modal, sets the text, and attaches a submit
+ * function to the confirm button
+ */
 function confirmForm(formName) {
     confirmModal.show();
     title = document.querySelector(".modal-title");
@@ -55,13 +66,23 @@ function confirmForm(formName) {
     body.innerHTML = "Would you like to submit this form?";
     form = document.getElementById(formName);
 
-    modalConfirmBtn.addEventListener("click", function confirmAction() {
+    let confirmAction = function() {
         form.submit();
         confirmModal.hide();
+        modalConfirmBtn.removeEventListener("click", confirmAction);
+    }
+
+    modalConfirmBtn.addEventListener("click", confirmAction);
+
+    // Remove the submit listener if user closes modal
+    modalCloseBtn.addEventListener("click", () => {
         modalConfirmBtn.removeEventListener("click", confirmAction);
     });
 }
 
+/**
+ * Toggles the disabled state of the fields in the profile information form
+ */
 function toggleFieldsDisabled() {
     // Create variables for the different elements to disable
     inputs = document.querySelectorAll(".form-control, .form-select");
