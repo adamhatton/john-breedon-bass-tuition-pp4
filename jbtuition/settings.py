@@ -50,8 +50,9 @@ INSTALLED_APPS = [
     'cloudinary',
     'crispy_forms',
     "crispy_bootstrap5",
-    "learner_account",
+    'bookings',
     'home',
+    "learner_account",
     'phonenumber_field',
 ]
 

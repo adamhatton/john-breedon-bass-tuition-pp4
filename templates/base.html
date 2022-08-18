@@ -40,54 +40,60 @@
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     {# Scrollspy classes only needed for Home and Contact, so first loop checks if either is active and adds active + aria #}
                     {% for path, name in navlinks_scrollspy.items %}
-                    {% if request.path == path %}
-                    <li class="nav-item"><a class="nav-link active scrollspy-link" aria-current="page"
-                            href="{% url name %}">{{ name|capfirst }}</a></li>
-                    {% else %}
-                    <li class="nav-item"><a class="nav-link scrollspy-link"
-                            href="{% url name %}">{{ name|capfirst }}</a></li>
-                    {% endif %}
+                        {% if request.path == path %}
+                        <li class="nav-item"><a class="nav-link active scrollspy-link" aria-current="page"
+                                href="{% url name %}">{{ name|capfirst }}</a></li>
+                        {% else %}
+                        <li class="nav-item"><a class="nav-link scrollspy-link"
+                                href="{% url name %}">{{ name|capfirst }}</a></li>
+                        {% endif %}
+                        {% endfor %}
+
+                        {# Second loop checks remaining nav-items that don't need authentication and adds active + aria #}
+                        {% for path, name in navlinks.items %}
+                        {% if request.path == path %}
+                        <li class="nav-item"><a class="nav-link active" aria-current="page"
+                                href="{% url name %}">{{ name|capfirst }}</a></li>
+                        {% else %}
+                        <li class="nav-item"><a class="nav-link" href="{% url name %}">{{ name|capfirst }}</a></li>
+                        {% endif %}
                     {% endfor %}
 
-                    {# Second loop checks remaining nav-items that don't need authentication and adds active + aria #}
-                    {% for path, name in navlinks.items %}
-                    {% if request.path == path %}
-                    <li class="nav-item"><a class="nav-link active" aria-current="page"
-                            href="{% url name %}">{{ name|capfirst }}</a></li>
-                    {% else %}
-                    <li class="nav-item"><a class="nav-link" href="{% url name %}">{{ name|capfirst }}</a></li>
-                    {% endif %}
-                    {% endfor %}
 
-
-                    {# This section renders the login/logout links with active and aria classes if necessary #}
+                    {# This section renders the account, login and logout links with active and aria classes if necessary #}
                     {% if user.is_authenticated %}
-                    {% if request.path == '/learner_account/' %}
-                    <li class="nav-item"><a class="nav-link active" aria-current="page"
-                            href="{% url 'learner_account' %}">Account</a></li>
-                    {% else %}
-                    <li class="nav-item"><a class="nav-link" href="{% url 'learner_account' %}">Account</a></li>
-                    {% endif %}
-                    {% if request.path == '/accounts/logout/' %}
-                    <li class="nav-item"><a class="nav-link active" aria-current="page"
-                            href="{% url 'account_logout' %}">Logout</a></li>
-                    {% else %}
-                    <li class="nav-item"><a class="nav-link" href="{% url 'account_logout' %}">Logout</a></li>
-                    {% endif %}
-                    {% else %}
-                    {% if request.path == '/accounts/signup/' %}
-                    <li class="nav-item"><a class="nav-link active" aria-current="page"
-                            href="{% url 'account_signup' %}">Register</a></li>
-                    {% else %}
-                    <li class="nav-item"><a class="nav-link" href="{% url 'account_signup' %}">Register</a></li>
-                    {% endif %}
+                        {% if request.path == '/bookings/' %}
+                        <li class="nav-item"><a class="nav-link active" aria-current="page"
+                                href="{% url 'bookings' %}">Bookings</a></li>
+                        {% else %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'bookings' %}">Bookings</a></li>
+                        {% endif %}
+                        {% if request.path == '/learner_account/' %}
+                        <li class="nav-item"><a class="nav-link active" aria-current="page"
+                                href="{% url 'learner_account' %}">Account</a></li>
+                        {% else %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'learner_account' %}">Account</a></li>
+                        {% endif %}
+                        {% if request.path == '/accounts/logout/' %}
+                        <li class="nav-item"><a class="nav-link active" aria-current="page"
+                                href="{% url 'account_logout' %}">Logout</a></li>
+                        {% else %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'account_logout' %}">Logout</a></li>
+                        {% endif %}
+                        {% else %}
+                        {% if request.path == '/accounts/signup/' %}
+                        <li class="nav-item"><a class="nav-link active" aria-current="page"
+                                href="{% url 'account_signup' %}">Register</a></li>
+                        {% else %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'account_signup' %}">Register</a></li>
+                        {% endif %}
 
-                    {% if request.path == '/accounts/login/' %}
-                    <li class="nav-item"><a class="nav-link active" aria-current="page"
-                            href="{% url 'account_login' %}">Login</a></li>
-                    {% else %}
-                    <li class="nav-item"><a class="nav-link" href="{% url 'account_login' %}">Login</a></li>
-                    {% endif %}
+                        {% if request.path == '/accounts/login/' %}
+                        <li class="nav-item"><a class="nav-link active" aria-current="page"
+                                href="{% url 'account_login' %}">Login</a></li>
+                        {% else %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'account_login' %}">Login</a></li>
+                        {% endif %}
                     {% endif %}
 
                 </ul>

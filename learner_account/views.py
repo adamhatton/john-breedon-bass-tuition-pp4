@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.contrib import messages
-from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 from .models import Testimonial
 from .forms import UserForm, LearnerProfileForm, TestimonialForm
@@ -69,6 +68,9 @@ class AccountPage(View):
 
 @login_required
 def add_testimonial(request):
+    '''
+    Adds testimonial to the database
+    '''
     if request.method == 'POST':
         testimonial = TestimonialForm(request.POST)
         testimonial.instance.user = request.user
@@ -81,6 +83,9 @@ def add_testimonial(request):
 
 @login_required
 def edit_testimonial(request):
+    '''
+    Updates a testimonial in the database
+    '''
     if request.method == 'POST':
         testimonial = get_object_or_404(Testimonial, user=request.user)
         testimonial_form = TestimonialForm(request.POST, instance=testimonial)
@@ -95,6 +100,9 @@ def edit_testimonial(request):
 
 @login_required
 def delete_testimonial(request):
+    '''
+    Deletes a testimonial from the database
+    '''
     testimonial = get_object_or_404(Testimonial, user=request.user)
     testimonial.delete()
     messages.success(request, 'Testimonial successfully deleted')
