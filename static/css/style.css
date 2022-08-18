@@ -92,8 +92,6 @@ footer {
 }
 
 /*------------------------------------- Home Page Styling */
-
-
 .home-card {
     border: none;
     border-radius: 0;
@@ -112,6 +110,16 @@ footer {
 
 #profile-form #hint_id_username {
     display: none;
+}
+
+/*------------------------------------- Bookings Page Styling */
+.booking-slot {
+    min-width: 125px;
+    margin: 1rem 0.5rem 0 0.5rem;
+}
+
+#availability-section h3 {
+    margin-top: 1rem;
 }
 
 /*------------------------------------- Account Page Styling */
