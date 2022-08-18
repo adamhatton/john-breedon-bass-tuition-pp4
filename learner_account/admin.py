@@ -51,4 +51,14 @@ class TestimonialAdmin(admin.ModelAdmin):
     '''
     Adds Testimonial model into the admin site
     '''
-    list_display = ('user', 'content', 'created_on', 'updated_on')
+    list_display = ('user', 'content', 'created_on', 'updated_on', 'approved')
+
+    # Testimonial model admin actions
+    actions = ['approve_testimonials']
+
+    @admin.action(description='Approve testimonial')
+    def approve_testimonials(self, request, queryset):
+        '''
+        Sets message to being complete
+        '''
+        queryset.update(approved=True)

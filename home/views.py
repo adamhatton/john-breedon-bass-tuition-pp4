@@ -72,7 +72,7 @@ def about_page(request):
     '''
     View for loading the about page
     '''
-    queryset = Testimonial.objects.all()
+    queryset = Testimonial.objects.filter(approved=True)
 
     return render(
         request,
