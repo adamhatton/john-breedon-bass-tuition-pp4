@@ -9,7 +9,12 @@ class LearnerProfile(models.Model):
     '''
     Model to extend user and include additional learner information
     '''
-    ABILITY_CHOICES = [('', 'Choose your level'), ('B', 'Beginner'), ('I', 'Intermediate'), ('A', 'Advanced')]
+    ABILITY_CHOICES = [
+        ('', 'Choose your level'),
+        ('B', 'Beginner'),
+        ('I', 'Intermediate'),
+        ('A', 'Advanced')
+    ]
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     phone = PhoneNumberField(blank=True)
     ability = models.CharField(max_length=1, choices=ABILITY_CHOICES, blank=True)

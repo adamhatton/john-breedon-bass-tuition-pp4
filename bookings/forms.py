@@ -14,7 +14,6 @@ class BookingForm(forms.ModelForm):
         fields = ('date', 'time', 'phone', 'type')
         widgets = {
             'date': forms.DateInput(attrs={'type': 'date'}),
-            'time': forms.TimeInput(attrs={'type': 'time'}),
         }
 
     def __init__(self, *args, **kwargs):
@@ -26,7 +25,7 @@ class BookingForm(forms.ModelForm):
         self.helper.form_tag = False
         self.helper.layout = Layout(
             FloatingField('date', type='date'),
-            FloatingField('time', type='time'),
+            'time',
             FloatingField('phone'),
             'type',
         )
