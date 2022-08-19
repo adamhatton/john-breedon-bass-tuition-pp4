@@ -22,11 +22,11 @@ class Booking(models.Model):
         ('15', '15:00 - 16:00'),
         ('16', '16:00 - 17:00'),
     ]
-    learner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="bookings")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="bookings")
     date = models.DateField()
     time = models.CharField(max_length=2, choices=LESSON_TIME_CHOICES)
     phone = PhoneNumberField(blank=True, help_text="Adding a phone number makes it easier for me to contact you about your lesson")
-    type = models.CharField(max_length=1, choices=LESSON_TYPE_CHOICES, blank=True)
+    type = models.CharField(max_length=1, choices=LESSON_TYPE_CHOICES)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 
@@ -37,4 +37,4 @@ class Booking(models.Model):
         '''
         Sets metadata for the Booking class
         '''
-        ordering = ['date']
+        ordering = ['-date']
