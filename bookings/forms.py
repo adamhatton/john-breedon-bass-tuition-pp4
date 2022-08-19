@@ -1,7 +1,6 @@
 from django import forms
-from django.contrib.auth.models import User
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Submit, Button
+from crispy_forms.layout import Layout, Field
 from crispy_bootstrap5.bootstrap5 import FloatingField
 from .models import Booking
 
@@ -13,3 +12,21 @@ class BookingForm(forms.ModelForm):
         '''
         model = Booking
         fields = ('date', 'time', 'phone', 'type')
+        widgets = {
+            'date': forms.DateInput(attrs={'type': 'date'}),
+            'time': forms.TimeInput(attrs={'type': 'time'}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        '''
+        Creates a FormHelper to enable layout changes in crispy forms
+        '''
+        super(BookingForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.form_tag = False
+        self.helper.layout = Layout(
+            FloatingField('date', type='date'),
+            FloatingField('time', type='time'),
+            FloatingField('phone'),
+            'type',
+        )

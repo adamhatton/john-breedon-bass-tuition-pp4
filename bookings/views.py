@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views import View
 from django.contrib import messages
+from .forms import BookingForm
 
 
 class BookingsPage(View):
@@ -11,11 +12,13 @@ class BookingsPage(View):
         '''
         Handles GET requests by rendering the bookings page
         '''
+        booking_form = BookingForm()
                
         return render(
             request,
             'bookings.html',
             {
+                'booking_form': booking_form,
             }
         )
 
