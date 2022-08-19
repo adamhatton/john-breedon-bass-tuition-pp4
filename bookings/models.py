@@ -8,11 +8,13 @@ class Booking(models.Model):
     Model to store lesson bookings made by learners
     '''
     LESSON_TYPE_CHOICES = [
+        ('','Pick a lesson type'),
         ('H', 'Home visit'),
         ('O', 'Online'),
         ('S', 'At the Studio')
     ]
     LESSON_TIME_CHOICES = [
+        ('','Pick a time slot'),
         ('10', '10:00 - 11:00'),
         ('11', '11:00 - 12:00'),
         ('13', '13:00 - 14:00'),

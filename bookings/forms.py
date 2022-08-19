@@ -24,8 +24,8 @@ class BookingForm(forms.ModelForm):
         self.helper = FormHelper(self)
         self.helper.form_tag = False
         self.helper.layout = Layout(
-            FloatingField('date', type='date'),
-            'time',
+            FloatingField('date', ),
+            FloatingField('time'),
             FloatingField('phone'),
-            'type',
+            FloatingField('type'),
         )
