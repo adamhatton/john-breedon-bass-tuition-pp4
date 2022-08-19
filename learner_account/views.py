@@ -53,6 +53,7 @@ class AccountPage(View):
             messages.success(request, 'Profile successfully updated')
             return redirect('/learner_account/')
 
+        # If form isn't valid then return form with enabled fields
         else:
             user_form.helper.layout = user_form.enabled_layout
             learner_profile_form.helper.layout = learner_profile_form.enabled_layout
