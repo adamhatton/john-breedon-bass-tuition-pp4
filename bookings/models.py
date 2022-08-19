@@ -17,7 +17,7 @@ class Booking(models.Model):
     updated_on = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f'Lesson on {self.date} at {self.time}'
+        return f'Lesson on {self.date.strftime("%a %d %B")} at {self.time.strftime("%H:%M")}'
 
     class Meta:
         '''
