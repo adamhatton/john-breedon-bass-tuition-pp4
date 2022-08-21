@@ -118,8 +118,21 @@ footer {
     margin: 1rem 0.5rem 0 0.5rem;
 }
 
+.booking-free {
+    background-color: #dee2e6;
+    border: solid 1px black;
+}
+
+.booking-taken {
+    background-color: red;
+}
+
 #availability-section h3 {
     margin-top: 1rem;
+}
+
+#availability-section hr {
+    margin-top: 2rem;
 }
 
 /*------------------------------------- Account Page Styling */

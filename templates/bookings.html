@@ -25,59 +25,16 @@
             </div>
             {% for key, value in booking_availability.items %}
                 {% if "slot" not in key %}
-                <h3 class="col-12">{{ value }}</h3>
+                <hr>
+                <h3 class="col-12">{{ value|date:'l dS F' }}</h3>
                 {% else %}
-                <button class="col-5 col-md-4 col-xl-1 btn btn-primary booking-slot">{{ value }}</button>
+                    {% if value == 'BOOKED' %}
+                    <button class="col-5 col-md-4 col-xl-1 btn btn-primary booking-slot booking-taken">{{ value }}</button>
+                    {% else %}
+                    <button class="col-5 col-md-4 col-xl-1 btn btn-primary booking-slot booking-free">{{ value }}</button>
+                    {% endif %}
                 {% endif %}
             {% endfor %}
-            <!-- <h3 class="col-12">Saturday 20th August</h3>
-            <button class="col-5 col-md-4 col-xl-1 btn btn-primary booking-slot">10 - 11</button>
-            <button class="col-5 col-md-4 col-xl-1 btn btn-primary booking-slot">11 - 12</button>
-            <button class="col-5 col-md-4 col-xl-1 btn btn-primary booking-slot">1 - 2</button>
-            <button class="col-5 col-md-4 col-xl-1 btn btn-primary booking-slot">BOOKED</button>
-            <button class="col-5 col-md-4 col-xl-1 btn btn-primary booking-slot">3 - 4</button>
-            <button class="col-5 col-md-4 col-xl-1 btn btn-primary booking-slot">4 - 5</button>
-            <hr class="mt-5">
-            <h3 class="booking-slot booking-date">Sunday 21st August</h3>
-            <button class="col-5 col-md-4 col-xl-1 btn btn-primary booking-slot">10 - 11</button>
-            <button class="col-5 col-md-4 col-xl-1 btn btn-primary booking-slot">11 - 12</button>
-            <button class="col-5 col-md-4 col-xl-1 btn btn-primary booking-slot">1 - 2</button>
-            <button class="col-5 col-md-4 col-xl-1 btn btn-primary booking-slot">BOOKED</button>
-            <button class="col-5 col-md-4 col-xl-1 btn btn-primary booking-slot">3 - 4</button>
-            <button class="col-5 col-md-4 col-xl-1 btn btn-primary booking-slot">4 - 5</button>
-            <hr class="mt-5">
-            <h3 class="booking-slot booking-date">Monday 22nd August</h3>
-            <button class="col-5 col-md-4 col-xl-1 btn btn-primary booking-slot">10 - 11</button>
-            <button class="col-5 col-md-4 col-xl-1 btn btn-primary booking-slot">11 - 12</button>
-            <button class="col-5 col-md-4 col-xl-1 btn btn-primary booking-slot">1 - 2</button>
-            <button class="col-5 col-md-4 col-xl-1 btn btn-primary booking-slot">BOOKED</button>
-            <button class="col-5 col-md-4 col-xl-1 btn btn-primary booking-slot">3 - 4</button>
-            <button class="col-5 col-md-4 col-xl-1 btn btn-primary booking-slot">4 - 5</button>
-            <hr class="mt-5">
-            <h3 class="booking-slot booking-date">Tuesday 23rd August</h3>
-            <button class="col-5 col-md-4 col-xl-1 btn btn-primary booking-slot">10 - 11</button>
-            <button class="col-5 col-md-4 col-xl-1 btn btn-primary booking-slot">11 - 12</button>
-            <button class="col-5 col-md-4 col-xl-1 btn btn-primary booking-slot">1 - 2</button>
-            <button class="col-5 col-md-4 col-xl-1 btn btn-primary booking-slot">BOOKED</button>
-            <button class="col-5 col-md-4 col-xl-1 btn btn-primary booking-slot">3 - 4</button>
-            <button class="col-5 col-md-4 col-xl-1 btn btn-primary booking-slot">4 - 5</button>
-            <hr class="mt-5">
-            <h3 class="booking-slot booking-date">Wednesday 24th August</h3>
-            <button class="col-5 col-md-4 col-xl-1 btn btn-primary booking-slot">10 - 11</button>
-            <button class="col-5 col-md-4 col-xl-1 btn btn-primary booking-slot">11 - 12</button>
-            <button class="col-5 col-md-4 col-xl-1 btn btn-primary booking-slot">1 - 2</button>
-            <button class="col-5 col-md-4 col-xl-1 btn btn-primary booking-slot">BOOKED</button>
-            <button class="col-5 col-md-4 col-xl-1 btn btn-primary booking-slot">3 - 4</button>
-            <button class="col-5 col-md-4 col-xl-1 btn btn-primary booking-slot">4 - 5</button>
-            <hr class="mt-5">
-            <h3 class="booking-slot booking-date">Thursday 25th August</h3>
-            <button class="col-5 col-md-4 col-xl-1 btn btn-primary booking-slot">10 - 11</button>
-            <button class="col-5 col-md-4 col-xl-1 btn btn-primary booking-slot">11 - 12</button>
-            <button class="col-5 col-md-4 col-xl-1 btn btn-primary booking-slot">1 - 2</button>
-            <button class="col-5 col-md-4 col-xl-1 btn btn-primary booking-slot">BOOKED</button>
-            <button class="col-5 col-md-4 col-xl-1 btn btn-primary booking-slot">3 - 4</button>
-            <button class="col-5 col-md-4 col-xl-1 btn btn-primary booking-slot">4 - 5</button> -->
-
         </div>
     </div>
 </section>
