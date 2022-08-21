@@ -47,16 +47,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Add listener to the delete testimonial button
     if(document.getElementById("testimonial-delete-btn")) {
-        document.getElementById("testimonial-delete-btn").addEventListener("click", confirmDelete('delete_testimonial/'));
+        document.getElementById("testimonial-delete-btn").addEventListener("click", function(){ 
+            confirmDelete('learner_account/delete_testimonial/');
+    });
     }
 
-    // Add listener to the delete booking button
+    // Get all delete booking buttons
     let delBtns = document.getElementsByClassName("del-booking-btn")
-    console.log(delBtns)
     if (delBtns) {
+        // Add listeners to each of the delete booking buttons
         for (btn of delBtns) {
             urlId = btn.dataset.bookingId;
-            btn.addEventListener("click", confirmDelete(`delete_booking/${urlId}/`));
+            btn.addEventListener("click", function() {
+                confirmDelete(`bookings/delete_booking/${urlId}/`)
+            });
         }
     }
 });
@@ -106,10 +110,9 @@ function confirmDelete(redirect_url) {
     body = document.querySelector(".modal-body");
     title.innerHTML = "Confirm deletion";
     body.innerHTML = "Would you like to delete this information?";
-    url = window.location.href + '';
 
     let confirmAction = function() {
-        window.location.href = redirect_url;
+        window.location.pathname = redirect_url;
     }
 
     modalConfirmBtn.addEventListener("click", confirmAction);
