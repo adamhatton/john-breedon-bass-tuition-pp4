@@ -2,6 +2,8 @@ from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Field, Submit
 from crispy_bootstrap5.bootstrap5 import FloatingField
+import availability
+import datetime
 from .models import Booking
 
 
@@ -13,7 +15,11 @@ class BookingForm(forms.ModelForm):
         model = Booking
         fields = ('date', 'time', 'phone', 'type')
         widgets = {
-            'date': forms.DateInput(attrs={'type': 'date'}),
+            'date': forms.DateInput(attrs={
+                'type': 'date',
+                'min': availability.get_next_7_days(datetime.date.today())[0],
+                'max': availability.get_next_7_days(datetime.date.today())[6],
+            }),
         }
 
     def __init__(self, *args, **kwargs):

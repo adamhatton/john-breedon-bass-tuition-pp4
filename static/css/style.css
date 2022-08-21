@@ -125,6 +125,12 @@ footer {
 
 .booking-taken {
     background-color: red;
+    pointer-events: none;
+}
+
+.booking-taken:hover {
+    background-color: red;
+    color: #000;
 }
 
 #availability-section h3 {
