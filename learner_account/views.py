@@ -106,7 +106,8 @@ def delete_testimonial(request):
     '''
     Deletes a testimonial from the database
     '''
-    testimonial = get_object_or_404(Testimonial, user=request.user)
-    testimonial.delete()
-    messages.success(request, 'Testimonial successfully deleted')
+    if request.method == 'POST':
+        testimonial = get_object_or_404(Testimonial, user=request.user)
+        testimonial.delete()
+        messages.success(request, 'Testimonial successfully deleted')
     return redirect('/learner_account/')

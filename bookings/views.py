@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 import availability
 from .models import Booking
 from .forms import BookingForm
@@ -108,3 +109,14 @@ class EditBooking(View):
                 'booking_form': booking_form,
             }
         )
+
+@login_required
+def delete_booking(request, booking_id):
+    '''
+    Deletes a booking from the database
+    '''
+    if request.method == 'POST':
+        booking = get_object_or_404(Booking, pk=booking_id)
+        booking.delete()
+        messages.success(request, 'Booking successfully deleted')
+    return redirect('/learner_account/')

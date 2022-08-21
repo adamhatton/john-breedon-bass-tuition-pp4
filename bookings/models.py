@@ -37,4 +37,4 @@ class Booking(models.Model):
         '''
         Sets metadata for the Booking class
         '''
-        ordering = ['-date']
+        ordering = ['date']

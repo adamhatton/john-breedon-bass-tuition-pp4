@@ -41,8 +41,8 @@
                                 {% if booking.type == 'O' %}Online{% endif %}
                                 {% if booking.type == 'S' %}At the Studio{% endif %}
                             </p>
-                            <a href="" class="btn btn-secondary">Delete</a>
-                            <a href="/bookings/edit_booking/{{ booking.pk }}" class="btn btn-primary">Update</a>
+                            <button data-booking-id="{{ booking.pk }}" class="btn btn-secondary del-booking-btn">Delete</button>
+                            <a href="" class="btn btn-primary">Update</a>
                     </div>
                 </div>
             </div>

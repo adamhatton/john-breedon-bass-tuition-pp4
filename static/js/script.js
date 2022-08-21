@@ -47,7 +47,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Add listener to the delete testimonial button
     if(document.getElementById("testimonial-delete-btn")) {
-        document.getElementById("testimonial-delete-btn").addEventListener("click", confirmDelete);
+        document.getElementById("testimonial-delete-btn").addEventListener("click", confirmDelete('delete_testimonial/'));
+    }
+
+    // Add listener to the delete booking button
+    let delBtns = document.getElementsByClassName("del-booking-btn")
+    console.log(delBtns)
+    if (delBtns) {
+        for (btn of delBtns) {
+            urlId = btn.dataset.bookingId;
+            btn.addEventListener("click", confirmDelete(`delete_booking/${urlId}/`));
+        }
     }
 });
 
@@ -90,16 +100,16 @@ function confirmForm(formName) {
  * Opens a confirmation modal, sets the text, and attaches a redirect to
  * a url for deleting testimonials
  */
-function confirmDelete() {
+function confirmDelete(redirect_url) {
     confirmModal.show();
     title = document.querySelector(".modal-title");
     body = document.querySelector(".modal-body");
     title.innerHTML = "Confirm deletion";
     body.innerHTML = "Would you like to delete this information?";
-    url = window.location.href + 'delete_testimonial/';
+    url = window.location.href + '';
 
     let confirmAction = function() {
-        window.location.href = url;
+        window.location.href = redirect_url;
     }
 
     modalConfirmBtn.addEventListener("click", confirmAction);
