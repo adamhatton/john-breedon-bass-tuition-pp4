@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib import messages
+import availability
 from .models import Booking
 from .forms import BookingForm
 
@@ -13,12 +14,14 @@ class BookingsPage(View):
         '''
         Handles GET requests by rendering the bookings page
         '''
-        booking_form = BookingForm(initial={'phone':request.user.learnerprofile.phone})
+        booking_form = BookingForm(initial={'phone': request.user.learnerprofile.phone})
+        booking_availability = get_booking_availability()
 
         return render(
             request,
             'bookings.html',
             {
+                'booking_availability': booking_availability,
                 'booking_form': booking_form,
             }
         )
