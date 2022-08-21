@@ -19,18 +19,34 @@
 <section class="py-5">
     <div class="container px-5 my-5 px-5">
         <div class="text-center mb-5">
-            <h2 class="fw-bolder">Bookings</h2>
+            <h2 class="fw-bolder">Upcoming Bookings</h2>
             <p class="lead mb-0">View your existing bookings below:</p>
         </div>
-        <div class="row row-cols-1 row-cols-md-2 gx-3 gy-3 justify-content-center">
+        <div class="row row-cols-1 row-cols-md-2 gx-3 gy-3">
+            {% for booking in bookings %}
             <div class="col">
                 <div class="card h-100 flex-row align-items-center">
                     <div class="card-body p-4 text-center">
-                            <p class="mb-1"></p>
-                            <div class="small text-muted"></div>
+                            <h4>{{ booking.date|date:"l dS F" }}</h4>
+                            <p class="mb-1">
+                                {% if booking.time == '10' %}10:00 - 11:00{% endif %}
+                                {% if booking.time == '11' %}11:00 - 12:00{% endif %}
+                                {% if booking.time == '13' %}13:00 - 14:00{% endif %}
+                                {% if booking.time == '14' %}14:00 - 15:00{% endif %}
+                                {% if booking.time == '15' %}15:00 - 16:00{% endif %}
+                                {% if booking.time == '16' %}16:00 - 17:00{% endif %}
+                            </p>
+                            <p class="mb-1">
+                                {% if booking.type == 'H' %}Home visit{% endif %}
+                                {% if booking.type == 'O' %}Online{% endif %}
+                                {% if booking.type == 'S' %}At the Studio{% endif %}
+                            </p>
+                            <a href="" class="btn btn-secondary">Delete</a>
+                            <a href="" class="btn btn-primary">Update</a>
                     </div>
                 </div>
             </div>
+            {% endfor %}
         </div>
     </div>
 </section>

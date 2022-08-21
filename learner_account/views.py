@@ -3,6 +3,7 @@ from django.views import View
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Testimonial
+from bookings.models import Booking
 from .forms import UserForm, LearnerProfileForm, TestimonialForm
 
 
@@ -14,7 +15,7 @@ class AccountPage(View):
         '''
         Handles GET requests by rendering the account page
         '''
-        
+        bookings = Booking.objects.filter(user=request.user)
         user_form = UserForm(instance=request.user)
         learner_profile_form = LearnerProfileForm(instance=request.user.learnerprofile)
         
@@ -31,6 +32,7 @@ class AccountPage(View):
             request,
             'learner_account.html',
             {
+                'bookings': bookings,
                 'user_form': user_form,
                 'learner_profile_form': learner_profile_form,
                 'testimonial_form': testimonial_form,
