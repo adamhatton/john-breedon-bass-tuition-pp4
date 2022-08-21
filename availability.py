@@ -7,26 +7,26 @@ def get_booking_availability():
     Creates a dictionary with the availability of the next 7 days
     to use with the context of the Booking view
     '''
-    LESSON_SLOTS = [
-        '10:00 - 11:00',
-        '11:00 - 12:00',
-        '13:00 - 14:00',
-        '14:00 - 15:00',
-        '15:00 - 16:00',
-        '16:00 - 17:00',
-    ]
+    LESSON_SLOTS = {
+        '10': '10:00 - 11:00',
+        '11': '11:00 - 12:00',
+        '13': '13:00 - 14:00',
+        '14': '14:00 - 15:00',
+        '15': '15:00 - 16:00',
+        '16': '16:00 - 17:00',
+    }
     bookings_queryset = Booking.objects.all()
-    date = datetime.date.today()
-    next_7_days = get_next_7_days(date)
+    today = datetime.date.today()
+    next_7_days = get_next_7_days(today)
     lesson_availablility = {}
 
-    for index, day in enumerate(next_7_days):
-        lesson_availablility[f'day_{index + 1}'] = day
-        for slot in LESSON_SLOTS:
-            if bookings_queryset.filter(date=day).filter(time=slot).exists():
-                lesson_availablility[f'day_{index + 1}_slot_{index + 1}'] = 'BOOKED'
+    for day_index, day in enumerate(next_7_days):
+        lesson_availablility[f'day_{day_index + 1}'] = day
+        for slot_index, (slot_key, slot_value) in enumerate(LESSON_SLOTS.items()):
+            if bookings_queryset.filter(date=day).filter(time=slot_key).exists():
+                lesson_availablility[f'day_{day_index + 1}_slot_{slot_index + 1}'] = 'BOOKED'
             else:
-                lesson_availablility[f'day_{index + 1}_slot_{index + 1}'] = slot
+                lesson_availablility[f'day_{day_index + 1}_slot_{slot_index + 1}'] = slot_value
 
     return lesson_availablility
 
@@ -39,6 +39,6 @@ def get_next_7_days(date):
 
     for num in range(7):
         date = date + datetime.timedelta(days=1)
-        days_list.append(num)
+        days_list.append(date)
 
     return days_list

@@ -15,7 +15,7 @@ class BookingsPage(View):
         Handles GET requests by rendering the bookings page
         '''
         booking_form = BookingForm(initial={'phone': request.user.learnerprofile.phone})
-        booking_availability = get_booking_availability()
+        booking_availability = availability.get_booking_availability()
 
         return render(
             request,
