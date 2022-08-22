@@ -3,13 +3,13 @@
 {% load crispy_forms_tags %}
 
 <!-- Bookings Form -->
-<section id="bookings-form" class="bg-light py-1 push-below-nav border-bottom">
+<section id="bookings-section" class="bg-light py-1 push-below-nav border-bottom">
     <div class="container px-5 my-5">
         <div class="row justify-content-center text-center">
             <h2 class="fw-bolder mb-5">Bookings</h2>
             <p class="lead mb-0">Use the form below to book a lesson, my availability is shown further below.</p>
             <p class="lead mb-0">Once your lesson is booked, I will contact you with further information depending on the type of less you have booked.</p>
-            <form id="profile-form" class="form-width mt-5" method="POST">
+            <form id="bookings-form" class="form-width mt-5" method="POST">
                 {% crispy booking_form booking_form.helper %}
             </form>
         </div>
@@ -27,7 +27,7 @@
             {% for key, value in booking_availability.items %}
                 {% if "slot" not in key %}
                 <hr>
-                <h3 class="col-12">{{ value|date:'l dS F' }}</h3>
+                <h3 class="col-12" data-date-str="{{ value|date:'o-m-d' }}">{{ value|date:'l dS F' }}</h3>
                 {% else %}
                     {% if value == 'BOOKED' %}
                     <button class="col-5 col-md-4 col-xl-1 btn btn-primary booking-slot booking-taken">{{ value }}</button>

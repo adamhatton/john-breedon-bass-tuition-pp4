@@ -63,6 +63,15 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
     }
+
+    // Get all the available booking slot buttons
+    let slotBtns = document.getElementsByClassName("booking-free")
+    if (slotBtns) {
+        // Add listeners to each of the available slot buttons
+        for (btn of slotBtns) {
+            btn.addEventListener("click", populateBookingForm);
+        }
+    }
 });
 
 setTimeout(function() {
@@ -121,6 +130,31 @@ function confirmDelete(redirect_url) {
     modalCloseBtn.addEventListener("click", () => {
         modalConfirmBtn.removeEventListener("click", confirmAction);
     });
+}
+
+/**
+ * Uses the booking slot information to pre-populate the booking form
+ */
+function populateBookingForm() {
+    let bookingForm = document.getElementById('bookings-form').elements;
+    let dateField = bookingForm['id_date'];
+    let timeField = bookingForm['id_time'];
+    time = this.innerHTML.slice(0,2);
+    date = getSlotDate(this);
+    timeField.value = time;
+    dateField.value = date.dataset.dateStr;
+}
+
+
+/**
+ * Takes a booking button and finds the previous h3 element
+ */
+function getSlotDate(slot){
+    element = slot.previousElementSibling;
+    while (true) {
+        if (element.tagName == 'H3') return element;
+        element = element.previousElementSibling;
+    }
 }
 
 /**
