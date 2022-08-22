@@ -115,8 +115,10 @@ def delete_booking(request, booking_id):
     '''
     Deletes a booking from the database
     '''
-    if request.method == 'POST':
-        booking = get_object_or_404(Booking, pk=booking_id)
+    booking = get_object_or_404(Booking, pk=booking_id)
+    if booking.user == request.user:
         booking.delete()
         messages.success(request, 'Booking successfully deleted')
+    else:
+        messages.error(request, 'You do not have permission to delete this booking')
     return redirect('/learner_account/')
