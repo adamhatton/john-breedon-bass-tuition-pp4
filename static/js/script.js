@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Add listener to the delete testimonial button
     if(document.getElementById("testimonial-delete-btn")) {
         document.getElementById("testimonial-delete-btn").addEventListener("click", function(){ 
-            confirmDelete('learner_account/delete_testimonial/');
+            confirmDelete('learner_account/delete_testimonial/', 'testimonial');
     });
     }
 
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
         for (btn of delBtns) {
             urlId = btn.dataset.bookingId;
             btn.addEventListener("click", function() {
-                confirmDelete(`bookings/delete_booking/${urlId}/`)
+                confirmDelete(`bookings/delete_booking/${urlId}/`, 'booking')
             });
         }
     }
@@ -113,15 +113,15 @@ function confirmForm(formName) {
  * Opens a confirmation modal, sets the text, and attaches a redirect to
  * a url for deleting testimonials
  */
-function confirmDelete(redirect_url) {
+function confirmDelete(redirectUrl, delItem) {
     confirmModal.show();
     title = document.querySelector(".modal-title");
     body = document.querySelector(".modal-body");
     title.innerHTML = "Confirm deletion";
-    body.innerHTML = "Would you like to delete this information?";
+    body.innerHTML = `Would you like to delete this ${delItem}?`;
 
     let confirmAction = function() {
-        window.location.pathname = redirect_url;
+        window.location.pathname = redirectUrl;
     }
 
     modalConfirmBtn.addEventListener("click", confirmAction);
@@ -194,13 +194,13 @@ function scrollSpy(){
     // Get relevant sections as a Nodelist
     const sections = document.querySelectorAll(".scrollspy");
     // Get relevant links as a Nodelist
-    const nav_links = document.querySelectorAll(".scrollspy-link");
+    const navLinks = document.querySelectorAll(".scrollspy-link");
 
 
     // Accesses the nav_links Nodelist using a passed in index to add the active class
-    const makeActive = (link) => nav_links[link].classList.add("active");
+    const makeActive = (link) => navLinks[link].classList.add("active");
     // Accesses the nav_links Nodelist using a passed in index to remove the active class
-    const removeActive = (link) => nav_links[link].classList.remove("active");
+    const removeActive = (link) => navLinks[link].classList.remove("active");
     // Creates a new array using the length of sections and calling the .keys() method on this
     // which creates an array of indexes (i.e. [0, 1, 2, ...]), each of these is then passed to removeActive
     const removeAllActive = () => [...Array(sections.length).keys()].forEach((link) => removeActive(link));
