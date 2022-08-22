@@ -62,13 +62,13 @@
 
                     {# This section renders the account, login and logout links with active and aria classes if necessary #}
                     {% if user.is_authenticated %}
-                        {% if request.path == '/bookings/' %}
+                        {% if '/bookings/' in request.path %}
                         <li class="nav-item"><a class="nav-link active" aria-current="page"
                                 href="{% url 'bookings' %}">Bookings</a></li>
                         {% else %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'bookings' %}">Bookings</a></li>
                         {% endif %}
-                        {% if request.path == '/learner_account/' %}
+                        {% if '/learner_account/' in request.path %}
                         <li class="nav-item"><a class="nav-link active" aria-current="page"
                                 href="{% url 'learner_account' %}">Account</a></li>
                         {% else %}

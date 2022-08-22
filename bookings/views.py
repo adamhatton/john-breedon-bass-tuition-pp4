@@ -67,6 +67,13 @@ class EditBooking(View):
         '''
         booking_to_edit = get_object_or_404(Booking, pk=booking_id)
         booking_form = BookingForm(instance=booking_to_edit)
+
+
+        # Check that user owns the booking in question
+        if booking_form.instance.user != request.user:
+            messages.error(request, 'You do not have permission to edit that booking')
+            return redirect('/learner_account/')
+
         booking_availability = availability.get_booking_availability()
 
         return render(
