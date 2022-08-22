@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+import datetime
 from .models import Testimonial
 from bookings.models import Booking
 from .forms import UserForm, LearnerProfileForm, TestimonialForm
@@ -15,7 +16,7 @@ class AccountPage(View):
         '''
         Handles GET requests by rendering the account page
         '''
-        bookings = Booking.objects.filter(user=request.user)
+        bookings = Booking.objects.filter(user=request.user).filter(date__gt=datetime.date.today())
         user_form = UserForm(instance=request.user)
         learner_profile_form = LearnerProfileForm(instance=request.user.learnerprofile)
         
