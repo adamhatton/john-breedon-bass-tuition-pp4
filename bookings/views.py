@@ -127,5 +127,5 @@ def delete_booking(request, booking_id):
         booking.delete()
         messages.success(request, 'Booking successfully deleted')
     else:
-        messages.error(request, 'You do not have permission to delete this booking')
+        messages.error(request, 'You do not have permission to delete that booking')
     return redirect('/learner_account/')

@@ -153,7 +153,6 @@ footer {
     background-color: #ff6600;
 }
 
-
 /*------------------------------------- Auth forms Styling */
 .auth-header {
     text-align: center;
@@ -161,6 +160,26 @@ footer {
 
 .auth-form {
     margin: auto;
+}
+
+/*------------------------------------- Footer Styling */
+.social-links {
+    padding: 0;
+    text-align: center;
+}
+
+.social-icon {
+    display: inline-block;
+    font-size: 2rem;
+    margin: 0 0.5rem;
+}
+
+.social-icon > a {
+    color: #ff6600;
+}
+
+.social-icon > a:hover {
+    color: #db610f;
 }
 
 /*------------------------------------- Animations */

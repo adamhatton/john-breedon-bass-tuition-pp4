@@ -26,7 +26,7 @@ class Booking(models.Model):
     date = models.DateField()
     time = models.CharField(max_length=2, choices=LESSON_TIME_CHOICES)
     phone = PhoneNumberField(blank=True, help_text="Adding a phone number makes it easier for me to contact you about your lesson")
-    type = models.CharField(max_length=1, choices=LESSON_TYPE_CHOICES)
+    type = models.CharField(max_length=1, choices=LESSON_TYPE_CHOICES, help_text="Please note that I only do home visits in Newcastle")
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 
