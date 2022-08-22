@@ -23,7 +23,7 @@ class ContactForm(forms.ModelForm):
         '''
         super(ContactForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper(self)
-
+        self.helper.form_tag = False
         self.helper.layout = Layout(
             FloatingField('name'),
             FloatingField('email'),

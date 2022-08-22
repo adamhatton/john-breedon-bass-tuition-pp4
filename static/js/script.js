@@ -1,7 +1,7 @@
 const confirmModal = new bootstrap.Modal(document.getElementById('confirmModal'), {
     backdrop: 'static',
     keyboard: false
-})
+});
 const modalCloseBtn = document.getElementById("modal-close-btn");
 const modalConfirmBtn = document.getElementById("modal-confirm-btn");
 
@@ -30,8 +30,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Add listener to the add testimonial button 
     if(document.getElementById("add-testimonial-btn")) {
-        addTestButton = document.getElementById("add-testimonial-btn");
-        addTestForm = document.getElementById("add-testimonial-form");
+        let addTestButton = document.getElementById("add-testimonial-btn");
+        let addTestForm = document.getElementById("add-testimonial-form");
 
         // Toggle the testimonial form
         addTestButton.addEventListener("click", () => {
@@ -53,22 +53,22 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Get all delete booking buttons
-    let delBtns = document.getElementsByClassName("del-booking-btn")
+    let delBtns = document.getElementsByClassName("del-booking-btn");
     if (delBtns) {
         // Add listeners to each of the delete booking buttons
-        for (btn of delBtns) {
-            urlId = btn.dataset.bookingId;
+        for (let btn of delBtns) {
+            let urlId = btn.dataset.bookingId;
             btn.addEventListener("click", function() {
-                confirmDelete(`bookings/delete_booking/${urlId}/`, 'booking')
+                confirmDelete(`bookings/delete_booking/${urlId}/`, 'booking');
             });
         }
     }
 
     // Get all the available booking slot buttons
-    let slotBtns = document.getElementsByClassName("booking-free")
+    let slotBtns = document.getElementsByClassName("booking-free");
     if (slotBtns) {
         // Add listeners to each of the available slot buttons
-        for (btn of slotBtns) {
+        for (let btn of slotBtns) {
             btn.addEventListener("click", populateBookingForm);
         }
     }
@@ -88,17 +88,17 @@ setTimeout(function() {
  */
 function confirmForm(formName) {
     confirmModal.show();
-    title = document.querySelector(".modal-title");
-    body = document.querySelector(".modal-body");
+    let title = document.querySelector(".modal-title");
+    let body = document.querySelector(".modal-body");
     title.innerHTML = "Confirm submission";
     body.innerHTML = "Would you like to submit this form?";
-    form = document.getElementById(formName);
+    let form = document.getElementById(formName);
 
     let confirmAction = function() {
         form.submit();
         confirmModal.hide();
         modalConfirmBtn.removeEventListener("click", confirmAction);
-    }
+    };
 
     modalConfirmBtn.addEventListener("click", confirmAction);
 
@@ -115,14 +115,14 @@ function confirmForm(formName) {
  */
 function confirmDelete(redirectUrl, delItem) {
     confirmModal.show();
-    title = document.querySelector(".modal-title");
-    body = document.querySelector(".modal-body");
+    let title = document.querySelector(".modal-title");
+    let body = document.querySelector(".modal-body");
     title.innerHTML = "Confirm deletion";
     body.innerHTML = `Would you like to delete this ${delItem}?`;
 
     let confirmAction = function() {
         window.location.pathname = redirectUrl;
-    }
+    };
 
     modalConfirmBtn.addEventListener("click", confirmAction);
 
@@ -137,10 +137,10 @@ function confirmDelete(redirectUrl, delItem) {
  */
 function populateBookingForm() {
     let bookingForm = document.getElementById('bookings-form').elements;
-    let dateField = bookingForm['id_date'];
-    let timeField = bookingForm['id_time'];
-    time = this.innerHTML.slice(0,2);
-    date = getSlotDate(this);
+    let dateField = bookingForm.id_date;
+    let timeField = bookingForm.id_time;
+    let time = this.innerHTML.slice(0,2);
+    let date = getSlotDate(this);
     timeField.value = time;
     dateField.value = date.dataset.dateStr;
 }
@@ -150,7 +150,7 @@ function populateBookingForm() {
  * Takes a booking button and finds the previous h3 element
  */
 function getSlotDate(slot){
-    element = slot.previousElementSibling;
+    let element = slot.previousElementSibling;
     while (true) {
         if (element.tagName == 'H3') return element;
         element = element.previousElementSibling;
@@ -162,23 +162,23 @@ function getSlotDate(slot){
  */
 function toggleFieldsDisabled() {
     // Create variables for the different elements to disable
-    inputs = document.querySelectorAll(".form-control, .form-select");
-    cancelBtn = document.getElementById("button-id-cancel");
-    submitBtn = document.getElementById("submit-id-submit");
-    editBtn = document.getElementById("button-id-edit");
-    helpText = document.getElementById("hint_id_username");
+    let inputs = document.querySelectorAll(".form-control, .form-select");
+    let cancelBtn = document.getElementById("button-id-cancel");
+    let submitBtn = document.getElementById("submit-id-submit");
+    let editBtn = document.getElementById("button-id-edit");
+    let helpText = document.getElementById("hint_id_username");
 
     // When edit is pressed the disabled state is removed from inputs and Submit
     // When cancel is pressed the disabled state is reapplied
     if (this.id == "button-id-edit") {
-        for(input of inputs){
+        for(let input of inputs){
             input.removeAttribute('disabled');
         }
         cancelBtn.classList.remove("hidden");
         submitBtn.removeAttribute('disabled');
         helpText.style.display = "block";
     } else if (this.id == "button-id-cancel") {
-        for(input of inputs){
+        for(let input of inputs){
             input.setAttribute('disabled', '');
         }
         editBtn.classList.remove("hidden");
@@ -186,8 +186,8 @@ function toggleFieldsDisabled() {
         helpText.style.display = "none";
     }
 
-    this.classList.add("hidden")
-};
+    this.classList.add("hidden");
+}
 
 // Code taken from https://medium.com/p1xts-blog/scrollspy-with-just-javascript-3131c114abdc by P1xt
 function scrollSpy(){
@@ -216,7 +216,7 @@ function scrollSpy(){
 
         // Find the index for the currently in view section by comparing the section's offsetTop value to the current viewport position
         // Sections are checked in reverse order otherwise findIndex would always return the first element
-        const current = sections.length - [...sections].reverse().findIndex((section) => window.scrollY >= section.offsetTop - sectionMargin) - 1
+        const current = sections.length - [...sections].reverse().findIndex((section) => window.scrollY >= section.offsetTop - sectionMargin) - 1;
 
         // If section changes then remove active classes and add active class to the current link
         if (current !== currentActive) {

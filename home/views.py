@@ -73,8 +73,7 @@ def about_page(request):
     '''
     View for loading the about page
     '''
-    # queryset = Testimonial.objects.filter(approved=True)
-    queryset = Testimonial.objects.all()
+    queryset = Testimonial.objects.filter(approved=True)
     testimonial_pks = [i.pk for i in queryset]
     random.shuffle(testimonial_pks)
     random_testimonials = [queryset.get(id=i) for i in testimonial_pks]
