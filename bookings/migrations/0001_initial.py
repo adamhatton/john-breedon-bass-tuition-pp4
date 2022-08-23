@@ -16,19 +16,53 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Booking',
+            name="Booking",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('date', models.DateField()),
-                ('time', models.TimeField()),
-                ('phone', phonenumber_field.modelfields.PhoneNumberField(blank=True, help_text='Adding a phone number makes it easier for me to contact you about your lesson', max_length=128, region=None)),
-                ('type', models.CharField(blank=True, choices=[('H', 'Home visit'), ('O', 'Online'), ('S', 'At the Studio')], max_length=1)),
-                ('created_on', models.DateTimeField(auto_now_add=True)),
-                ('updated_on', models.DateTimeField(auto_now=True)),
-                ('learner', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='bookings', to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("date", models.DateField()),
+                ("time", models.TimeField()),
+                (
+                    "phone",
+                    phonenumber_field.modelfields.PhoneNumberField(
+                        blank=True,
+                        help_text="Adding a phone number makes it easier for me to contact you about your lesson",
+                        max_length=128,
+                        region=None,
+                    ),
+                ),
+                (
+                    "type",
+                    models.CharField(
+                        blank=True,
+                        choices=[
+                            ("H", "Home visit"),
+                            ("O", "Online"),
+                            ("S", "At the Studio"),
+                        ],
+                        max_length=1,
+                    ),
+                ),
+                ("created_on", models.DateTimeField(auto_now_add=True)),
+                ("updated_on", models.DateTimeField(auto_now=True)),
+                (
+                    "learner",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="bookings",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'ordering': ['date'],
+                "ordering": ["date"],
             },
         ),
     ]

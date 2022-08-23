@@ -6,13 +6,21 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('bookings', '0004_alter_booking_type'),
+        ("bookings", "0004_alter_booking_type"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='booking',
-            name='type',
-            field=models.CharField(choices=[('', 'Pick a lesson type'), ('H', 'Home visit'), ('O', 'Online'), ('S', 'At the Studio')], max_length=1),
+            model_name="booking",
+            name="type",
+            field=models.CharField(
+                choices=[
+                    ("", "Pick a lesson type"),
+                    ("H", "Home visit"),
+                    ("O", "Online"),
+                    ("S", "At the Studio"),
+                ],
+                max_length=1,
+            ),
         ),
     ]

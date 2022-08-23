@@ -9,26 +9,40 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('learner_account', '0002_alter_learnerprofile_ability'),
+        ("learner_account", "0002_alter_learnerprofile_ability"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='learnerprofile',
-            options={'ordering': ['user']},
+            name="learnerprofile",
+            options={"ordering": ["user"]},
         ),
         migrations.CreateModel(
-            name='Testimonial',
+            name="Testimonial",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('content', models.TextField()),
-                ('created_on', models.DateTimeField(auto_now_add=True)),
-                ('updated_on', models.DateTimeField(auto_now_add=True)),
-                ('approved', models.BooleanField(default=False)),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("content", models.TextField()),
+                ("created_on", models.DateTimeField(auto_now_add=True)),
+                ("updated_on", models.DateTimeField(auto_now_add=True)),
+                ("approved", models.BooleanField(default=False)),
+                (
+                    "user",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'ordering': ['created_on'],
+                "ordering": ["created_on"],
             },
         ),
     ]

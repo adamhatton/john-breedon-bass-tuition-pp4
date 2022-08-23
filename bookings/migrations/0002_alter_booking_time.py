@@ -6,13 +6,23 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('bookings', '0001_initial'),
+        ("bookings", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='booking',
-            name='time',
-            field=models.CharField(choices=[('10', '10:00 - 11:00'), ('11', '11:00 - 12:00'), ('13', '13:00 - 14:00'), ('14', '14:00 - 15:00'), ('15', '15:00 - 16:00'), ('16', '16:00 - 17:00')], max_length=2),
+            model_name="booking",
+            name="time",
+            field=models.CharField(
+                choices=[
+                    ("10", "10:00 - 11:00"),
+                    ("11", "11:00 - 12:00"),
+                    ("13", "13:00 - 14:00"),
+                    ("14", "14:00 - 15:00"),
+                    ("15", "15:00 - 16:00"),
+                    ("16", "16:00 - 17:00"),
+                ],
+                max_length=2,
+            ),
         ),
     ]

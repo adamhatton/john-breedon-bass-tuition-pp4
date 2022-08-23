@@ -7,17 +7,19 @@ import phonenumber_field.modelfields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('home', '0001_initial'),
+        ("home", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='contact',
-            options={'ordering': ['submitted']},
+            name="contact",
+            options={"ordering": ["submitted"]},
         ),
         migrations.AlterField(
-            model_name='contact',
-            name='phone',
-            field=phonenumber_field.modelfields.PhoneNumberField(blank=True, max_length=128, region=None),
+            model_name="contact",
+            name="phone",
+            field=phonenumber_field.modelfields.PhoneNumberField(
+                blank=True, max_length=128, region=None
+            ),
         ),
     ]

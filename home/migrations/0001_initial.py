@@ -8,20 +8,32 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Contact',
+            name="Contact",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=30)),
-                ('email', models.EmailField(max_length=254)),
-                ('phone', phonenumber_field.modelfields.PhoneNumberField(max_length=128, region=None)),
-                ('submitted', models.DateTimeField(auto_now_add=True)),
-                ('message', models.TextField()),
-                ('completed', models.BooleanField(default=False)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=30)),
+                ("email", models.EmailField(max_length=254)),
+                (
+                    "phone",
+                    phonenumber_field.modelfields.PhoneNumberField(
+                        max_length=128, region=None
+                    ),
+                ),
+                ("submitted", models.DateTimeField(auto_now_add=True)),
+                ("message", models.TextField()),
+                ("completed", models.BooleanField(default=False)),
             ],
         ),
     ]

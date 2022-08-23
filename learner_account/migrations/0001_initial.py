@@ -16,13 +16,43 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='LearnerProfile',
+            name="LearnerProfile",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('phone', phonenumber_field.modelfields.PhoneNumberField(blank=True, max_length=128, region=None)),
-                ('ability', models.CharField(choices=[('', 'Choose your level'), ('B', 'Beginner'), ('I', 'Intermediate'), ('A', 'Advanced')], max_length=1)),
-                ('about', models.TextField(blank=True)),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "phone",
+                    phonenumber_field.modelfields.PhoneNumberField(
+                        blank=True, max_length=128, region=None
+                    ),
+                ),
+                (
+                    "ability",
+                    models.CharField(
+                        choices=[
+                            ("", "Choose your level"),
+                            ("B", "Beginner"),
+                            ("I", "Intermediate"),
+                            ("A", "Advanced"),
+                        ],
+                        max_length=1,
+                    ),
+                ),
+                ("about", models.TextField(blank=True)),
+                (
+                    "user",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
     ]
