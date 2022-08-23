@@ -75,7 +75,7 @@ class TestHomeViews(TestCase):
             username='adhatton',
             password='adam',
         )
-        testimonial = Testimonial.objects.create(
+        Testimonial.objects.create(
             user=test_user,
             content='test testimonial',
             approved=True
