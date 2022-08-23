@@ -16,7 +16,7 @@ def index_page(request):
 
 class HomePage(View):
     """
-    Renders the homepage and handles the contact form
+    Handles requests to the home page
     """
 
     def get(self, request):

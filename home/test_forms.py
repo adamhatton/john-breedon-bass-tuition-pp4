@@ -59,4 +59,3 @@ class TestContactForm(TestCase):
             form.Meta().fields,
             ('name', 'email', 'phone', 'message')
         )
-
