@@ -52,7 +52,7 @@ class TestContactForm(TestCase):
         self.assertFalse(form.is_valid())
         self.assertIn('phone', form.errors.keys())
 
-    def test_fields_are_explicit_in_form_metaclass(self):
+    def test_contact_fields_are_explicit_in_form_metaclass(self):
         '''Tests that only fields specified in the meta are displayed'''
         form = ContactForm()
         self.assertEqual(

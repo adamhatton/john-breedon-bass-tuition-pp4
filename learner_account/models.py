@@ -6,15 +6,15 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 
 class LearnerProfile(models.Model):
-    """
+    '''
     Model to extend user and include additional learner information
-    """
+    '''
 
     ABILITY_CHOICES = [
-        ("", "Choose your level"),
-        ("B", "Beginner"),
-        ("I", "Intermediate"),
-        ("A", "Advanced"),
+        ('', 'Choose your level'),
+        ('B', 'Beginner'),
+        ('I', 'Intermediate'),
+        ('A', 'Advanced'),
     ]
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     phone = PhoneNumberField(blank=True)
@@ -26,21 +26,21 @@ class LearnerProfile(models.Model):
     about = models.TextField(blank=True)
 
     def __str__(self):
-        return f"Profile for {self.user.username}"
+        return f'Profile for {self.user.username}'
 
     class Meta:
-        """
+        '''
         Sets metadata for the LearnerProfile class
-        """
+        '''
 
-        ordering = ["user"]
+        ordering = ['user']
 
 
 @receiver(post_save, sender=User)
 def create_learner_profile(sender, instance, created, **kwargs):
-    """
+    '''
     Create and save the LearnerProfile whenever a User is created.
-    """
+    '''
     if created:
         LearnerProfile.objects.create(user=instance)
 
@@ -48,9 +48,9 @@ def create_learner_profile(sender, instance, created, **kwargs):
 
 
 class Testimonial(models.Model):
-    """
+    '''
     Model for testimonials written by learners
-    """
+    '''
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     content = models.TextField()
@@ -59,11 +59,11 @@ class Testimonial(models.Model):
     approved = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"{self.content}"
+        return f'{self.content}'
 
     class Meta:
-        """
+        '''
         Sets metadata for the Testimonial class
-        """
+        '''
 
-        ordering = ["created_on"]
+        ordering = ['created_on']
