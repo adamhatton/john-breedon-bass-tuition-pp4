@@ -32,7 +32,7 @@ class TestHomeViews(TestCase):
         Tests that sending a valid contact form creates a contact,
         renders the homepage template and shows a message
         '''
-        response = self.client.post('/contact/', data={
+        response = self.client.post('/contact/', {
             'name': 'Adam',
             'email': 'test@test.co.uk',
             'phone': '',
@@ -50,7 +50,7 @@ class TestHomeViews(TestCase):
         Tests that sending an invalid contact form does not create
         a contact item and renders the homepage template
         '''
-        response = self.client.post('/contact/', data={
+        response = self.client.post('/contact/', {
             'name': '',
             'email': 'test@test.co.uk',
             'phone': '',

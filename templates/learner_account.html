@@ -23,7 +23,7 @@
             <p class="lead mb-0">View your existing bookings below:</p>
         </div>
         <div class="row row-cols-1 row-cols-md-2 gx-3 gy-3 justify-content-center text-center">
-            {% if bookings.len > 0%}
+            {% if bookings|length > 0 %}
                 {% for booking in bookings %}
                 <div class="col">
                     <div class="card h-100 flex-row align-items-center">
