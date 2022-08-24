@@ -3,13 +3,13 @@ from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
-from .models import LearnerProfile, Testimonial
 from bookings.models import Booking
+from .models import Testimonial
 
 
-class TestLearnerAccountViews(TestCase):
+class TestAccountPageView(TestCase):
     '''
-    Class for testing the learner_account views
+    Class for testing the AccountPage class view
     '''
 
     def setUp(self):
@@ -21,7 +21,7 @@ class TestLearnerAccountViews(TestCase):
             username=username,
             password=password,
         )
-        tomorrow = datetime.now() + timedelta(days=2)
+        tomorrow = datetime.now() + timedelta(days=1)
         Booking.objects.create(
             user=test_user,
             date=tomorrow,
@@ -46,7 +46,7 @@ class TestLearnerAccountViews(TestCase):
         response = self.client.get(reverse('learner_account'))
         self.assertEqual(str(response.context['user']), 'adhatton')
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed('learner_account.html')
+        self.assertTemplateUsed(response, 'learner_account.html')
 
     def test_render_bookings_and_testimonials(self):
         '''Tests that the account page renders bookings and testimonials'''
@@ -99,7 +99,7 @@ class TestLearnerAccountViews(TestCase):
         self.assertEqual(user.learnerprofile.phone, '07450039175')
         self.assertEqual(user.learnerprofile.ability, 'B')
         self.assertEqual(user.learnerprofile.about, 'I like music')
-        self.assertTemplateUsed('learner_account.html')
+        self.assertTemplateUsed(response, 'learner_account.html')
         self.assertEqual(len(messages), 1)
         self.assertEqual(str(messages[0]), 'Profile successfully updated')
 
@@ -109,12 +109,33 @@ class TestLearnerAccountViews(TestCase):
         template and does not update the model
         '''
         self.client.login(username='adhatton', password='adam')
-        self.client.post(reverse('learner_account'), {
+        response = self.client.post(reverse('learner_account'), {
             'username': ''
         })
         user = User.objects.get(pk=1)
         self.assertEqual(user.username, 'adhatton')
-        self.assertTemplateUsed('learner_account.html')
+        self.assertTemplateUsed(response, 'learner_account.html')
+
+
+class TestAddTestimonialView(TestCase):
+    '''
+    Class for testing the add_testimonial view
+    '''
+
+    def setUp(self):
+        '''Creates a user and testimonial to use in all tests'''
+        username = 'adhatton'
+        password = 'adam'
+        user = get_user_model()
+        test_user = user.objects.create_user(
+            username=username,
+            password=password,
+        )
+        Testimonial.objects.create(
+            user=test_user,
+            content='test testimonial',
+            approved=True
+        )
 
     def test_get_add_testimonial_if_not_logged_in(self):
         '''Tests that the add testimonial page redirects if not logged in'''
@@ -155,6 +176,27 @@ class TestLearnerAccountViews(TestCase):
         self.assertEqual(len(messages), 1)
         self.assertEqual(str(messages[0]), 'Testimonial has been sent for approval')
 
+
+class TestEditTestimonialView(TestCase):
+    '''
+    Class for testing the edit_testimonial view
+    '''
+
+    def setUp(self):
+        '''Creates a user to use in all tests'''
+        username = 'adhatton'
+        password = 'adam'
+        user = get_user_model()
+        test_user = user.objects.create_user(
+            username=username,
+            password=password,
+        )
+        Testimonial.objects.create(
+            user=test_user,
+            content='test testimonial',
+            approved=True
+        )
+
     def test_get_edit_testimonial_if_not_logged_in(self):
         '''Tests that the edit testimonial page redirects if not logged in'''
         response = self.client.get(reverse('edit_testimonial'))
@@ -192,6 +234,27 @@ class TestLearnerAccountViews(TestCase):
         self.assertRedirects(response, '/learner_account/')
         self.assertEqual(len(messages), 1)
         self.assertEqual(str(messages[0]), 'Testimonial has been sent for approval')
+
+
+class TestDeleteTestimonialView(TestCase):
+    '''
+    Class for testing the delete_testimonial view
+    '''
+
+    def setUp(self):
+        '''Creates a user and testimonial to use in all tests'''
+        username = 'adhatton'
+        password = 'adam'
+        user = get_user_model()
+        test_user = user.objects.create_user(
+            username=username,
+            password=password,
+        )
+        Testimonial.objects.create(
+            user=test_user,
+            content='test testimonial',
+            approved=True
+        )
 
     def test_get_delete_testimonial_if_not_logged_in(self):
         '''Tests that the delete testimonial page redirects if not logged in'''

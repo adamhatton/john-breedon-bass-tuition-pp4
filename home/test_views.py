@@ -4,9 +4,9 @@ from .models import Contact
 from learner_account.models import Testimonial
 
 
-class TestHomeViews(TestCase):
+class TestHomePageViews(TestCase):
     '''
-    Class for testing the home views
+    Class for testing the home page views
     '''
 
     def test_get_index_redirects(self):
@@ -20,6 +20,12 @@ class TestHomeViews(TestCase):
         response = self.client.get('/home/')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'home.html')
+
+
+class TestContactSectionView(TestCase):
+    '''
+    Class for testing the ContactSection class view
+    '''
 
     def test_get_contact(self):
         '''Tests that the contact page renders the correct template'''
@@ -60,6 +66,12 @@ class TestHomeViews(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'home.html')
 
+
+class TestAboutViews(TestCase):
+    '''
+    Class for testing the about page view
+    '''
+
     def test_get_about(self):
         '''Tests that the about page renders the correct template'''
         response = self.client.get('/about/')
@@ -68,20 +80,30 @@ class TestHomeViews(TestCase):
 
     def test_about_displays_testimonial(self):
         '''
-        Tests that the about page shows a testimonial if
-        there is one in the database
+        Tests that the about page shows approved testimonials but
+        not those which aren't approved
         '''
         test_user = User.objects.create(
             username='adhatton',
             password='adam',
+        )
+        test_user_2 = User.objects.create(
+            username='jwagon',
+            password='john',
         )
         Testimonial.objects.create(
             user=test_user,
             content='test testimonial',
             approved=True
         )
+        Testimonial.objects.create(
+            user=test_user_2,
+            content='Unapproved testimonial',
+            approved=False
+        )
         testimonial_card = (
             b'<div class="card h-100 flex-row align-items-center">'
         )
         response = self.client.get('/about/')
         assert testimonial_card in response.content
+        assert b'Unapproved testimonial' not in response.content
