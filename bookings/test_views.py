@@ -115,72 +115,68 @@ class TestEditBookingView(TestCase):
             username=username,
             password=password,
         )
+        tomorrow = datetime.now() + timedelta(days=1)
+        Booking.objects.create(
+            user=test_user,
+            date=tomorrow,
+            time='10',
+            type='O'
+        )
 
-    # def test_get_bookings_page_if_not_logged_in(self):
-    #     '''Tests that the bookings page redirects if not logged in'''
-    #     response = self.client.get('/bookings/')
-    #     self.assertEqual(response.status_code, 302)
-    #     self.assertRedirects(response, '/accounts/login/?next=/bookings/')
+    def test_get_edit_booking_page_redirects_if_not_logged_in(self):
+        '''Tests that the edit booking page redirects if not logged in'''
+        booking = Booking.objects.get(pk=1)
+        response = self.client.get(f'/bookings/edit_booking/{booking.pk}/')
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, f'/accounts/login/?next=/bookings/edit_booking/{booking.pk}/')
 
-    # def test_get_bookings_page_logged_in(self):
-    #     '''Tests that the bookings page uses correct template if logged in'''
-    #     self.client.login(username='adhatton', password='adam')
-    #     response = self.client.get(reverse('bookings'))
-    #     self.assertEqual(str(response.context['user']), 'adhatton')
-    #     self.assertEqual(response.status_code, 200)
-    #     self.assertTemplateUsed(response, 'bookings.html')
+    def test_get_edit_booking_page_if_logged_in(self):
+        '''
+        Tests that the edit booking page renders correct template if
+        user is logged in
+        '''
+        booking = Booking.objects.get(pk=1)
+        self.client.login(username='adhatton', password='adam')
+        response = self.client.get(f'/bookings/edit_booking/{booking.pk}/')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'bookings.html')
 
-    # def test_render_booking_availability(self):
-    #     '''Tests that the bookings page renders booked slots as BOOKED'''
-    #     test_user = User.objects.get(pk=1)
-    #     tomorrow = datetime.now() + timedelta(days=1)
-    #     Booking.objects.create(
-    #         user=test_user,
-    #         date=tomorrow,
-    #         time='10',
-    #         type='O'
-    #     )
-    #     self.client.login(username='adhatton', password='adam')
-    #     response = self.client.get(reverse('bookings'))
-    #     assert b'BOOKED' in response.content
+    def test_get_edit_booking_redirects_if_other_user_booking(self):
+        '''
+        Tests that the edit booking page redirects to the learner account
+        page if a user tries to edit a booking which isn't their own
+        '''
+        booking = Booking.objects.get(pk=1)
+        User.objects.create_user(
+            username='wronguser',
+            password='wrong',
+        )
+        self.client.login(username='wronguser', password='wrong')
+        response = self.client.get(f'/bookings/edit_booking/{booking.pk}/')
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, '/learner_account/')
 
-    # def test_post_booking_rejects_duplicate_booking(self):
-    #     '''Tests that the booking POST method prevents duplicate bookings'''
-    #     test_user = User.objects.get(pk=1)
-    #     tomorrow = datetime.now() + timedelta(days=1)
-    #     Booking.objects.create(
-    #         user=test_user,
-    #         date=tomorrow,
-    #         time='10',
-    #         type='O'
-    #     )
-    #     self.client.login(username='adhatton', password='adam')
-    #     response = self.client.post(
-    #         reverse('bookings'),
-    #         {'date': f'{tomorrow.strftime("%Y-%m-%d")}', 'time': '10', 'type': 'O'},
-    #         follow=True
-    #     )
-    #     messages = list(response.context['messages'])
-    #     self.assertEqual(len(messages), 1)
-    #     self.assertEqual(str(messages[0]), 'That slot is unavailable, please select a different time')
-    #     self.assertRedirects(response, '/bookings/')
-    #     self.assertTemplateUsed(response, 'bookings.html')
-
-    # def test_post_booking_accepts_new_bookings(self):
-    #     '''Tests that the booking POST method accepts new bookings'''
-    #     tomorrow = datetime.now() + timedelta(days=1)
-    #     self.client.login(username='adhatton', password='adam')
-    #     response = self.client.post(
-    #         reverse('bookings'),
-    #         {'date': f'{tomorrow.strftime("%Y-%m-%d")}', 'time': '10', 'type': 'O'},
-    #         follow=True
-    #     )
-    #     messages = list(response.context['messages'])
-    #     self.assertEqual(len(messages), 1)
-    #     self.assertEqual(str(messages[0]), 'Your lesson is booked!')
-    #     self.assertRedirects(response, '/bookings/')
-    #     self.assertTemplateUsed(response, 'bookings.html')
-    #     self.assertTrue(Booking.objects.filter(time='10').exists())
+    def test_edit_booking_updates_booking(self):
+        '''
+        Tests that the edit booking POST method updates
+        the booking object
+        '''
+        booking = Booking.objects.get(pk=1)
+        tomorrow = datetime.now() + timedelta(days=1)
+        self.client.login(username='adhatton', password='adam')
+        response = self.client.post(
+            f'/bookings/edit_booking/{booking.pk}/',
+            {'date': f'{tomorrow.strftime("%Y-%m-%d")}', 'time': '13', 'type': 'S'},
+            follow=True
+        )
+        updated_booking = Booking.objects.get(pk=1)
+        messages = list(response.context['messages'])
+        self.assertEqual(len(messages), 1)
+        self.assertEqual(str(messages[0]), 'Your lesson has been successfully changed!')
+        self.assertRedirects(response, '/learner_account/')
+        self.assertTemplateUsed(response, 'learner_account.html')
+        self.assertEqual(updated_booking.time, '13')
+        self.assertEqual(updated_booking.type, 'S')
 
     # def test_post_booking_redirects_invalid_bookings(self):
     #     '''
