@@ -1,4 +1,5 @@
 from django.test import TestCase
+from django.urls import reverse
 from django.contrib.auth.models import User
 from .models import Contact
 from learner_account.models import Testimonial
@@ -13,11 +14,11 @@ class TestHomePageViews(TestCase):
         '''Tests that the index page redirects to the home page'''
         response = self.client.get('/')
         self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, '/home/')
+        self.assertRedirects(response, reverse('home'))
 
     def test_get_home(self):
         '''Tests that the home page renders the correct template'''
-        response = self.client.get('/home/')
+        response = self.client.get(reverse('home'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'home.html')
 
@@ -29,7 +30,7 @@ class TestContactSectionView(TestCase):
 
     def test_get_contact(self):
         '''Tests that the contact page renders the correct template'''
-        response = self.client.get('/contact/')
+        response = self.client.get(reverse('contact'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'home.html')
 
@@ -38,7 +39,7 @@ class TestContactSectionView(TestCase):
         Tests that sending a valid contact form creates a contact,
         renders the homepage template and shows a message
         '''
-        response = self.client.post('/contact/', {
+        response = self.client.post(reverse('contact'), {
             'name': 'Adam',
             'email': 'test@test.co.uk',
             'phone': '',
@@ -56,7 +57,7 @@ class TestContactSectionView(TestCase):
         Tests that sending an invalid contact form does not create
         a contact item and renders the homepage template
         '''
-        response = self.client.post('/contact/', {
+        response = self.client.post(reverse('contact'), {
             'name': '',
             'email': 'test@test.co.uk',
             'phone': '',
@@ -74,7 +75,7 @@ class TestAboutViews(TestCase):
 
     def test_get_about(self):
         '''Tests that the about page renders the correct template'''
-        response = self.client.get('/about/')
+        response = self.client.get(reverse('about'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'about.html')
 
@@ -104,6 +105,6 @@ class TestAboutViews(TestCase):
         testimonial_card = (
             b'<div class="card h-100 flex-row align-items-center">'
         )
-        response = self.client.get('/about/')
+        response = self.client.get(reverse('about'))
         assert testimonial_card in response.content
         assert b'Unapproved testimonial' not in response.content

@@ -36,7 +36,7 @@ class TestAccountPageView(TestCase):
 
     def test_get_account_page_if_not_logged_in(self):
         '''Tests that the account page redirects if not logged in'''
-        response = self.client.get('/learner_account/')
+        response = self.client.get(reverse('learner_account'))
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, '/accounts/login/?next=/learner_account/')
 
@@ -92,7 +92,7 @@ class TestAccountPageView(TestCase):
         }, follow=True)
         messages = list(response.context['messages'])
         user = User.objects.get(pk=1)
-        self.assertRedirects(response, '/learner_account/')
+        self.assertRedirects(response, reverse('learner_account'))
         self.assertEqual(user.first_name, 'adam')
         self.assertEqual(user.last_name, 'hatton')
         self.assertEqual(user.email, 'test@test.co.uk')
@@ -151,7 +151,7 @@ class TestAddTestimonialView(TestCase):
         self.client.login(username='adhatton', password='adam')
         response = self.client.get(reverse('add_testimonial'))
         self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, '/learner_account/')
+        self.assertRedirects(response, reverse('learner_account'))
 
     def test_post_add_testimonial(self):
         '''
@@ -172,7 +172,7 @@ class TestAddTestimonialView(TestCase):
             'test of POST testimonial'
         )
         self.assertEqual(response.status_code, 200)
-        self.assertRedirects(response, '/learner_account/')
+        self.assertRedirects(response, reverse('learner_account'))
         self.assertEqual(len(messages), 1)
         self.assertEqual(str(messages[0]), 'Testimonial has been sent for approval')
 
@@ -211,7 +211,7 @@ class TestEditTestimonialView(TestCase):
         self.client.login(username='adhatton', password='adam')
         response = self.client.get(reverse('edit_testimonial'))
         self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, '/learner_account/')
+        self.assertRedirects(response, reverse('learner_account'))
 
     def test_post_edit_testimonial(self):
         '''
@@ -231,7 +231,7 @@ class TestEditTestimonialView(TestCase):
             'test of POST edit testimonial'
         )
         self.assertEqual(response.status_code, 200)
-        self.assertRedirects(response, '/learner_account/')
+        self.assertRedirects(response, reverse('learner_account'))
         self.assertEqual(len(messages), 1)
         self.assertEqual(str(messages[0]), 'Testimonial has been sent for approval')
 
@@ -272,6 +272,6 @@ class TestDeleteTestimonialView(TestCase):
         messages = list(response.context['messages'])
         self.assertFalse(Testimonial.objects.filter(pk=1).exists())
         self.assertEqual(response.status_code, 200)
-        self.assertRedirects(response, '/learner_account/')
+        self.assertRedirects(response, reverse('learner_account'))
         self.assertEqual(len(messages), 1)
         self.assertEqual(str(messages[0]), 'Testimonial successfully deleted')

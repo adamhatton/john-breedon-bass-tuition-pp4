@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse
 from django.views import View
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -46,12 +47,12 @@ class BookingsPage(View):
                 request,
                 'That slot is unavailable, please select a different time'
             )
-            return redirect('/bookings/')
+            return redirect(reverse('bookings'))
 
         elif booking_form.is_valid():
             booking_form.save()
             messages.success(request, 'Your lesson is booked!')
-            return redirect('/bookings/')
+            return redirect(reverse('bookings'))
 
         return render(
             request,
@@ -81,7 +82,7 @@ class EditBooking(View):
                 request,
                 'You do not have permission to edit that booking'
             )
-            return redirect('/learner_account/')
+            return redirect(reverse('learner_account'))
 
         booking_availability = availability.get_booking_availability()
 
@@ -111,7 +112,7 @@ class EditBooking(View):
                 request,
                 'That slot is unavailable, please select a different time'
             )
-            return redirect(f'/bookings/edit_booking/{booking_id}')
+            return redirect(reverse('edit_booking', args=[booking_id]))
 
         elif booking_form.is_valid():
             booking_form.save()
@@ -119,7 +120,7 @@ class EditBooking(View):
                 request,
                 'Your lesson has been successfully changed!'
             )
-            return redirect('/learner_account/')
+            return redirect(reverse('learner_account'))
 
         booking_availability = availability.get_booking_availability()
 
@@ -139,12 +140,14 @@ def delete_booking(request, booking_id):
     Deletes a booking from the database
     '''
     booking = get_object_or_404(Booking, pk=booking_id)
+
     if booking.user == request.user:
         booking.delete()
         messages.success(request, 'Booking successfully deleted')
+    # Prevent users deleting other user bookings
     else:
         messages.error(
             request,
             'You do not have permission to delete that booking'
         )
-    return redirect('/learner_account/')
+    return redirect(reverse('learner_account'))

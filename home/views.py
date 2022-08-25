@@ -1,6 +1,7 @@
 import random
 from django.shortcuts import render
 from django.views import View
+from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from learner_account.models import Testimonial
@@ -11,7 +12,7 @@ def index_page(request):
     '''
     Loading index redirects to the homepage
     '''
-    return HttpResponseRedirect('/home/')
+    return HttpResponseRedirect(reverse('home'))
 
 
 class HomePage(View):

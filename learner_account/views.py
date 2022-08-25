@@ -1,5 +1,6 @@
 import datetime
 from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse
 from django.views import View
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -65,7 +66,7 @@ class AccountPage(View):
             user_form.save()
             learner_profile_form.save()
             messages.success(request, 'Profile successfully updated')
-            return redirect('/learner_account/')
+            return redirect(reverse('learner_account'))
 
         # If form isn't valid then return form with enabled fields
         else:
@@ -95,9 +96,9 @@ def add_testimonial(request):
         if testimonial.is_valid():
             testimonial.save()
             messages.success(request, 'Testimonial has been sent for approval')
-            return redirect('/learner_account/')
+            return redirect(reverse('learner_account'))
 
-    return redirect('/learner_account/')
+    return redirect(reverse('learner_account'))
 
 
 @login_required
@@ -113,9 +114,9 @@ def edit_testimonial(request):
         if testimonial_form.is_valid():
             testimonial.save()
             messages.success(request, 'Testimonial has been sent for approval')
-            return redirect('/learner_account/')
+            return redirect(reverse('learner_account'))
 
-    return redirect('/learner_account/')
+    return redirect(reverse('learner_account'))
 
 
 @login_required
@@ -126,4 +127,4 @@ def delete_testimonial(request):
     testimonial = get_object_or_404(Testimonial, user=request.user)
     testimonial.delete()
     messages.success(request, 'Testimonial successfully deleted')
-    return redirect('/learner_account/')
+    return redirect(reverse('learner_account'))
