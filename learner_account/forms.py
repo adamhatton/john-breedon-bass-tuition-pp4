@@ -13,10 +13,10 @@ class UserForm(forms.ModelForm):
 
     # Create layout variables for use with crispy forms
     disabled_layout = Layout(
-        FloatingField('username', disabled=True),
-        FloatingField('first_name', disabled=True),
-        FloatingField('last_name', disabled=True),
-        FloatingField('email', disabled=True),
+        FloatingField('username', disabled=''),
+        FloatingField('first_name', disabled=''),
+        FloatingField('last_name', disabled=''),
+        FloatingField('email', disabled=''),
     )
     enabled_layout = Layout(
         FloatingField('username'),
@@ -51,9 +51,9 @@ class LearnerProfileForm(forms.ModelForm):
 
     # Create layout variables for use with crispy forms
     disabled_layout = Layout(
-        FloatingField('phone', disabled=True),
-        FloatingField('ability', disabled=True),
-        Field('about', disabled=True),
+        FloatingField('phone', disabled=''),
+        Field('ability', disabled=''),
+        Field('about', disabled=''),
         Div(
             HTML(
                 '<a class="btn btn-secondary hidden" id="button-id-cancel" '
@@ -96,6 +96,7 @@ class LearnerProfileForm(forms.ModelForm):
         self.helper = FormHelper(self)
         self.helper.form_tag = False
         self.helper.layout = self.disabled_layout
+        self.fields['ability'].label = False
 
 
 class TestimonialForm(forms.ModelForm):

@@ -109,10 +109,6 @@ footer {
     border: solid 1px;
 }
 
-#profile-form #hint_id_username {
-    display: none;
-}
-
 /*------------------------------------- Bookings Page Styling */
 .booking-slot {
     min-width: 125px;
@@ -143,6 +139,10 @@ footer {
 }
 
 /*------------------------------------- Account Page Styling */
+#profile-form #hint_id_username {
+    display: none;
+}
+
 #add-testimonial-form {
     margin-top: 2rem;
     animation-name: slide;
@@ -181,6 +181,11 @@ footer {
 
 .social-icon > a:hover {
     color: #db610f;
+}
+
+/*------------------------------------- Modal Styling */
+.modal .btn {
+    margin: 0.25rem;
 }
 
 /*------------------------------------- Animations */

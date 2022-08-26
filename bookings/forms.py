@@ -1,7 +1,7 @@
 import datetime
 from django import forms
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Submit
+from crispy_forms.layout import Layout, Submit, Field
 from crispy_bootstrap5.bootstrap5 import FloatingField
 import availability
 from .models import Booking
@@ -39,10 +39,11 @@ class BookingForm(forms.ModelForm):
         super(BookingForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper(self)
         self.helper.form_tag = False
+        self.helper.form_show_labels = False
         self.helper.layout = Layout(
-            FloatingField('date'),
-            FloatingField('time'),
+            Field('date'),
+            Field('time'),
             FloatingField('phone'),
-            FloatingField('type'),
+            Field('type'),
             Submit('booking-submit', 'Submit'),
         )
