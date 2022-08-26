@@ -83,7 +83,7 @@ setTimeout(function() {
 
 /**
  * 
- * Opens a confirmation modal, sets the text, and attaches a submit
+ * Opens a confirmation modal, sets the text, and attaches a form submit
  * function to the confirm button
  */
 function confirmForm(formName) {
