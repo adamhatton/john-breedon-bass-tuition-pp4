@@ -67,6 +67,7 @@ footer {
     color: #000;
     background-color: #ff6600;
     border: #ff6600;
+    margin: 0.5rem 0;
 }
 
 .btn:hover {
@@ -204,5 +205,14 @@ footer {
         visibility: visible;
         height: 306px;
         opacity: 1;
+    }
+}
+
+/*------------------------------------- Media Queries */
+/* For mobiles with screen size 475px and below */
+@media screen and (max-width: 475px) {
+
+    .booking-lead {
+        font-size: 1rem;
     }
 }

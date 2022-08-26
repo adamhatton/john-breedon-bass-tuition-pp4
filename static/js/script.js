@@ -145,7 +145,6 @@ function populateBookingForm() {
     dateField.value = date.dataset.dateStr;
 }
 
-
 /**
  * Takes a booking button and finds the previous h3 element
  */
