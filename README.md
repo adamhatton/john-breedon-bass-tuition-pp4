@@ -118,26 +118,26 @@ Following the feasibility matrix, I used the opportunities to determine what my 
 
 I then broke each Epic down into User Stories:
 
-- #### Provide information and enable contact
+#### Provide information and enable contact
 - As a site user, I want to be able to view information about the tutoring service, so that I can make an informed decision about using it
 - As a site user, I want the information to be responsive on different devices, so that I can view it on different devices
 - As a site user, I want to be able to contact the tutor, so that I can ask questions
 - As an admin, I want to be able to manage contact messages, so that I know what I need to respond to
 
-- #### Enable Accounts
+#### Enable Accounts
 - As a site user, I want to be able to register an account, so that I can use the site functionality
 - As a site user, I want to be able to log in and out of the site, so that I can have control over my account
 - As a site user, I want to be able to see my account information, so I can remind myself of the information I entered
 - As a site user, I want to be able to update account information, so I can keep my details up to date
 
-- #### Enable Testimonials
+#### Enable Testimonials
 - As a site user, I want to be able to view testimonials about the service, so that I can make an informed decision about using it
 - As a site user, I want to be able to create a testimonial, so that I can share my experience with other users
 - As a site user, I want to be able to update a testimonial, so that I can fix any mistakes I have made
 - As a site user, I want to be able to delete a testimonial, so that I can control what I have written
 - As an admin, I want to be able to approve testimonials, so that I can filter out objectionable testimonials
 
-- #### Enable Bookings
+#### Enable Bookings
 - As a site user, I want to be able to view booking availability, so that I can find a time to book that suits me
 - As a site user, I want to be able to book a session, so that I can make use of the tutoring service
 - As a site user, I want to be able to update a booking, so that I change bookings in line with my schedule
@@ -147,7 +147,7 @@ I then broke each Epic down into User Stories:
 - As an admin, I want to be notified of any bookings that have been cancelled, so that I can plan my schedule accordingly
 - As an admin, I want to limit the lessons a learner can book in a day, so that there is availability for all students
 
-- #### Provide Learning Materials
+#### Provide Learning Materials
 *Note that this hasn't been implemented*
 - As a site user, I want to be able to download learning materials, so that I can enhance my learning progress
 - As a site user, I want to be able to comment on learning materials, so that I can share my experience of how useful they are
@@ -403,25 +403,25 @@ The finished website does not mirror the wireframes exactly as I made some desig
 
 <details><summary>Homepage Wireframes</summary>
 
-![home page wireframes](docs/wireframes/wireframes-home.jpg)
+![home page wireframes](docs/wireframes/wireframes-home.png)
 
 </details>
 
 <details><summary>About Wireframes</summary>
 
-![about page wireframes](docs/wireframes/wireframes-about.jpg)
+![about page wireframes](docs/wireframes/wireframes-about.png)
 
 </details>
 
 <details><summary>Bookings Wireframes</summary>
 
-![booking page wireframes](docs/wireframes/wireframes-bookings.jpg)
+![booking page wireframes](docs/wireframes/wireframes-bookings.png)
 
 </details>
 
 <details><summary>Account Wireframes</summary>
 
-![account page wireframes](docs/wireframes/wireframes-account.jpg)
+![account page wireframes](docs/wireframes/wireframes-account.png)
 
 </details>
 
@@ -555,6 +555,7 @@ Throughout development I had used the bootstrap5 'floating label' component for 
 In order to meet HTML standards, I opted to remove the floating label component for these fields, and use standard labels instead. I considered using raw HTML within a crispy forms Layout object to resolve the problem, but this would require a verbose amount of code and would be more difficult to maintain in the future. As such, I decided to sacrifice some of the aesthetic consistency in favour of cleaner code that meets HTML standards.
 
 **Background Image issue**
+
 The homepage has a header which contains a background image. When I tried to add the background image via a linked CSS stylesheet, I encountered an error whereby the resource could not be served by Cloudinary (which is the service used to store and serve static files). The error was caused by Cloudinary being unable to directly read the url as it was within a linked CSS file. To overcome this, I added the background image via a style element directly in the html, along with a comment to explain why it wasn't contained within the linked CSS stylesheet.
 
 **LearnerProfile Bug**
@@ -650,6 +651,7 @@ Once a Django project has been set up and developed, it can be deployed to Herok
     		import env`
 
 These imports will enable you to access the variables in your `env.py`
+
 14. Find the `SECRET_KEY` and replaced the assignment as follows:
 	`SECRET_KEY = os.environ.get('SECRET_KEY')`
 15. Find the `DATABASES` variable and comment out the existing code (this will be used in a later step), add in the following code:
@@ -658,6 +660,7 @@ These imports will enable you to access the variables in your `env.py`
 	}`
 
 This will enable Heroku to connect to the database
+
 16.	As a new database is now being used, migrations need to be run again by using `python3 manage.py migrate`
 17.	As this project uses Cloudinary for file storage, additional steps are needed to configure this. Start by creating another variable in the `env.py` file for your personal Cloudinary (which can be obtained from the Cloudinary dashboard):
 	`os.environ["CLOUDINARY_URL"] = "<your cloudinary url>"`
