@@ -92,6 +92,10 @@ footer {
     border: solid 1px #000;
 }
 
+.form-text.text-muted {
+    color: #454545 !important;
+}
+
 /*------------------------------------- Home Page Styling */
 .home-card {
     border: none;

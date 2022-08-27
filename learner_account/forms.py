@@ -124,7 +124,9 @@ class TestimonialForm(forms.ModelForm):
 
         model = Testimonial
         fields = ('content',)
-
+        labels = {
+            'content': 'Testimonial'
+        }
         widgets = {
             'content': forms.Textarea(
                 attrs={
@@ -140,4 +142,3 @@ class TestimonialForm(forms.ModelForm):
         super(TestimonialForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper(self)
         self.helper.form_tag = False
-        self.helper.form_show_labels = False

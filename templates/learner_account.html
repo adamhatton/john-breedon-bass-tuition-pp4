@@ -28,7 +28,7 @@
             <div class="col">
                 <div class="card h-100 flex-row align-items-center">
                     <div class="card-body p-4 text-center">
-                        <h4>{{ booking.date|date:"l dS F" }}</h4>
+                        <h3>{{ booking.date|date:"l dS F" }}</h3>
                         <p class="mb-1">
                             {% if booking.time == '10' %}10:00 - 11:00{% endif %}
                             {% if booking.time == '11' %}11:00 - 12:00{% endif %}
