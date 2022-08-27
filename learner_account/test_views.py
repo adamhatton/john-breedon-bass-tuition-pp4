@@ -38,7 +38,10 @@ class TestAccountPageView(TestCase):
         '''Tests that the account page redirects if not logged in'''
         response = self.client.get(reverse('learner_account'))
         self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, '/accounts/login/?next=/learner_account/')
+        self.assertRedirects(
+            response,
+            '/accounts/login/?next=/learner_account/'
+        )
 
     def test_get_account_page_logged_in(self):
         '''Tests that the account page uses correct template if logged in'''
@@ -141,7 +144,10 @@ class TestAddTestimonialView(TestCase):
         '''Tests that the add testimonial page redirects if not logged in'''
         response = self.client.get(reverse('add_testimonial'))
         self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, '/accounts/login/?next=/learner_account/add_testimonial/')
+        self.assertRedirects(
+            response,
+            '/accounts/login/?next=/learner_account/add_testimonial/'
+        )
 
     def test_get_add_testimonial_if_logged_in(self):
         '''
@@ -174,7 +180,10 @@ class TestAddTestimonialView(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertRedirects(response, reverse('learner_account'))
         self.assertEqual(len(messages), 1)
-        self.assertEqual(str(messages[0]), 'Testimonial has been sent for approval')
+        self.assertEqual(
+            str(messages[0]),
+            'Testimonial has been sent for approval'
+        )
 
 
 class TestEditTestimonialView(TestCase):
@@ -201,7 +210,10 @@ class TestEditTestimonialView(TestCase):
         '''Tests that the edit testimonial page redirects if not logged in'''
         response = self.client.get(reverse('edit_testimonial'))
         self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, '/accounts/login/?next=/learner_account/edit_testimonial/')
+        self.assertRedirects(
+            response,
+            '/accounts/login/?next=/learner_account/edit_testimonial/'
+        )
 
     def test_get_edit_testimonial_if_logged_in(self):
         '''
@@ -233,7 +245,10 @@ class TestEditTestimonialView(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertRedirects(response, reverse('learner_account'))
         self.assertEqual(len(messages), 1)
-        self.assertEqual(str(messages[0]), 'Testimonial has been sent for approval')
+        self.assertEqual(
+            str(messages[0]),
+            'Testimonial has been sent for approval'
+        )
 
 
 class TestDeleteTestimonialView(TestCase):
@@ -260,7 +275,10 @@ class TestDeleteTestimonialView(TestCase):
         '''Tests that the delete testimonial page redirects if not logged in'''
         response = self.client.get(reverse('delete_testimonial'))
         self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, '/accounts/login/?next=/learner_account/delete_testimonial/')
+        self.assertRedirects(
+            response,
+            '/accounts/login/?next=/learner_account/delete_testimonial/'
+        )
 
     def test_get_delete_testimonial_if_logged_in(self):
         '''

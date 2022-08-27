@@ -94,7 +94,10 @@ class LearnerProfileForm(forms.ModelForm):
         widgets = {
             'about': forms.Textarea(
                 attrs={
-                    'placeholder': 'Tell me about yourself (i.e. experience, goals, favourite artists)',
+                    'placeholder': (
+                        'Tell me about yourself '
+                        '(i.e. experience, goals, favourite artists)'
+                    ),
                 }
             ),
         }

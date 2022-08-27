@@ -7,8 +7,10 @@
     <div class="container px-5 my-5">
         <div class="row justify-content-center text-center">
             <h2 class="fw-bolder mb-1">Bookings</h2>
-            <p class="lead mb-0 booking-lead">Use the form below to book a lesson, my availability is shown further below.</p>
-            <p class="lead mb-0 booking-lead">Once your lesson is booked, I will contact you with further information depending on the type of less you have booked.</p>
+            <p class="lead mb-0 booking-lead">Use the form below to book a lesson, my availability is shown further
+                below.</p>
+            <p class="lead mb-0 booking-lead">Once your lesson is booked, I will contact you with further information
+                depending on the type of lesson you have booked.</p>
             {% if edit_booking == True %}
             <h3 class="mt-4">Edit booking</h3>
             {% endif %}
@@ -32,11 +34,11 @@
                 <hr>
                 <h3 class="col-12" data-date-str="{{ value|date:'o-m-d' }}">{{ value|date:'l dS F' }}</h3>
                 {% else %}
-                    {% if value == 'BOOKED' %}
-                    <button class="col-5 col-md-4 col-xl-1 btn btn-primary booking-slot booking-taken">{{ value }}</button>
-                    {% else %}
-                    <button class="col-5 col-md-4 col-xl-1 btn btn-primary booking-slot booking-free">{{ value }}</button>
-                    {% endif %}
+                {% if value == 'BOOKED' %}
+                <button class="col-5 col-md-4 col-xl-1 btn btn-primary booking-slot booking-taken">{{ value }}</button>
+                {% else %}
+                <button class="col-5 col-md-4 col-xl-1 btn btn-primary booking-slot booking-free">{{ value }}</button>
+                {% endif %}
                 {% endif %}
             {% endfor %}
             <hr>

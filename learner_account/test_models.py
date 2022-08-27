@@ -8,7 +8,7 @@ class TestLearnerProfileModel(TestCase):
 
     def setUp(self):
         '''
-        Create a user object to use in all tests. Creating 
+        Create a user object to use in all tests. Creating
         the user will also create the LearnerProfile
         '''
         User.objects.create(

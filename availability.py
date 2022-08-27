@@ -22,11 +22,15 @@ def get_booking_availability():
 
     for day_index, day in enumerate(next_7_days):
         lesson_availablility[f'day_{day_index + 1}'] = day
-        for slot_index, (slot_key, slot_value) in enumerate(LESSON_SLOTS.items()):
-            if bookings_queryset.filter(date=day).filter(time=slot_key).exists():
-                lesson_availablility[f'day_{day_index + 1}_slot_{slot_index + 1}'] = 'BOOKED'
+        for slot_index, (slot_k, slot_v) in enumerate(LESSON_SLOTS.items()):
+            if bookings_queryset.filter(date=day).filter(time=slot_k).exists():
+                lesson_availablility[
+                    f'day_{day_index + 1}_slot_{slot_index + 1}'
+                ] = 'BOOKED'
             else:
-                lesson_availablility[f'day_{day_index + 1}_slot_{slot_index + 1}'] = slot_value
+                lesson_availablility[
+                    f'day_{day_index + 1}_slot_{slot_index + 1}'
+                ] = slot_v
 
     return lesson_availablility
 

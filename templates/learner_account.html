@@ -24,30 +24,31 @@
         </div>
         <div class="row row-cols-1 row-cols-md-2 gx-3 gy-3 justify-content-center text-center">
             {% if bookings|length > 0 %}
-                {% for booking in bookings %}
-                <div class="col">
-                    <div class="card h-100 flex-row align-items-center">
-                        <div class="card-body p-4 text-center">
-                                <h4>{{ booking.date|date:"l dS F" }}</h4>
-                                <p class="mb-1">
-                                    {% if booking.time == '10' %}10:00 - 11:00{% endif %}
-                                    {% if booking.time == '11' %}11:00 - 12:00{% endif %}
-                                    {% if booking.time == '13' %}13:00 - 14:00{% endif %}
-                                    {% if booking.time == '14' %}14:00 - 15:00{% endif %}
-                                    {% if booking.time == '15' %}15:00 - 16:00{% endif %}
-                                    {% if booking.time == '16' %}16:00 - 17:00{% endif %}
-                                </p>
-                                <p class="mb-1">
-                                    {% if booking.type == 'H' %}Home visit{% endif %}
-                                    {% if booking.type == 'O' %}Online{% endif %}
-                                    {% if booking.type == 'S' %}At the Studio{% endif %}
-                                </p>
-                                <button data-booking-id="{{ booking.pk }}" class="btn btn-secondary del-booking-btn">Delete</button>
-                                <a href="{% url 'edit_booking' booking.pk %}" class="btn btn-primary">Update</a>
-                        </div>
+            {% for booking in bookings %}
+            <div class="col">
+                <div class="card h-100 flex-row align-items-center">
+                    <div class="card-body p-4 text-center">
+                        <h4>{{ booking.date|date:"l dS F" }}</h4>
+                        <p class="mb-1">
+                            {% if booking.time == '10' %}10:00 - 11:00{% endif %}
+                            {% if booking.time == '11' %}11:00 - 12:00{% endif %}
+                            {% if booking.time == '13' %}13:00 - 14:00{% endif %}
+                            {% if booking.time == '14' %}14:00 - 15:00{% endif %}
+                            {% if booking.time == '15' %}15:00 - 16:00{% endif %}
+                            {% if booking.time == '16' %}16:00 - 17:00{% endif %}
+                        </p>
+                        <p class="mb-1">
+                            {% if booking.type == 'H' %}Home visit{% endif %}
+                            {% if booking.type == 'O' %}Online{% endif %}
+                            {% if booking.type == 'S' %}At the Studio{% endif %}
+                        </p>
+                        <button data-booking-id="{{ booking.pk }}"
+                            class="btn btn-secondary del-booking-btn">Delete</button>
+                        <a href="{% url 'edit_booking' booking.pk %}" class="btn btn-primary">Update</a>
                     </div>
                 </div>
-                {% endfor %}
+            </div>
+            {% endfor %}
             {% else %}
             <p>You currently have no bookings</p>
             {% endif %}
@@ -67,19 +68,22 @@
             </div>
             {% if user_has_testimonial == False %}
             <div>
-            <button type="button" name="add" value="Add" class="btn btn-primary" id="add-testimonial-btn">Add a
-                testimonial</button>
+                <button type="button" name="add" value="Add" class="btn btn-primary" id="add-testimonial-btn">Add a
+                    testimonial</button>
             </div>
-            <form id="add-testimonial-form" method="POST" class="form-width hidden" action="{% url 'add_testimonial' %}" onsubmit="event.preventDefault(); confirmForm('add-testimonial-form');">
+            <form id="add-testimonial-form" method="POST" class="form-width hidden" action="{% url 'add_testimonial' %}"
+                onsubmit="event.preventDefault(); confirmForm('add-testimonial-form');">
                 {% crispy testimonial_form %}
                 <input type="submit" name="btn-submit" value="Submit" class="btn btn-primary" id="submit-testimonial">
             </form>
             {% elif user_has_testimonial == True and testimonial_approved == False %}
             <p>Your testimonial is awaiting approval</p>
             {% elif user_has_testimonial == True and testimonial_approved == True %}
-            <form id="update-testimonial-form" method="POST" class="form-width" action="{% url 'edit_testimonial' %}" onsubmit="event.preventDefault(); confirmForm('update-testimonial-form');">
+            <form id="update-testimonial-form" method="POST" class="form-width" action="{% url 'edit_testimonial' %}"
+                onsubmit="event.preventDefault(); confirmForm('update-testimonial-form');">
                 {% crispy testimonial_form %}
-                <button type="button" value="Delete" class="btn btn-secondary" id="testimonial-delete-btn">Delete</button>
+                <button type="button" value="Delete" class="btn btn-secondary"
+                    id="testimonial-delete-btn">Delete</button>
                 <input type="submit" name="btn-submit" value="Update" class="btn btn-primary" id="submit-testimonial">
             </form>
             {% endif %}

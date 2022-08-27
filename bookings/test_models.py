@@ -36,5 +36,7 @@ class TestBookingModel(TestCase):
     def test_booking_str_method(self):
         '''Test the string method returns expected string'''
         booking = Booking.objects.get(pk=1)
-        expected_string = f'Lesson on {booking.date.strftime("%a %d %B")} at {booking.time}'
+        expected_string = (
+            f'Lesson on {booking.date.strftime("%a %d %B")} at {booking.time}'
+        )
         self.assertEqual(str(booking), expected_string)

@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Get all delete booking buttons
     let delBtns = document.getElementsByClassName("del-booking-btn");
     if (delBtns) {
-        // Add listeners to each of the delete booking buttons
+        // Add listeners to each of the delete booking buttons so that they will trigger the confirmDelete function
         for (let btn of delBtns) {
             let urlId = btn.dataset.bookingId;
             btn.addEventListener("click", function() {

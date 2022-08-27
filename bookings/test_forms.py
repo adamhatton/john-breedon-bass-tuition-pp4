@@ -30,4 +30,7 @@ class TestBookingForm(TestCase):
     def test_booking_date_field_uses_date_widget(self):
         '''Tests that the date field uses a date widget'''
         form = BookingForm()
-        self.assertEqual(form.fields['date'].widget.__class__.__name__, 'DateInput')
+        self.assertEqual(
+            form.fields['date'].widget.__class__.__name__,
+            'DateInput'
+        )

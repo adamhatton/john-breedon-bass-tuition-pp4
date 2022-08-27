@@ -45,7 +45,8 @@ class LearnerProfileAdmin(admin.ModelAdmin):
         '''
         return obj.about[:100]
 
-    # Code taken from user "devwaseem" on https://stackoverflow.com/questions/56944865/how-to-remove-delete-button-from-django-admin-page  # noqa
+    # Code taken from user "devwaseem" on
+    # https://stackoverflow.com/questions/56944865/how-to-remove-delete-button-from-django-admin-page
     def has_delete_permission(self, request, obj=None):
         '''
         Disable delete button for LearnerProfiles to prevent issues
@@ -59,6 +60,7 @@ class LearnerProfileAdmin(admin.ModelAdmin):
             return False
         return True
     # End of Code taken from user "devwaseem"
+
 
 @admin.register(Testimonial)
 class TestimonialAdmin(admin.ModelAdmin):

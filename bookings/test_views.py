@@ -16,7 +16,7 @@ class TestBookingsPageView(TestCase):
         username = 'adhatton'
         password = 'adam'
         user = get_user_model()
-        test_user = user.objects.create_user(
+        user.objects.create_user(
             username=username,
             password=password,
         )
@@ -62,12 +62,19 @@ class TestBookingsPageView(TestCase):
         self.client.login(username='adhatton', password='adam')
         response = self.client.post(
             reverse('bookings'),
-            {'date': f'{tomorrow.strftime("%Y-%m-%d")}', 'time': '10', 'type': 'O'},
+            {
+                'date': f'{tomorrow.strftime("%Y-%m-%d")}',
+                'time': '10',
+                'type': 'O'
+            },
             follow=True
         )
         messages = list(response.context['messages'])
         self.assertEqual(len(messages), 1)
-        self.assertEqual(str(messages[0]), 'That slot is unavailable, please select a different time')
+        self.assertEqual(
+            str(messages[0]),
+            'That slot is unavailable, please select a different time'
+        )
         self.assertRedirects(response, reverse('bookings'))
         self.assertTemplateUsed(response, 'bookings.html')
 
@@ -77,7 +84,11 @@ class TestBookingsPageView(TestCase):
         self.client.login(username='adhatton', password='adam')
         response = self.client.post(
             reverse('bookings'),
-            {'date': f'{tomorrow.strftime("%Y-%m-%d")}', 'time': '10', 'type': 'O'},
+            {
+                'date': f'{tomorrow.strftime("%Y-%m-%d")}',
+                'time': '10',
+                'type': 'O'
+            },
             follow=True
         )
         messages = list(response.context['messages'])
@@ -96,7 +107,12 @@ class TestBookingsPageView(TestCase):
         self.client.login(username='adhatton', password='adam')
         response = self.client.post(
             reverse('bookings'),
-            {'date': f'{tomorrow.strftime("%Y-%m-%d")}', 'time': '10', 'phone': '12345', 'type': 'O'},
+            {
+                'date': f'{tomorrow.strftime("%Y-%m-%d")}',
+                'time': '10',
+                'phone': '12345',
+                'type': 'O'
+            },
         )
         self.assertTemplateUsed(response, 'bookings.html')
 
@@ -128,7 +144,10 @@ class TestEditBookingView(TestCase):
         booking = Booking.objects.get(pk=1)
         response = self.client.get(reverse('edit_booking', args=[booking.pk]))
         self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, f'/accounts/login/?next=/bookings/edit_booking/{booking.pk}/')
+        self.assertRedirects(
+            response,
+            f'/accounts/login/?next=/bookings/edit_booking/{booking.pk}/'
+        )
 
     def test_get_edit_booking_page_if_logged_in(self):
         '''
@@ -166,32 +185,51 @@ class TestEditBookingView(TestCase):
         self.client.login(username='adhatton', password='adam')
         response = self.client.post(
             reverse('edit_booking', args=[booking.pk]),
-            {'date': f'{tomorrow.strftime("%Y-%m-%d")}', 'time': '13', 'type': 'S'},
+            {
+                'date': f'{tomorrow.strftime("%Y-%m-%d")}',
+                'time': '13',
+                'type': 'S'
+            },
             follow=True
         )
         updated_booking = Booking.objects.get(pk=1)
         messages = list(response.context['messages'])
         self.assertEqual(len(messages), 1)
-        self.assertEqual(str(messages[0]), 'Your lesson has been successfully changed!')
+        self.assertEqual(
+            str(messages[0]),
+            'Your lesson has been successfully changed!'
+        )
         self.assertRedirects(response, reverse('learner_account'))
         self.assertTemplateUsed(response, 'learner_account.html')
         self.assertEqual(updated_booking.time, '13')
         self.assertEqual(updated_booking.type, 'S')
 
     def test_edit_booking_rejects_duplicate_booking(self):
-        '''Tests that the edit booking POST method prevents duplicate bookings'''
+        '''
+        Tests that the edit booking POST method prevents duplicate bookings
+        '''
         booking = Booking.objects.get(pk=1)
         tomorrow = datetime.now() + timedelta(days=1)
         self.client.login(username='adhatton', password='adam')
         response = self.client.post(
             reverse('edit_booking', args=[booking.pk]),
-            {'date': f'{tomorrow.strftime("%Y-%m-%d")}', 'time': '10', 'type': 'O'},
+            {
+                'date': f'{tomorrow.strftime("%Y-%m-%d")}',
+                'time': '10',
+                'type': 'O'
+            },
             follow=True
         )
         messages = list(response.context['messages'])
         self.assertEqual(len(messages), 1)
-        self.assertEqual(str(messages[0]), 'That slot is unavailable, please select a different time')
-        self.assertRedirects(response, reverse('edit_booking', args=[booking.pk]))
+        self.assertEqual(
+            str(messages[0]),
+            'That slot is unavailable, please select a different time'
+        )
+        self.assertRedirects(
+            response,
+            reverse('edit_booking', args=[booking.pk])
+        )
         self.assertTemplateUsed(response, 'bookings.html')
 
     def test_edit_booking_invalid_bookings(self):
@@ -204,7 +242,12 @@ class TestEditBookingView(TestCase):
         self.client.login(username='adhatton', password='adam')
         response = self.client.post(
             reverse('edit_booking', args=[booking.pk]),
-            {'date': f'{tomorrow.strftime("%Y-%m-%d")}', 'time': '15', 'phone': '12345', 'type': 'O'},
+            {
+                'date': f'{tomorrow.strftime("%Y-%m-%d")}',
+                'time': '15',
+                'phone': '12345',
+                'type': 'O'
+            },
         )
         self.assertTemplateUsed(response, 'bookings.html')
 
@@ -232,11 +275,16 @@ class TestDeleteBookingView(TestCase):
         )
 
     def test_get_delete_booking_if_not_logged_in(self):
-        '''Tests that the delete booking page redirects if not logged in'''
+        '''Tests that the del booking page redirects if not logged in'''
         booking = Booking.objects.get(pk=1)
-        response = self.client.get(reverse('delete_booking', args=[booking.pk]))
+        response = self.client.get(
+            reverse('delete_booking', args=[booking.pk])
+        )
         self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, '/accounts/login/?next=/bookings/delete_booking/1/')
+        self.assertRedirects(
+            response,
+            '/accounts/login/?next=/bookings/delete_booking/1/'
+        )
 
     def test_get_delete_booking_if_logged_in(self):
         '''
@@ -245,7 +293,10 @@ class TestDeleteBookingView(TestCase):
         '''
         booking = Booking.objects.get(pk=1)
         self.client.login(username='adhatton', password='adam')
-        response = self.client.get(reverse('delete_booking', args=[booking.pk]), follow=True)
+        response = self.client.get(
+            reverse('delete_booking', args=[booking.pk]),
+            follow=True
+        )
         messages = list(response.context['messages'])
         self.assertFalse(Booking.objects.filter(pk=1).exists())
         self.assertEqual(response.status_code, 200)
@@ -264,9 +315,15 @@ class TestDeleteBookingView(TestCase):
             password='wrong',
         )
         self.client.login(username='wronguser', password='wrong')
-        response = self.client.get(reverse('delete_booking', args=[booking.pk]), follow=True)
+        response = self.client.get(
+            reverse('delete_booking', args=[booking.pk]),
+            follow=True
+        )
         messages = list(response.context['messages'])
         self.assertTrue(Booking.objects.filter(pk=1).exists())
         self.assertRedirects(response, reverse('learner_account'))
         self.assertEqual(len(messages), 1)
-        self.assertEqual(str(messages[0]), 'You do not have permission to delete that booking')
+        self.assertEqual(
+            str(messages[0]),
+            'You do not have permission to delete that booking'
+        )
