@@ -9,7 +9,10 @@
             <h2 class="fw-bolder mb-1">Bookings</h2>
             <p class="lead mb-0 booking-lead">Use the form below to book a lesson, my availability is shown further below.</p>
             <p class="lead mb-0 booking-lead">Once your lesson is booked, I will contact you with further information depending on the type of less you have booked.</p>
-            <form id="bookings-form" class="form-width mt-5" method="POST">
+            {% if edit_booking == True %}
+            <h3 class="mt-4">Edit booking</h3>
+            {% endif %}
+            <form id="bookings-form" class="form-width mt-4" method="POST">
                 {% crispy booking_form booking_form.helper %}
             </form>
         </div>

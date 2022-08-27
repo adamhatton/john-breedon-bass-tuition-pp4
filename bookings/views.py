@@ -28,6 +28,7 @@ class BookingsPage(View):
             {
                 'booking_availability': booking_availability,
                 'booking_form': booking_form,
+                'edit_booking': False,
             },
         )
 
@@ -59,6 +60,7 @@ class BookingsPage(View):
             'bookings.html',
             {
                 'booking_form': booking_form,
+                'edit_booking': False,
             },
         )
 
@@ -92,6 +94,7 @@ class EditBooking(View):
             {
                 'booking_availability': booking_availability,
                 'booking_form': booking_form,
+                'edit_booking': True,
             },
         )
 
@@ -130,6 +133,7 @@ class EditBooking(View):
             {
                 'booking_availability': booking_availability,
                 'booking_form': booking_form,
+                'edit_booking': True,
             },
         )
 
