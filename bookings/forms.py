@@ -18,6 +18,11 @@ class BookingForm(forms.ModelForm):
 
         model = Booking
         fields = ('date', 'time', 'phone', 'type')
+        labels = {
+            'date': 'Lesson Date',
+            'time': 'Lesson Time',
+            'type': 'Lesson Type'
+        }
         widgets = {
             'date': forms.DateInput(
                 attrs={
@@ -39,7 +44,6 @@ class BookingForm(forms.ModelForm):
         super(BookingForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper(self)
         self.helper.form_tag = False
-        self.helper.form_show_labels = False
         self.helper.layout = Layout(
             Field('date'),
             Field('time'),

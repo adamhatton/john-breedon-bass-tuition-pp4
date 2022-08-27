@@ -67,7 +67,7 @@ class LearnerProfileForm(forms.ModelForm):
 
     enabled_layout = Layout(
         FloatingField('phone'),
-        FloatingField('ability'),
+        Field('ability'),
         Field('about'),
         Div(
             HTML(
@@ -87,6 +87,17 @@ class LearnerProfileForm(forms.ModelForm):
 
         model = LearnerProfile
         fields = ('phone', 'ability', 'about')
+        labels = {
+            'ability': 'Playing Ability'
+        }
+
+        widgets = {
+            'about': forms.Textarea(
+                attrs={
+                    'placeholder': 'Tell me about yourself (i.e. experience, goals, favourite artists)',
+                }
+            ),
+        }
 
     def __init__(self, *args, **kwargs):
         '''
@@ -96,7 +107,6 @@ class LearnerProfileForm(forms.ModelForm):
         self.helper = FormHelper(self)
         self.helper.form_tag = False
         self.helper.layout = self.disabled_layout
-        self.fields['ability'].label = False
 
 
 class TestimonialForm(forms.ModelForm):
@@ -111,6 +121,14 @@ class TestimonialForm(forms.ModelForm):
 
         model = Testimonial
         fields = ('content',)
+
+        widgets = {
+            'content': forms.Textarea(
+                attrs={
+                    'placeholder': 'Write testimonial here',
+                }
+            ),
+        }
 
     def __init__(self, *args, **kwargs):
         '''
