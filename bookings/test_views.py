@@ -206,15 +206,23 @@ class TestEditBookingView(TestCase):
 
     def test_edit_booking_rejects_duplicate_booking(self):
         '''
-        Tests that the edit booking POST method prevents duplicate bookings
+        Tests that the edit booking POST method prevents booking onto
+        a booked slot that is not the slot being edited 
         '''
+        day_after_tomorrow = datetime.now() + timedelta(days=2)
+        test_user = User.objects.get(pk=1)
+        Booking.objects.create(
+            user=test_user,
+            date=day_after_tomorrow,
+            time='10',
+            type='O'
+        )
         booking = Booking.objects.get(pk=1)
-        tomorrow = datetime.now() + timedelta(days=1)
         self.client.login(username='adhatton', password='adam')
         response = self.client.post(
             reverse('edit_booking', args=[booking.pk]),
             {
-                'date': f'{tomorrow.strftime("%Y-%m-%d")}',
+                'date': f'{day_after_tomorrow.strftime("%Y-%m-%d")}',
                 'time': '10',
                 'type': 'O'
             },
@@ -231,6 +239,38 @@ class TestEditBookingView(TestCase):
             reverse('edit_booking', args=[booking.pk])
         )
         self.assertTemplateUsed(response, 'bookings.html')
+
+    def test_edit_booking_allows_type_update_only(self):
+        '''
+        Tests that the edit booking POST method allows a user to
+        edit just the lesson type on an existing booking
+        '''
+        tomorrow = datetime.now() + timedelta(days=1)
+        booking = Booking.objects.get(pk=1)
+        self.client.login(username='adhatton', password='adam')
+        response = self.client.post(
+            reverse('edit_booking', args=[booking.pk]),
+            {
+                'date': f'{tomorrow.strftime("%Y-%m-%d")}',
+                'time': '10',
+                'type': 'H'
+            },
+            follow=True
+        )
+        updated_booking = Booking.objects.get(pk=1)
+        messages = list(response.context['messages'])
+        self.assertEqual(len(messages), 1)
+        self.assertEqual(
+            str(messages[0]),
+            'Your lesson has been successfully changed!'
+        )
+        self.assertRedirects(
+            response,
+            reverse('learner_account')
+        )
+        self.assertTemplateUsed(response, 'learner_account.html')
+        self.assertEqual(updated_booking.time, '10')
+        self.assertEqual(updated_booking.type, 'H')
 
     def test_edit_booking_invalid_bookings(self):
         '''

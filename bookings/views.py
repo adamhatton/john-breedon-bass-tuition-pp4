@@ -109,15 +109,21 @@ class EditBooking(View):
         date = request.POST['date']
         time = request.POST['time']
 
-        # Check if booking already exists
+        # Prevent user selecting booked slots that aren't the existing slot
         if queryset.filter(date=date).filter(time=time).exists():
-            messages.error(
-                request,
-                'That slot is unavailable, please select a different time'
+            existing_booking = (
+                queryset.filter(date=date)
+                .filter(time=time)
+                .first()
             )
-            return redirect(reverse('edit_booking', args=[booking_id]))
+            if existing_booking.pk != booking_to_edit.pk:
+                messages.error(
+                    request,
+                    'That slot is unavailable, please select a different time'
+                )
+                return redirect(reverse('edit_booking', args=[booking_id]))
 
-        elif booking_form.is_valid():
+        if booking_form.is_valid():
             booking_form.save()
             messages.success(
                 request,
