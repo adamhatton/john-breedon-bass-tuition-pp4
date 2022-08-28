@@ -1,7 +1,7 @@
 # John Breedon Bass Tuition - Testing
 
 ## Table of Contents
-- [Manual Testing](<#features>)
+- [Manual Testing](<#manual-testing>)
 	- [General](<#general>)
 	- [JavaScript](<#javascript>)
 	- [Python and Django](<#python-and-django>)
@@ -52,7 +52,7 @@ The specific tests performed are below:
 
 </details>
 
-### Python
+### Python and Django
 
 For the final part of the manual testing, I performed some specific Python and Django tests to cover scenarios that I could not reliably cover in automated testing. This included ensuring that the admin site worked as intended, and that templates elements that are logic dependant render in the relevant scenario.
 
@@ -149,7 +149,7 @@ Originally the code looked as follows:
 {% else %}
 ~~~
 
-## Validation
+## Validation Testing
 
 The validation testing can be seen in the [validation testing spreadsheet](docs/testing/jbtuition-validation.xlsx)
 

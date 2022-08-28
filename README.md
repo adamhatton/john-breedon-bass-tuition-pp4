@@ -55,9 +55,9 @@ The live site can be found [here](https://john-breedon-bass-tuition.herokuapp.co
 		- [Profile Form](<#profile-form>)
 		- [Account Bookings](<#account-bookings>)
 		- [Testimonial](<#testimonial>)
-	- [General](<#teneral>)
+	- [General](<#general>)
 		- [Security](<#security>)
-		- [General](<#general>)
+		- [User Experience](<#user-experience>)
 	- [Design](<#design>)
 		- [Colours](<#colours>)
 		- [Typography](<#typography>)
@@ -206,6 +206,7 @@ All the other stories were put into the 'To Do' column, being moved into the 'In
 
 Using this tool helped me to keep track of the status of each story, as well as keeping on top of how many stories were left to complete. You can see from the board that due to time constraints I had to leave the two 'could have' stories in the To Do column in order to successfully deliver the 'must have' and 'should have' stories.
 
+[Back to top ⇧](#john-breedon-bass-tuition)
 
 ## Features
 
@@ -361,12 +362,13 @@ Using this tool helped me to keep track of the status of each story, as well as 
 - In order to properly interact with the website, a user needs to have an account and be logged in. None of the following are possible unless a user is authorised: Creating and amending bookings, adding a testimonial, adding profile information. If an unauthorised user tries to access any of these links they will be redirected to a sign up page
 - During development I identified that bookings could be edited or deleted by a different user if they accessed the url directly through their browser (i.e. by typing it in). To defend against this, I have implemented checks that the booking user and the user requesting the action are the same. If they are not, a message saying that they do not have permission is shown
 
-#### General
+#### User Experience
 
 - For the Testimonial form, users are asked if they want to confirm the submission. This is because the information is not editable until after it gets approved, so acts as a barrier against accidental clicks, this was done by overriding the form's submission method and attaching a JavaScript function
 - Other forms do not require the submission to be confirmed as the information is easily editable after submission so I decided to avoid having the user having to complete an additional click
 - All delete buttons require the user to confirm the deletion, this is to protect against accidental deletions
 
+[Back to top ⇧](#john-breedon-bass-tuition)
 
 ### Design
 
@@ -430,6 +432,8 @@ The finished website does not mirror the wireframes exactly as I made some desig
 
 </details>
 
+[Back to top ⇧](#john-breedon-bass-tuition)
+
 ## Database Schema
 
 The database schema can be seen below:
@@ -472,6 +476,8 @@ This model handles bookings made by learners:
 - The phone field store's the user's phone number and is implemented using the `django-phonenumber-field` library. The reason this field has been included in this model as well as the LearnerProfile model is that it is not a required field in either model, so the LearnerProfile phone field cannot be relied on to be available. Having phone in the Booking model provides the user more flexibility to provide temporary numbers and acts as a backup for when it is not available from the LearnerProfile model
 - Type stores the type of the lesson. It is a CharField which takes the choices 'Home Visit', 'Online', 'At the Studio'. It is a required field.
 - Created_on and updated_on use the django `auto_now_add` feature to populate the date that adding/changing occurs. This information is useful for the site owner to see in the admin site
+
+[Back to top ⇧](#john-breedon-bass-tuition)
 
 ## Technologies
 
@@ -521,6 +527,8 @@ This model handles bookings made by learners:
 - [W3C HTML validator](https://validator.w3.org/) - used for validating the HTML markup
 - [WAVE Web Accessibility Evaluation Tool](https://wave.webaim.org/) - used for checking web accessibility
 
+[Back to top ⇧](#john-breedon-bass-tuition)
+
 ## Testing
 
 The testing was broken down into three categories: automated, manual, and validation. A separate document detailing the testing can be found [here](TESTING.md), but a summary is below.
@@ -551,6 +559,8 @@ I validated all aspects of my codes as follows:
 - JavaScript via JSHint
 - Accessibility via a11y, Wave and something else
 - Site performance via Lighthouse
+
+[Back to top ⇧](#john-breedon-bass-tuition)
 
 ## Bugs and Issues
 
@@ -611,6 +621,8 @@ Originally the code looked as follows:
 	{% endfor %}
 {% else %}
 ~~~
+
+[Back to top ⇧](#john-breedon-bass-tuition)
 
 ## Deployment
 
@@ -791,6 +803,8 @@ These steps will mean that `DEBUG` will be set to True whilst in the development
 38.	To manually deploy the project, select ‘Deploy Branch’ from the Manual Deploy section
 39.	When the branch is manually deployed, Heroku will build and deploy the branch. Upon completion, a link to the deployed project will be generated
 
+[Back to top ⇧](#john-breedon-bass-tuition)
+
 ## Credits and Resources
 
 ### Code
@@ -833,3 +847,5 @@ Below are resources I used to further my understanding of different topics. The 
 ### Acknowledgements
 
 - I'd like to thank my mentor Spencer Barriball for his feedback on the project and suggestions for improvement
+
+[Back to top ⇧](#john-breedon-bass-tuition)
