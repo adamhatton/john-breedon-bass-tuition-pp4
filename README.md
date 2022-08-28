@@ -98,7 +98,7 @@ An Agile methodology was used throughout the planning and development of the web
 
 ### Feasibility Matrix
 
-At the start of the project, I listed out all of potential goals of the website. I then assigned each goal (or opportunity) an importance and viability score which enabled me to create a feasibility matrix as below:
+At the start of the project, I listed out all of the potential goals of the website. I then assigned each goal (or opportunity) an importance and viability score which enabled me to create a feasibility matrix as below:
 
 ![feasibility matrix screenshot](docs/screenshots/feasibility-matrix-table.jpg)
 
@@ -185,7 +185,7 @@ I have provided an example of some acceptance criteria below, the full list for 
 
 When working on each User Story, I broke them down into Tasks to identify the technical work required to implement the story. This helped keep the development focussed as well as ensuring I didn't miss any technical elements.
 
-I have provided an example the tasks for a User Story below, the full list for each user can be seen in the [associated excel document](docs/project/user-story-and-feature-prep.xlsx) on the tab named 'User Story AC'.
+I have provided an example of the tasks for a User Story below, the full list for each user story can be seen in the [associated excel document](docs/project/user-story-and-feature-prep.xlsx) on the tab named 'User Story AC'.
 
 **As a site user, I want to be able to contact the tutor, so that I can ask questions**
 - Create Contact Model
@@ -199,7 +199,7 @@ I have provided an example the tasks for a User Story below, the full list for e
 
 ### User Story Management
 
-To manage the User Stories for the project, I created a Github Project with a Kanban board, which can be seen [here](https://github.com/users/adamhatton/projects/3)
+To manage the User Stories for the project, I created a Github Project with a Kanban board, which can be seen [here](https://github.com/users/adamhatton/projects/3).
 
 Each of the stories was added to the project using a User Story template, and then allocated to the relevant column. I included the "won't have" stories and left these in the backlog column to indicate that they could be completed in the future but will not be worked on in this iteration of the website.
 All the other stories were put into the 'To Do' column, being moved into the 'In Progress' column when they were in development, and then moving into 'Testing' once the development was complete. All of the stories that were tested were moved into the 'Done' column.
@@ -245,7 +245,7 @@ Using this tool helped me to keep track of the status of each story, as well as 
 #### Homepage Prices
 
 - Below the home page cards is the prices section with a simple 'Prices' title
-- There are two cards in this section showing the prices for tutoring service
+- There are two cards in this section showing the prices for tutoring services
 - The information is simple and clean so it is immediately clear to the user what the cost of the service is
 - There are buttons which link to the relevant actions to encourage users to either book a lesson or contact the tutor
 - The cards use bootstrap classes and are therefore responsive on different screen sizes
@@ -257,7 +257,7 @@ Using this tool helped me to keep track of the status of each story, as well as 
 - The homepage also contains a contact form that any visitor can use to send a message to the tutor
 - As it is on the home page, when the user selects the 'Contact' navlink there is a script in place to scroll the view to the form
 - The form implements bootstrap floating fields via the django crispy forms `crispy-bootstrap5` library
-- Name, Email and Message are required, but the Phone is not. However, if a user enters an invalid phone number the form will not submit and they will be asked to enter a valid one. This is because the field is a `PhoneNumberField` was implemented via the django `phonenumber-field` library
+- Name, Email and Message are required, but the Phone is not. However, if a user enters an invalid phone number the form will not submit and they will be asked to enter a valid one. This is because the field is a `PhoneNumberField` implemented via the django `phonenumber-field` library
 - When a message is sent, the user gets a success message, providing them with instant feedback about their actions
 - On submission, a contact message is generated in the database and accessible by the site admin
 
@@ -268,7 +268,7 @@ Using this tool helped me to keep track of the status of each story, as well as 
 
 - Each page has the same footer at the bottom, containing links to the tutor's Facebook and YouTube channels (note that these are for illustration purposes only, the channels do not exist)
 - Each of the links opens in a new tab so that the user does not lose where they were
-- The footer uses css styling to always appear at the bottom of the window, even if there is minimal content (for example on a login page)
+- The footer uses CSS styling to always appear at the bottom of the window, even if there is minimal content (for example on a login page)
 
 ![footer screenshot](docs/screenshots/footer.jpg)
 
@@ -284,7 +284,7 @@ Using this tool helped me to keep track of the status of each story, as well as 
 ### Register
 
 - Users can register with the website in order to access additional functionality
-- The website uses the django 'allauth' library which provides views and templates for registering
+- The website uses the django `allauth` library which provides views and templates for registering
 - The register screen has been styled to match the rest of the website and provides the standard registering functionality
 - The email address has been set to be required so that the tutor has a confirmed means of contacting any learners who book lessons
 - Users receive a sign-in message once they have successfully registered giving them immediate feedback on their actions
@@ -293,7 +293,7 @@ Using this tool helped me to keep track of the status of each story, as well as 
 
 ### Sign In
 
-- The website uses the django 'allauth' library which provides views and templates for signing in
+- The website uses the django `allauth` library which provides views and templates for signing in
 - The sign-in screen has been styled to match the rest of the website and provides the standard signing in functionality
 - Users receive a sign-in message once they have successfully signed-in giving them immediate feedback on their actions
 
@@ -301,7 +301,7 @@ Using this tool helped me to keep track of the status of each story, as well as 
 
 ### Sign Out
 
-- The website uses the django 'allauth' library which provides views and templates for signing out
+- The website uses the django `allauth` library which provides views and templates for signing out
 - The sign-out screen has been styled to match the rest of the website and provides the standard signing out functionality
 - Users receive a sign-out message once they have successfully signed-out giving them immediate feedback on their actions
 
@@ -336,7 +336,7 @@ Using this tool helped me to keep track of the status of each story, as well as 
 
 - At the top of the account page is the profile form, which shows the user's account information along with some additional information fields that they can provide if they want to
 - The structure of the form is actually 2 forms in one: a `User` form and a `LearnerProfile` form. On pressing submit, both forms are validated, only username and email are required, other fields do not need to be populated but will provide validation errors if they are populated with invalid data
-- By default the fields are set to be disabled (via a crispy forms Layout), but if the user selects the Edit button the fields become editable via a script. They can cancel the edit it which will refresh the page and remove any changes they made
+- By default the fields are set to be disabled (via a crispy forms Layout), but if the user selects the Edit button the fields become editable via a script. They can cancel the edit which will refresh the page and remove any changes they made
 - If a user tries to submit some changes and receives validation errors, the page will reload and the fields will render as editable to prevent them having to enable the fields again
 - On successful submission a message is provided to say that the profile has been successfully updated
 
@@ -349,11 +349,16 @@ Using this tool helped me to keep track of the status of each story, as well as 
 - The user is able to update a booking, which will take them to the bookings page and prepopulate the form with the data for that booking
 - Users can also delete bookings, but they will be prompted to confirm the deletion via a pop-up modal
 
+![account bookings screenshot](docs/screenshots/account-bookings.jpg)
+
 #### Testimonial
 
 - The final section on the Account page is the testimonial. By default this is just a button that says 'Add', when pressed this reveals a textbox where the user can type out a testimonial
 - If the user submits a testimonial they will be prompted to confirm they want to add it, and if they continue they are shown a message that their testimonial has been submitted for approval. This message will also be shown in the testimonial section until the testimonial is approved
 - Once a testimonial is approved, a user can edit what they've written (which follows the same process as adding a testimonial), or they can delete it. Deleting a testimonial also prompts a user to confirm that they want to delete it
+
+![account testimonial screenshot](docs/screenshots/account-testimonial.jpg)
+![account testimonial approval screenshot](docs/screenshots/account-testimonial-approval.jpg)
 
 ### General
 
@@ -384,17 +389,17 @@ I have kept the colour palette simple to avoid creating visual noise and to help
 
 #### Typography
 
-The font used is the default bootstrap 5 font, which provides a "native stack" for every device and OS. I opted to use due to the fact that it provides an optimal experience on each device, but also due to the fact that it is a familiar font. These fonts provide a professional yet approachable aesthetic that I did not want to change.
+The font used is the default bootstrap 5 font, which provides a "native stack" for every device and OS. I opted to use this due to the fact that it provides an optimal experience on each device, but also due to the fact that it is a familiar font. These fonts provide a professional yet approachable aesthetic that I did not want to change.
 
 #### Imagery
 
-There is limited imagery on the website and it is used a supporting content for the text. The images are all muted in terms of colours in order to fit with the theme of the website and to help with the contrast of the bold orange.
+There is limited imagery on the website and it is used as supporting content for the text. The images are all muted in terms of colours in order to fit with the theme of the website and to help with the contrast of the bold orange.
 
 - The main image on the home page is of a person playing bass guitar and is used to immediately set the context for the website
 - The three card images on the home page are all representations of the information presented below them
 - The image on the About page is of the tutor, so that learners can see what he looks like
 
-All images were taken from Pexels.
+All images were taken from [Pexels](https://www.pexels.com/).
 
 #### Wireframes
 
@@ -405,30 +410,30 @@ To create the wireframes, I looked at different bootstrap templates and used the
 The finished website does not mirror the wireframes exactly as I made some design changes during development. The key changes I made were:
 
 - Originally the testimonials were duplicated on the homepage and the about page, I decided this information should only be in one place so removed it from the home page
-- The prices were originally on the about page, during development I decided that users would likely want to see this information immediately so move it to the homepage
+- The prices were originally on the about page, during development I decided that users would likely want to see this information immediately so moved it to the homepage
 - I decided to change the layout of the booking availability slots as my original intention for displaying this information did not make best use of the available space
 
 <details><summary>Homepage Wireframes</summary>
 
-![home page wireframes](docs/wireframes/wireframes-home.png)
+![home page wireframes](docs/wireframes/wireframe-home.png)
 
 </details>
 
 <details><summary>About Wireframes</summary>
 
-![about page wireframes](docs/wireframes/wireframes-about.png)
+![about page wireframes](docs/wireframes/wireframe-about.png)
 
 </details>
 
 <details><summary>Bookings Wireframes</summary>
 
-![booking page wireframes](docs/wireframes/wireframes-bookings.png)
+![booking page wireframes](docs/wireframes/wireframe-bookings.png)
 
 </details>
 
 <details><summary>Account Wireframes</summary>
 
-![account page wireframes](docs/wireframes/wireframes-account.png)
+![account page wireframes](docs/wireframes/wireframe-account.png)
 
 </details>
 
