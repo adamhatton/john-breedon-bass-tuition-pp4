@@ -19,7 +19,7 @@ The website was built using the Django framework and is fully responsive. The go
 - To be able to easily book lessons
 
 
-![responsive mockups](docs/screenshots/responsive-mockups.jpg) TO INPUT
+![responsive mockups](docs/screenshots/responsive-mockups.jpg)
 
 ## Live Site
 
@@ -76,6 +76,10 @@ The live site can be found [here](https://john-breedon-bass-tuition.herokuapp.co
 	- [Manual Testing](<#manual-testing>)
 	- [Validation](<#validation>)
 - [Bugs and Issues](<#bugs-and-issues>)
+	- [Floating Label issue](<#floating-label-issue>)
+	- [Background Image issue](<#background-image-issue>)
+	- [LearnerProfile Bug](<#learnerprofile-bug>)
+	- [Email required Bug](<#email-required-bug>)
 - [Deployment](<#deployment>)
 	- [Django](<#django>)
 	- [Heroku](<#heroku>)
@@ -104,7 +108,7 @@ This table enabled me to see that the importance was greater than the viability,
 
 At this point, I decided that the development of downloading learner materials and commenting on them would be deprioritised in favour of the other opportunities.
 
-The feasibility matrix can also be seen in the associated excel document, on the tab named 'Feasibility Matrix': TO INPUT
+The feasibility matrix can also be seen in the [associated excel document](docs/project/user-story-and-feature-prep.xlsx) on the tab named 'Feasibility Matrix'.
 
 ### Epics and User Stories
 
@@ -162,13 +166,13 @@ In addition, I assigned each story a story points value based on how long I thou
 - Should haves: 14 (26%)
 - Could haves: 8 (15%)
 
-The Epics, User Stories and associated MoSCoW/story points can also be seen in the associated excel document, on the tab named 'User Stories': TO INPUT
+The Epics, User Stories and associated MoSCoW/story points can also be seen in the [associated excel document](docs/project/user-story-and-feature-prep.xlsx) on the tab named 'User Stories'.
 
 ### Acceptance Criteria
 
 Once I had my User Stories, I worked through these to break them down into Acceptance Criteria. The purpose of this was to provide a reference point for the development to ensure that what was being implemented is actually what was needed. It also helped with Testing to ensure that all necessary scenarios were covered.
 
-I have provided an example of some acceptance criteria below, the full list for each user story can be seen in the associated excel document, on the tab named 'User Story AC': TO INPUT
+I have provided an example of some acceptance criteria below, the full list for each user story can be seen in the [associated excel document](docs/project/user-story-and-feature-prep.xlsx) on the tab named 'User Story AC'.
 
 **As a site user, I want to be able to contact the tutor, so that I can ask questions**
 - Ability to contact should be presented as a Contact Form
@@ -181,7 +185,7 @@ I have provided an example of some acceptance criteria below, the full list for 
 
 When working on each User Story, I broke them down into Tasks to identify the technical work required to implement the story. This helped keep the development focussed as well as ensuring I didn't miss any technical elements.
 
-I have provided an example the tasks for a User Story below, the full list for each user can be seen in the associated excel document, on the tab named 'User Story AC': TO INPUT
+I have provided an example the tasks for a User Story below, the full list for each user can be seen in the [associated excel document](docs/project/user-story-and-feature-prep.xlsx) on the tab named 'User Story AC'.
 
 **As a site user, I want to be able to contact the tutor, so that I can ask questions**
 - Create Contact Model
@@ -195,7 +199,7 @@ I have provided an example the tasks for a User Story below, the full list for e
 
 ### User Story Management
 
-To manage the User Stories for the project, I created a Github Project with a Kanban board, which can be seen here: https://github.com/users/adamhatton/projects/3
+To manage the User Stories for the project, I created a Github Project with a Kanban board, which can be seen [here](https://github.com/users/adamhatton/projects/3)
 
 Each of the stories was added to the project using a User Story template, and then allocated to the relevant column. I included the "won't have" stories and left these in the backlog column to indicate that they could be completed in the future but will not be worked on in this iteration of the website.
 All the other stories were put into the 'To Do' column, being moved into the 'In Progress' column when they were in development, and then moving into 'Testing' once the development was complete. All of the stories that were tested were moved into the 'Done' column.
@@ -250,6 +254,7 @@ Using this tool helped me to keep track of the status of each story, as well as 
 #### Contact Form
 
 - The homepage also contains a contact form that any visitor can use to send a message to the tutor
+- As it is on the home page, when the user selects the 'Contact' navlink there is a script in place to scroll the view to the form
 - The form implements bootstrap floating fields via the django crispy forms `crispy-bootstrap5` library
 - Name, Email and Message are required, but the Phone is not. However, if a user enters an invalid phone number the form will not submit and they will be asked to enter a valid one. This is because the field is a `PhoneNumberField` was implemented via the django `phonenumber-field` library
 - When a message is sent, the user gets a success message, providing them with instant feedback about their actions
@@ -498,13 +503,13 @@ This model handles bookings made by learners:
 - [Cloudconvert](https://cloudconvert.com/) - used to convert the images to .webp format
 - [Cloudinary](https://cloudinary.com/) - used to store and serve the static files
 - [Coolors](https://coolors.co/) - used to obtain a visual chart of the colours used
+- [Contrast Checker](https://webaim.org/resources/contrastchecker/) - used for checking the contrast of text and backgrounds
 - [Favicon](https://favicon.io/favicon-generator/) - used for creating a favicon for the site
 - [Gitpod](https://www.gitpod.io/) - used to write and develop the website
 - [Git](https://git-scm.com/) – used for version controlling by using the Gitpod terminal to commit to Git, and subsequently pushing to GitHub
 - [GitHub](https://github.com/) – used to store the source code for the application
 - [Heroku](https://www.heroku.com/) - used to host and deploy the live website
 - [Miniwebtool](https://miniwebtool.com/django-secret-key-generator/) - used for generating a Django secret key
-
 - [Techsini](http://techsini.com/multi-mockup/) - used to generate a multi-device mockup (as seen at the beginning of the README)
 
 ### Testing Technologies
@@ -518,7 +523,7 @@ This model handles bookings made by learners:
 
 ## Testing
 
-The testing was broken down into three categories: automated, manual, and validation. A separate document detailing the testing can be found <here>, but a summary is below. TO INPUT
+The testing was broken down into three categories: automated, manual, and validation. A separate document detailing the testing can be found [here](TESTING.md), but a summary is below.
 
 ### Automated Testing
 
@@ -549,16 +554,16 @@ I validated all aspects of my codes as follows:
 
 ## Bugs and Issues
 
-**Floating Label issue**
+### Floating Label issue
 
 Throughout development I had used the bootstrap5 'floating label' component for all form inputs, however this caused issues when validating the HTML for the date input and the select elements. The floating label component uses a placeholder attribute but date inputs and select elements cannot have placeholder values. The fields are all rendered via `crispy forms` and the templates automatically add a 'placeholder' attribute, regardless of the input type.
 In order to meet HTML standards, I opted to remove the floating label component for these fields, and use standard labels instead. I considered using raw HTML within a crispy forms Layout object to resolve the problem, but this would require a verbose amount of code and would be more difficult to maintain in the future. As such, I decided to sacrifice some of the aesthetic consistency in favour of cleaner code that meets HTML standards.
 
-**Background Image issue**
+### Background Image issue
 
 The homepage has a header which contains a background image. When I tried to add the background image via a linked CSS stylesheet, I encountered an error whereby the resource could not be served by Cloudinary (which is the service used to store and serve static files). The error was caused by Cloudinary being unable to directly read the url as it was within a linked CSS file. To overcome this, I added the background image via a style element directly in the html, along with a comment to explain why it wasn't contained within the linked CSS stylesheet.
 
-**LearnerProfile Bug**
+### LearnerProfile Bug
 
 During development after I had implemented the LearnerProfile model, I found there was an error when trying to login to the site with a user that didn't have a LearnerProfile model. The LearnerProfile model is automatically created when a User is created, but for users who had been created prior to the implementation of this model or for those where the LearnerProfile model had been deleted, trying to login caused an error that the LearnerProfile does not exist.
 In order to fix this, I made it so that the LearnerProfile cannot be deleted by itself with the following code in the `admin.py` file:
@@ -577,7 +582,7 @@ In order to fix this, I made it so that the LearnerProfile cannot be deleted by 
         return True
 ~~~
 
-**Email required Bug**
+### Email required Bug
 
 When a user signs up I have made the email field a requirement so that the site owner has a guaranteed method of being able to contact the user. This was done via the AllAuth framework. However, when implementing a user form in the account page to allow users to update their information, I found that the email field was not required due to it coming from the standard Django form.
 To overcome this I changed the UserForm in `learner_account.forms.py` so that it would add a 'required' attribute to the form input:
@@ -586,7 +591,7 @@ self.fields['email'].required = True
 ~~~
 This makes it so that the form input is required before submission.
 
-**Rendering Bookings Bug**
+### Rendering Bookings Bug
 
 When writing my automated tests, I found that the test for rendering bookings on the account kept failing, despite my manual testing suggesting it was working. The learner_account.html template receives a context variable that is all the bookings that are linked to that user. If the length of this variable is greater than 0, it iterates through them to render some html elements.
 
@@ -613,16 +618,47 @@ Originally the code looked as follows:
 
 This website is built on the Django framework, so having a Django project set up is necessary for deployment. To set up a Django project and install the necessary dependencies, follow these steps:
 
-1. Within your development environment, install Django with: `pip3 install django gunicorn`. This install Django (the framework) and gunicorn which is a WSGI HTTP server which will be used by the site
-2. Then install the libraries `psycopg2` and `dj_database_url` using the command line: `pip3 install psycopg2 dj_database_url`. These libraries are needed for connecting to the database
-3. As an optional step, install `cloudinary` with: `pip3 install dj3-cloudinary-storage`. This allows the site to use Cloudinary for storing and serving files
-4. Once all the dependencies are installed, generate a requirements.txt document for them by using: `pip3 --freeze local > requirements.txt`. This will store the dependencies of the project in a file called requirements.txt
-5. Next, start a new Django project using the command `django-admin startproject <your-project-name> .` (don't leave off the dot at the end as this determines where the project is created).
-6. Migrations need to be run to set the database up, this can be done with `python3 manage.py migrate`
+1. Within your development environment, install Django with:
+~~~
+pip3 install django gunicorn
+~~~
+This will install Django (the framework) and gunicorn (which is a WSGI HTTP server that will be used by the site)
+
+2. Then install the libraries `psycopg2` and `dj_database_url` using the command line:
+~~~
+pip3 install psycopg2 dj_database_url
+~~~
+These libraries are needed for connecting to the database
+
+3. As this site uses Cloudinary to store files, this needs to be installed with:
+~~~
+pip3 install dj3-cloudinary-storage
+~~~
+This allows the site to use Cloudinary for storing and serving files
+
+4. Once all the dependencies are installed, generate a requirements.txt document for them by using:
+~~~
+pip3 --freeze local > requirements.txt
+~~~
+This will store the dependencies of the project in a file called requirements.txt
+
+5. Next, start a new Django project using the command:
+~~~
+django-admin startproject <your-project-name> .
+~~~
+(don't leave off the dot at the end as this determines where the project is created).
+
+6. Migrations need to be run to set the database up, this can be done with:
+~~~
+python3 manage.py migrate
+~~~
+
 7. Finally, you can commit and push your changes to GitHub using :
-	`git add .
-	git commit -m "initial commit
-	git push`
+~~~
+git add .
+git commit -m "initial commit
+git push
+~~~
 
 ### Heroku
 
@@ -639,63 +675,112 @@ Once a Django project has been set up and developed, it can be deployed to Herok
 9.	Within the development environment, create a file called `env.py` at the top level
 	- Ensure that this file is added to the .gitignore file. If your project does not have a .gitignore file then create one and add the `env.py` file to it
 10.	In the `env.py` file, import the `os` library and create a database variable using value taken from Heroku:
-	`os.environ ["DATABASE_URL"] = "<heroku database variable goes here>"`
+~~~
+os.environ ["DATABASE_URL"] = "<heroku database variable goes here>"
+~~~
+
 11.	Whilst in the `env.py` file, create a `SECRET_KEY` variable which will be used later. To generate a new Django secret key, do a google search for a Django secret key generator and use one of the results to create a key. The variable can be created using:
-	`os.environ ["SECRET_KEY"] = "<secret key goes here>"`
+~~~
+os.environ ["SECRET_KEY"] = "<secret key goes here>"
+~~~
+
 12.	Back in Heroku, add your secret key variable to the Config Vars by selecting 'Add' and entering 'SECRET_KEY' as the Key and your secret key value as the Value
 13.	Return to the development environment, and navigate to the `settings.py` file. Within this file, import the following:
-	`from pathlib import Path
-	import os
-	import dj_database_url
-	if os.path.isfile('env.py'):
-    		import env`
+~~~
+from pathlib import Path
+import os
+import dj_database_url
+if os.path.isfile('env.py'):
+	import env
+~~~
 
 These imports will enable you to access the variables in your `env.py`
 
 14. Find the `SECRET_KEY` and replaced the assignment as follows:
-	`SECRET_KEY = os.environ.get('SECRET_KEY')`
+~~~
+SECRET_KEY = os.environ.get('SECRET_KEY')
+~~~
+
 15. Find the `DATABASES` variable and comment out the existing code (this will be used in a later step), add in the following code:
-	`DATABASES = {
-	    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
-	}`
+~~~
+DATABASES = {
+    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+}
+~~~
 
 This will enable Heroku to connect to the database
 
 16.	As a new database is now being used, migrations need to be run again by using `python3 manage.py migrate`
 17.	As this project uses Cloudinary for file storage, additional steps are needed to configure this. Start by creating another variable in the `env.py` file for your personal Cloudinary (which can be obtained from the Cloudinary dashboard):
-	`os.environ["CLOUDINARY_URL"] = "<your cloudinary url>"`
+~~~
+os.environ["CLOUDINARY_URL"] = "<your cloudinary url>"
+~~~
+
 18.	Next, go back to Heroku and add another Config Var for your cloudinary url using `CLOUDINARY_URL` for the Key and your cloudinary url as the Value
 19.	If your project does not have any static files then add another Config Var to Heroku using `DISABLE_COLLECTSTATIC` as the Key and '1' as the Value. This will prevent the deployment from failing if there are no static files. This variable has been removed for this project as there are static files.
 20.	Return to the development environment, and in the `settings.py` file find the `INSTALLED_APPS` variable add in 'cloudinary_storage' before 'django.contrib.staticfiles' and then add 'cloudinary' underneath 'django.contrib.staticfiles'.
 21.	To configure Django to use Cloudinary, find the static files section towards the bottom of the `settings.py` file and add the following code:
-	`STATIC_URL = '/static/'
-	STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
-	STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-	STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+~~~
+STATIC_URL = '/static/'
+STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-	MEDIA_URL = '/media/'
-	DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'`
-22.	Next, create a `TEMPLATES_DIR` variable in `settings.py` and set it to `os.path.join(BASE_DIR, 'templates')` so that Django knows where to find templates
-23.	Find the `TEMPLATES` variable and for the `DIRS` key, set the value to be the `TEMPLATES_DIR` we have just created: `'DIRS': [TEMPLATES_DIR],`
-24.	Find the `ALLOWED_HOSTS` variable in `settings.py` and add in the urls that should be able to access the project: `ALLOWED_HOSTS = ['<heroku-project-name>.herokuapp.com', 'localhost']`
+MEDIA_URL = '/media/'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+~~~
+
+22.	Next, create a `TEMPLATES_DIR` variable in `settings.py` and set it to:
+~~~
+os.path.join(BASE_DIR, 'templates')
+~~~
+so that Django knows where to find templates
+
+23.	Find the `TEMPLATES` variable and for the `DIRS` key, set the value to be the `TEMPLATES_DIR` we have just created:
+~~~
+'DIRS': [TEMPLATES_DIR],
+~~~
+
+24.	Find the `ALLOWED_HOSTS` variable in `settings.py` and add in the urls that should be able to access the project:
+~~~
+ALLOWED_HOSTS = ['<heroku-project-name>.herokuapp.com', 'localhost']
+~~~
+
 25.	Within your project folder structure, create three directories at the top level for storing files: media, static, and templates
-26.	At the top level of your project structure, create a file called Procfile and add the following code to it: `web: gunicorn codestar.wsgi`. Heroku uses this file to determine how to run the app
+26.	At the top level of your project structure, create a file called Procfile and add the following code to it:
+~~~
+web: gunicorn codestar.wsgi
+~~~
+
+Heroku uses this file to determine how to run the app
+
 27.	To prevent sensitive information being revealed when running the app on Heroku, the `DEBUG` variable should be set to False, however this can be set conditionally depending on whether you are in the development environment or not. To do this, create an environment variable within your development environment called `DEVELOPMENT` and set its value to True (for this project this was done in GitPod > Settings > Variables)
-28.	Next, in the `settings.py` file, create add the following variable and assignment: `development = os.environ.get('DEVELOPMENT', False)`
-29.	Set the `DEBUG` variable to be equal to development: `DEBUG = development`
+28.	Next, in the `settings.py` file, create add the following variable and assignment:
+~~~
+development = os.environ.get('DEVELOPMENT', False)
+~~~
+
+29.	Set the `DEBUG` variable to be equal to development:
+~~~
+DEBUG = development
+~~~
+
 30.	Find the `DATABASES` variable that was previously commented out and amend the databases section to be conditional on whether you are in the development environment or not. It should look like this:
-	`if development:
-    		DATABASES = {
-		        'default': {
-		            'ENGINE': 'django.db.backends.sqlite3',
-		            'NAME': BASE_DIR / 'db.sqlite3',
-        		}
-	    	}
-	else:
-		DATABASES = {
-		        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
-		}`
+~~~
+if development:
+    DATABASES = {
+	    'default': {
+		    'ENGINE': 'django.db.backends.sqlite3',
+		    'NAME': BASE_DIR / 'db.sqlite3',
+        }
+	}
+else:
+	DATABASES = {
+		'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+	}
+~~~
 These steps will mean that `DEBUG` will be set to True whilst in the development environment, but False when running the Heroku app. It will also mean that Heroku will use the Heroku Postgres database, whereas the development environment will use the SQLite database. Note that any changes to the database will need to be migrated to both if both are to be used.
+
 31.	Commit your changes and push these to GitHub
 32.	Back in Heroku add another Config Var using `PORT` as the Key and '8000' as the Value.
 33.	Navigate to the Deploy tab and from the ‘Deployment Method’ section, select ‘GitHub’

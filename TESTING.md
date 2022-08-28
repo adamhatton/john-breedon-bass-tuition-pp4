@@ -22,7 +22,7 @@
 
 ## Manual Testing
 
-The manual testing can be seen in the manual testing spreadsheet here. TO INPUT
+The manual testing can be seen in the [manual testing spreadsheet](docs/testing/jbtuition-manual-testing.xlsx)
 
 ### General
 
@@ -70,7 +70,7 @@ The specific tests performed are below:
 
 ## Automated Testing
 
-The automated testing can be seen in the automated testing spreadsheet here. TO INPUT
+The automated testing can be seen in the [automated testing spreadsheet](docs/testing/jbtuition-automated-testing.xlsx)
 
 I wrote automated tests for all forms, models, and views. The specific tests can be seen below, because there are three django apps I have grouped the testing screenshots by type (i.e. forms, models then views).
 
@@ -151,11 +151,11 @@ Originally the code looked as follows:
 
 ## Validation
 
-The validation testing can be seen in the validation testing spreadsheet here. TO INPUT
+The validation testing can be seen in the [validation testing spreadsheet](docs/testing/jbtuition-validation.xlsx)
 
 ### HTML
 
-I ran each page of the site through the W3C HTML validator. To ensure it was properly validated, I inspected the page source of each page, and copied the content directly into the validator.
+I ran each page of the site through the [W3C HTML validator](https://validator.w3.org/). To ensure it was properly validated, I inspected the page source of each page, and copied the content directly into the validator.
 
 The results can be seen below, I discuss how I resolved the errors further down:
 
@@ -167,19 +167,19 @@ The results can be seen below, I discuss how I resolved the errors further down:
 
 #### Errors
 
-**Form Tag**
+- **Form Tag**
 
 On the home page I initially received the error: "Saw a form start tag, but there was already an active form element. Nested forms are not allowed. Ignoring the tag."
 
 This occurred because crispy forms was rendering a form tag as well as there being a form tag in the HTML. I resolved this by changing the crispy forms template to not output the form tags.
 
-**Attribute Placeholder**
+- **Attribute Placeholder**
 
 On the bookings page I received the error: "Attribute placeholder not allowed on element select at this point."
 
 This occurred because I was using the bootstrap5 component 'floating fields' which requires a placeholder attribute to be in place to work. To resolve this I changed the impacted fields to not use the 'floating label' component, instead opting for standard labels.
 
-**Attribute Disabled**
+- **Attribute Disabled**
 
 On the learner account page I received the error: "Bad value True for attribute disabled on element select."
 
@@ -187,7 +187,7 @@ This occurred because when configuring the crispy form layout for the form, I ha
 
 ### CSS
 
-I ran my CSS file through the Jigsaw CSS Validator, and this returned no errors and one warning. The warning is that the hover state for a button has the same background and border colour, this style is intentional so the warning was ignored.
+I ran my CSS file through the [Jigsaw CSS validator](https://jigsaw.w3.org/css-validator/), and this returned no errors and one warning. The warning is that the hover state for a button has the same background and border colour, this style is intentional so the warning was ignored.
 
 In addition I have a style element in the home.html template in order to be able to render a background image (see the main README Bugs section for why this is not in the linked style.css). I also validated this style element and it returned no errors.
 
@@ -199,21 +199,21 @@ In addition I have a style element in the home.html template in order to be able
 
 ### JavaScript
 
-The JavaScript code was run through JSHint configured to 'assume new JavaScript features (ES6)'. Whilst this didn't produce any errors, it did produce one warning, one undefined variable, and one unused variable:
+The JavaScript code was run through [JSHint](https://jshint.com/) configured to 'assume new JavaScript features (ES6)'. Whilst this didn't produce any errors, it did produce one warning, one undefined variable, and one unused variable:
 
-**Warning**
+- **Warning**
 
 The warning was: Functions declared within loops referencing an outer scoped variable may lead to confusing semantics. (confirmDelete, urlId)
 
 This warning is still present, but to mitigate the issue I have added comments to the code in question to make its purpose clear
 
-**Undefined variable**
+- **Undefined variable**
 
 The undefined variable is: bootstrap
 
 This was noted due to the fact that it is defined the bootstrap JavaScript file, so this is a false positive and I ignored it.
 
-**Unused variable**
+- **Unused variable**
 
 The unused variable is: confirmForm
 
@@ -227,7 +227,7 @@ The confirmForm function is called directly within the HTML via the form's onsub
 
 ### Python
 
-Each file was passed through a PEP8 compliance checker. None of the files returned any errors or warnings:
+Each file was passed through the [PEP8 online](http://pep8online.com/) compliance checker. None of the files returned any errors or warnings:
 
 <details><summary>Python Validation</summary>
 
@@ -237,17 +237,17 @@ Each file was passed through a PEP8 compliance checker. None of the files return
 
 ### Accessibility
 
-Each page was assessed using the WAVE accessibility tool, which found 3 errors across all of the pages.
+Each page was assessed using the [WAVE Web Accessibility Evaluation Tool](https://wave.webaim.org/), which found 3 errors across all of the pages.
 
-**Bookings Contrast Errors**
+- **Bookings Contrast Errors**
 
 This error was returned as the helper text under the fields on the booking form did not have sufficient contrast with the background. I darkened the colour of the text to resolve this.
 
-**Missing label**
+- **Missing label**
 
 This error was returned as the testimonial form on the account page did not have a label showing as I had opted to hide it. To increase the accessibility and remove this error, I unhid the label.
 
-**Skipped Heading**
+- **Skipped Heading**
 
 This error was returned as I had used an `<h4>` without using an `<h3>`. To resolve this I changed the h4 elements into h3 elements.
 
@@ -259,7 +259,7 @@ This error was returned as I had used an `<h4>` without using an `<h3>`. To reso
 
 ### Performance
 
-To validate the performance I ran each page through Lighthouse. This revealed no issues and the lowest rating in any category across all pages was 97.
+To validate the performance I ran each page through [Lighthouse](https://developers.google.com/web/tools/lighthouse). This revealed no issues and the lowest rating in any category across all pages was 97.
 
 <details><summary>Performance Validation</summary>
 
