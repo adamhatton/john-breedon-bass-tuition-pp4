@@ -207,7 +207,7 @@ class TestEditBookingView(TestCase):
     def test_edit_booking_rejects_duplicate_booking(self):
         '''
         Tests that the edit booking POST method prevents booking onto
-        a booked slot that is not the slot being edited 
+        a booked slot that is not the slot being edited
         '''
         day_after_tomorrow = datetime.now() + timedelta(days=2)
         test_user = User.objects.get(pk=1)

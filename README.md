@@ -80,6 +80,7 @@ The live site can be found [here](https://john-breedon-bass-tuition.herokuapp.co
 	- [Background Image issue](<#background-image-issue>)
 	- [LearnerProfile Bug](<#learnerprofile-bug>)
 	- [Email required Bug](<#email-required-bug>)
+	- [Update Booking Bug](<#update-booking-bug>)
 - [Deployment](<#deployment>)
 	- [Django](<#django>)
 	- [Heroku](<#heroku>)
@@ -628,6 +629,47 @@ Originally the code looked as follows:
 	{% endfor %}
 {% else %}
 ~~~  
+
+### Update Booking Bug
+
+When reviewing my code with my mentor, he highlighted a use case scenario that had not been accounted for, in that a user may want to just update their lesson *type* without updating the lesson *time*. I had not considered this as a use case and had explicitly blocked it in the `bookings.py` by preventing an update occurring if a booking with the same date and time already existed. Originally the code looked like this:
+~~~
+def post(self, request, booking_id):
+	'''
+	Handles POST requests to the edit_bookings page
+	'''
+	queryset = Booking.objects.all()
+	booking_to_edit = get_object_or_404(queryset, pk=booking_id)
+	booking_form = BookingForm(request.POST, instance=booking_to_edit)
+
+	date = request.POST['date']
+	time = request.POST['time']
+
+	# Check if booking already exists
+	if queryset.filter(date=date).filter(time=time).exists():
+		messages.error(
+			request,
+			'That slot is unavailable, please select a different time'
+		)
+		return redirect(reverse('edit_booking', args=[booking_id]))
+~~~
+
+To account for the new use case, I amended the code to include a check that if an existing booking is found, that the primary key for this booking has to be different in order to reject the update:
+~~~
+# Prevent user selecting booked slots that aren't the existing slot
+if queryset.filter(date=date).filter(time=time).exists():
+	existing_booking = (
+		queryset.filter(date=date)
+		.filter(time=time)
+		.first()
+	)
+	if existing_booking.pk != booking_to_edit.pk:
+		messages.error(
+			request,
+			'That slot is unavailable, please select a different time'
+		)
+		return redirect(reverse('edit_booking', args=[booking_id]))
+~~~
 
 [Back to top ⇧](#john-breedon-bass-tuition)
 
