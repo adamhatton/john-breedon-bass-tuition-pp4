@@ -25,6 +25,7 @@ The website was built using the Django framework and is fully responsive. The go
 
 The live site can be found [here](https://john-breedon-bass-tuition.herokuapp.com/).
 
+## Table of Contents
 - [Agile Methodology](<#agile-methodology>)
 	- [Feasibility Matrix](<#feasibility-matrix>)
 	- [Epics and User Stories](<#epics-and-user-stories>)
