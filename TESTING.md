@@ -106,7 +106,7 @@ I wrote automated tests for all forms, models, and views. The specific tests can
 
 ### Coverage
 
-For each app I used the `coverage` tool to run a report to see how much of the code had been covered in the testing. Each app's report can be seen below. Note that each report shows the admin.py as not being 100% covered, to account for this I completed some manual tests (as described above).
+For each app I used the `coverage` tool to run a report to see how much of the code had been covered in the testing. Each app's report can be seen below. Note that two reports show the admin.py as not being 100% covered, to account for this I completed some manual tests (as described above).
 
 <details><summary>Bookings Coverage</summary>
 

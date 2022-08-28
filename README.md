@@ -199,7 +199,7 @@ I have provided an example of the tasks for a User Story below, the full list fo
 
 ### User Story Management
 
-To manage the User Stories for the project, I created a Github Project with a Kanban board, which can be seen [here](https://github.com/users/adamhatton/projects/3).
+To manage the User Stories for the project, I created a Github Project with a Kanban board, which can be seen [here](https://github.com/users/adamhatton/projects/3/views/1).
 
 Each of the stories was added to the project using a User Story template, and then allocated to the relevant column. I included the "won't have" stories and left these in the backlog column to indicate that they could be completed in the future but will not be worked on in this iteration of the website.
 All the other stories were put into the 'To Do' column, being moved into the 'In Progress' column when they were in development, and then moving into 'Testing' once the development was complete. All of the stories that were tested were moved into the 'Done' column.
@@ -451,7 +451,7 @@ This model stores contact messages that are sent in from any website visitor:
 
 - Name, email address and message are required fields so that the site owner doesn't receive blank messages, but also to ensure that there is an email address available for response
 - The phone number field holds the visitor's phone number. It is available in the contact form if users are happy to provide it as it is a faster means of communication, however it is not required - this is so that users only have to enter minimal information before being able to send a message. The phone number field was implemented using the `django-phonenumber-field` library with the default region set to Great Britain to enable validation for GB numbers
-- The submitted and completed fields are for management in the admin site. Submitted uses the django `auto_now_add` feature to populate the date and time contact was sent which allows the site owner to see this in the admin site. The completed field is a Boolean field that the site owner can use to mark a message as having been responded to
+- The submitted and completed fields are for management in the admin site. The submitted field uses the django `auto_now_add` feature to populate the date and time contact was sent which allows the site owner to see this in the admin site. The completed field is a Boolean field that the site owner can use to mark a message as having been responded to
 
 ### LearnerProfile
 
@@ -460,7 +460,7 @@ This model extends the user model via a OneToOne relationship and stores additio
 - LearnerProfile is linked to a specific user via a OneToOne relationship with the UserModel. When a User is created, the LearnerProfile is automatically created as well via the model receiving a signal from the User save function. Because of this, if a LearnerProfile gets deleted it can cause issues with logging into the admin site. To overcome this I removed the option to delete the LearnerProfile unless the full user was being deleted
 - The ability level stores the learner's playing ability. It is a CharField which takes the choices 'Beginner', 'Intermediate' and 'Advanced'. This allows the user to provide information on their current playing ability so that the site owner knows what to expect in lessons. The field is not required
 - The about field is a TextField which is intended to store any additional information that the user provides about themselves and their goals. Again this helps the site owner to prepare for lessons. The field is not required
-- The phone field store's the user's phone number and is implemented using the `django-phonenumber-field` library. It is not required, but if the user enters it then it will be prepopulated into the booking form for any bookings they make. It is included as it is a faster method of communication if the user is happy to share it
+- The phone field stores the user's phone number and is implemented using the `django-phonenumber-field` library. It is not required, but if the user enters it then it will be prepopulated into the booking form for any bookings they make. It is included as it is a faster method of communication if the user is happy to share it
 
 ### Testimonial
 
@@ -478,7 +478,7 @@ This model handles bookings made by learners:
 - As one user can have multiple bookings, the Booking model is linked to the User model via a ForeignKey enabling users to make multiple bookings.
 - Date stores the date on which the lesson will take place. It is a required field and is implemented with a DateField. On forms this field is implemented via a datepicker which limits entries to valid dates.
 - Time stores the time of the lesson. It is a CharField which takes the choices '10:00 - 11:00', '11:00 - 12:00', '13:00 - 14:00', '14:00 - 15:00', '15:00 - 16:00', '16:00 - 17:00'. It is a required field.
-- The phone field store's the user's phone number and is implemented using the `django-phonenumber-field` library. The reason this field has been included in this model as well as the LearnerProfile model is that it is not a required field in either model, so the LearnerProfile phone field cannot be relied on to be available. Having phone in the Booking model provides the user more flexibility to provide temporary numbers and acts as a backup for when it is not available from the LearnerProfile model
+- The phone field stores the user's phone number and is implemented using the `django-phonenumber-field` library. The reason this field has been included in this model as well as the LearnerProfile model is that it is not a required field in either model, so the LearnerProfile phone field cannot be relied on to be available. Having phone in the Booking model provides the user more flexibility to provide temporary numbers and acts as a backup for when it is not available from the LearnerProfile model
 - Type stores the type of the lesson. It is a CharField which takes the choices 'Home Visit', 'Online', 'At the Studio'. It is a required field.
 - Created_on and updated_on use the django `auto_now_add` feature to populate the date that adding/changing occurs. This information is useful for the site owner to see in the admin site
 
@@ -544,7 +544,7 @@ I wrote automated tests to cover the essential aspects of each Django app. I com
 
 ### Manual Testing
 
-I manually tested the website on 3 different browsers: Chrome, Desktop, Edge. In addition I also tested it on my own mobile, and had a number of friends and family test it on their own devices.
+I manually tested the website on 3 different browsers: Chrome, Desktop, Edge. In addition I also tested it on my own mobile, and had a number of friends and family test it on their own devices. Due to the testing performed by others, there are a number of accounts and entries that already exist in the database.
 
 This testing consisted of checking:
 
@@ -558,12 +558,12 @@ This testing consisted of checking:
 
 I validated all aspects of my codes as follows:
 
-- Python via a PEP8 checker
-- HTML via the W3C validator
-- CSS via the Jigsaw validator
-- JavaScript via JSHint
-- Accessibility via a11y, Wave and something else
-- Site performance via Lighthouse
+- Python via [PEP8 online](http://pep8online.com/)
+- HTML via the [W3C HTML validator](https://validator.w3.org/)
+- CSS via the [Jigsaw CSS validator](https://jigsaw.w3.org/css-validator/)
+- JavaScript via [JSHint](https://jshint.com/)
+- Accessibility via the [WAVE Web Accessibility Evaluation Tool](https://wave.webaim.org/)
+- Site performance via [Lighthouse](https://developers.google.com/web/tools/lighthouse)
 
 [Back to top ⇧](#john-breedon-bass-tuition)
 
@@ -571,12 +571,12 @@ I validated all aspects of my codes as follows:
 
 ### Floating Label issue
 
-Throughout development I had used the bootstrap5 'floating label' component for all form inputs, however this caused issues when validating the HTML for the date input and the select elements. The floating label component uses a placeholder attribute but date inputs and select elements cannot have placeholder values. The fields are all rendered via `crispy forms` and the templates automatically add a 'placeholder' attribute, regardless of the input type.
+Throughout development I had used the bootstrap5 'floating label' component for all form inputs, however this caused issues when validating the HTML for the date `<input>` and the `<select>` elements. The floating label component uses a placeholder attribute but date `<input>`s and `<select>` elements cannot have placeholder values. The fields are all rendered via `crispy forms` and the templates automatically add a 'placeholder' attribute, regardless of the input type.
 In order to meet HTML standards, I opted to remove the floating label component for these fields, and use standard labels instead. I considered using raw HTML within a crispy forms Layout object to resolve the problem, but this would require a verbose amount of code and would be more difficult to maintain in the future. As such, I decided to sacrifice some of the aesthetic consistency in favour of cleaner code that meets HTML standards.
 
 ### Background Image issue
 
-The homepage has a header which contains a background image. When I tried to add the background image via a linked CSS stylesheet, I encountered an error whereby the resource could not be served by Cloudinary (which is the service used to store and serve static files). The error was caused by Cloudinary being unable to directly read the url as it was within a linked CSS file. To overcome this, I added the background image via a style element directly in the html, along with a comment to explain why it wasn't contained within the linked CSS stylesheet.
+The homepage has a header which contains a background image. When I tried to add the background image via a linked CSS stylesheet, I encountered an error whereby the resource could not be served by Cloudinary (which is the service used to store and serve static files). The error was caused by Cloudinary being unable to directly read the url as it was within a linked CSS file. To overcome this, I added the background image via a style element directly in the HTML, along with a comment to explain why it wasn't contained within the linked CSS stylesheet.
 
 ### LearnerProfile Bug
 
@@ -612,20 +612,22 @@ When writing my automated tests, I found that the test for rendering bookings on
 
 Originally the code looked as follows:
 ~~~
-{% if bookings|length > 0 %}
-	{% for booking in bookings %}
-		<Add html elements>
-	{% endfor %}
-{% else %}
-~~~  
-`len` had been incorrectly used, but was not apparent through manual testing. After the automated testing, I updated the template code to instead use a Django filter:
-~~~
 {% if bookings.len > 0 %}
 	{% for booking in bookings %}
 		<Add html elements>
 	{% endfor %}
 {% else %}
 ~~~
+
+`len` had been incorrectly used, but was not apparent through manual testing. After the automated testing, I updated the template code to instead use a Django filter:
+
+~~~
+{% if bookings|length > 0 %}
+	{% for booking in bookings %}
+		<Add html elements>
+	{% endfor %}
+{% else %}
+~~~  
 
 [Back to top ⇧](#john-breedon-bass-tuition)
 
@@ -655,7 +657,7 @@ This allows the site to use Cloudinary for storing and serving files
 
 4. Once all the dependencies are installed, generate a requirements.txt document for them by using:
 ~~~
-pip3 --freeze local > requirements.txt
+pip3 freeze --local > requirements.txt
 ~~~
 This will store the dependencies of the project in a file called requirements.txt
 
@@ -691,7 +693,7 @@ Once a Django project has been set up and developed, it can be deployed to Herok
 8.	Navigate to the 'Settings' tab for the app and select to 'Reveal Config Vars', a variable called `DATABASE_URL` will have been created by connecting the database add-on. Copy the **value** of this variable
 9.	Within the development environment, create a file called `env.py` at the top level
 	- Ensure that this file is added to the .gitignore file. If your project does not have a .gitignore file then create one and add the `env.py` file to it
-10.	In the `env.py` file, import the `os` library and create a database variable using value taken from Heroku:
+10.	In the `env.py` file, import the `os` library and create a database variable using the value taken from Heroku:
 ~~~
 os.environ ["DATABASE_URL"] = "<heroku database variable goes here>"
 ~~~
@@ -713,7 +715,7 @@ if os.path.isfile('env.py'):
 
 These imports will enable you to access the variables in your `env.py`
 
-14. Find the `SECRET_KEY` and replaced the assignment as follows:
+14. Find the `SECRET_KEY` variable and replace the assignment as follows:
 ~~~
 SECRET_KEY = os.environ.get('SECRET_KEY')
 ~~~
@@ -727,7 +729,11 @@ DATABASES = {
 
 This will enable Heroku to connect to the database
 
-16.	As a new database is now being used, migrations need to be run again by using `python3 manage.py migrate`
+16.	As a new database is now being used, migrations need to be run again by using 
+~~~
+python3 manage.py migrate
+~~~
+
 17.	As this project uses Cloudinary for file storage, additional steps are needed to configure this. Start by creating another variable in the `env.py` file for your personal Cloudinary (which can be obtained from the Cloudinary dashboard):
 ~~~
 os.environ["CLOUDINARY_URL"] = "<your cloudinary url>"
@@ -772,7 +778,7 @@ web: gunicorn codestar.wsgi
 Heroku uses this file to determine how to run the app
 
 27.	To prevent sensitive information being revealed when running the app on Heroku, the `DEBUG` variable should be set to False, however this can be set conditionally depending on whether you are in the development environment or not. To do this, create an environment variable within your development environment called `DEVELOPMENT` and set its value to True (for this project this was done in GitPod > Settings > Variables)
-28.	Next, in the `settings.py` file, create add the following variable and assignment:
+28.	Next, in the `settings.py` file, add the following variable and assignment:
 ~~~
 development = os.environ.get('DEVELOPMENT', False)
 ~~~
